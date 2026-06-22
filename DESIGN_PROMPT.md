@@ -139,3 +139,50 @@ Confident, refined, technical-but-human. Short declarative lines. No marketing f
 ## DELIVERABLE
 
 A complete, runnable Next.js + TypeScript + Tailwind + shadcn/ui + Framer Motion project for the Shua Labs site: every section above, category-organized gallery with clickable project detail drawers, the cinematic dark-premium aesthetic with tasteful scroll motion, the three consulting offers, responsive and accessible, deployable to Vercel as-is. It must `next build` clean. Make it look like an Apple product page for a developer's body of work — because that is exactly its job.
+
+---
+
+# v2.1 — APPLE FIDELITY PASS (refinement directive)
+
+Goal: take the existing v2 site and execute it to authentic Apple craft — Apple's real font (San Francisco), Apple's exact type scale/tracking/weights, Apple's grays and blue, Apple's pill buttons and chevron links, Apple's bento patterns and spacing, Apple's understated motion. Keep the existing IA, sections, data, and dark base. This is a precision restyle, NOT a rebuild. Result must look like an Apple product page for a developer's body of work.
+
+## TYPOGRAPHY — San Francisco (the single biggest change)
+- Replace Geist as the primary face with the **San Francisco system stack** so it renders Apple's real font on Apple devices:
+  `font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;`
+  Set this as `--font-sans` / the Tailwind `sans` family. Keep a mono ONLY for code snippets and tiny type-tags (SF Mono stack: `ui-monospace, "SF Mono", "JetBrains Mono", monospace`). NOTHING is serif. No display serif anywhere.
+- **Apple's display rule:** large headings behave like SF Pro Display (tight), body like SF Pro Text. Emulate with size-based tracking + weight below.
+- **Type scale & treatment (match Apple closely):**
+  - Hero headline: `clamp(48px, 8vw, 96px)`, weight **600** (semibold, NOT 700), line-height **1.05**, letter-spacing **-0.015em**.
+  - Section headline: `clamp(32px, 5vw, 56px)`, weight 600, line-height 1.08, letter-spacing **-0.01em**.
+  - Sub/intro copy: `clamp(19px, 2.2vw, 28px)`, weight 400, line-height 1.4, color `#86868b`, letter-spacing -0.012em.
+  - Body: 17px, weight 400, line-height 1.47, letter-spacing -0.022em.
+  - Eyebrow/overline: 17–19px, weight 600, slightly tightened; accent-tinted or `#86868b`. (Apple eyebrows are NOT tiny all-caps mouse-type — keep them readable.)
+  - Captions/meta: 12–14px, weight 500, `#86868b`.
+- Apple leans on **weight + size + tracking** for hierarchy, never on many colors. Headlines `#f5f5f7`, everything secondary `#86868b`.
+
+## COLOR — Apple's exact dark palette
+- Background: pure `#000000`. Elevated surfaces / bento tiles: `#1d1d1f` (Apple's signature dark tile), with a slightly lighter `#161617` option. Hairlines: `rgba(255,255,255,0.12)`.
+- Text: primary `#f5f5f7`; secondary `#86868b`; tertiary `#6e6e73`.
+- Accent / links: Apple blue **`#2997ff`** (this is Apple's dark-mode link blue). Primary button fill: **`#0071e3`**, hover `#0077ED`.
+- Keep glows VERY subtle — Apple uses near-flat dark with crisp tiles, not heavy neon. Tone down any large neon radial glows from v2 to a faint, tasteful gradient.
+
+## CONTROLS — Apple buttons & links
+- **Primary button:** filled Apple-blue pill. `background:#0071e3; color:#fff; border-radius:980px; padding:8px 18px; font-size:17px; font-weight:400;` hover `#0077ED`, subtle scale none (Apple buttons don't bounce). A larger CTA variant: `padding:12px 24px; font-size:19px`.
+- **Secondary:** ghost pill — `border:1px solid rgba(255,255,255,0.3)` or a `#1d1d1f` fill pill; same radius.
+- **Text links (very Apple):** accent `#2997ff`, no underline at rest, **underline on hover**, often followed by a chevron `›` (rendered as a small inline glyph that nudges right on hover). Use these for "Learn more ›" / "View on GitHub ›" style links throughout.
+
+## PATTERNS — make it read as Apple
+- **Hero:** centered or left-aligned big statement, eyebrow + huge semibold headline + gray sub + a row of a filled pill and a chevron text-link. Tons of vertical room. Calm. (Apple hero = one idea, enormous, centered space.)
+- **Bento grid:** convert the Principles band (and optionally a "highlights" section) into an **Apple bento layout** — rounded `#1d1d1f` tiles (radius **18–28px**), varied tile sizes in a tidy grid, generous internal padding (32–48px), a headline + short line per tile, minimal line-icon. This is Apple's current signature; lean into it.
+- **Section rhythm:** big vertical padding (`clamp(80px, 12vw, 140px)` top/bottom), content max-width ~980–1100px centered, lots of breathing room. One clear idea per section.
+- **Project cards / detail:** keep, but restyle to Apple tiles — `#1d1d1f`, radius ~20px, hairline border, hover = very subtle lift + border brighten (no neon bloom). Detail drawer: clean Apple sheet, `#1d1d1f`, generous padding, SF type, chevron links.
+- **Consulting:** present as Apple "pricing tiles" — three clean bento-style tiles, the flagship subtly elevated (slightly lighter tile + 1px accent ring, NOT a glow explosion). Prices in big SF semibold.
+- **Nav:** Apple-exact — height ~44–48px, `backdrop-filter: blur(20px) saturate(180%)`, `background: rgba(0,0,0,0.8)`, links 12–14px at ~80% opacity → 100% on hover, very tight. Wordmark left.
+
+## MOTION — Apple-understated
+- Reveals: opacity 0→1 + translateY(28px→0), duration ~0.8–1s, Apple easing `cubic-bezier(0.28, 0.11, 0.32, 1)`, trigger once on view, gentle stagger. Subtle — Apple motion is barely-there, never flashy. Keep `prefers-reduced-motion` kill switch.
+- Remove any fast/bouncy hover transforms; Apple hovers are slow opacity/scale (~250ms ease).
+
+## ACCEPTANCE
+- Looks unmistakably Apple: SF font rendering, tight semibold headlines, #f5f5f7/#86868b hierarchy, #2997ff chevron links, #0071e3 pills, #1d1d1f bento tiles, vast whitespace, understated motion.
+- Still `next build` clean, responsive, AA-contrast, keyboard-accessible. No serif anywhere. No neon-heavy glows.

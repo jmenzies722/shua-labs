@@ -2,7 +2,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Premium dark card. Large radius, hairline border, soft gradient sheen.
+ * Apple bento tile. #1d1d1f surface, ~20px radius, hairline border.
+ * Hover: very subtle border brighten + 1px lift. No neon bloom.
  */
 export const Card = React.forwardRef<
   HTMLDivElement,
@@ -11,7 +12,7 @@ export const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "relative rounded-2xl border border-line bg-bg-card bg-card-grad transition-[transform,box-shadow,border-color] duration-300 ease-premium",
+      "relative rounded-2xl border border-line bg-bg-panel transition-[transform,border-color] duration-[250ms] ease-apple",
       className
     )}
     {...props}

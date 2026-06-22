@@ -12,10 +12,15 @@ interface CodeBlockProps {
 }
 
 /**
- * Dark mono code block with a copy button. No syntax highlighting —
- * deliberately quiet so it reads as a snippet, not a feature.
+ * Apple-quiet code block. SF Mono on #161617, copy affordance top-right.
+ * No syntax highlighting — reads as a snippet, not a feature.
  */
-export function CodeBlock({ code, language, caption, className }: CodeBlockProps) {
+export function CodeBlock({
+  code,
+  language,
+  caption,
+  className,
+}: CodeBlockProps) {
   const [copied, setCopied] = React.useState(false);
 
   const onCopy = React.useCallback(async () => {
@@ -44,21 +49,21 @@ export function CodeBlock({ code, language, caption, className }: CodeBlockProps
   return (
     <figure className={cn("group/codeblock", className)}>
       {caption && (
-        <figcaption className="mb-2 flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.16em] text-fg-subtle">
+        <figcaption className="mb-2 flex items-center gap-2 text-[12px] font-mono text-fg-subtle">
           {language && (
-            <span className="rounded-sm border border-line bg-white/[0.03] px-1.5 py-0.5">
+            <span className="rounded-sm bg-white/[0.05] px-1.5 py-0.5">
               {language}
             </span>
           )}
           <span>{caption}</span>
         </figcaption>
       )}
-      <div className="relative overflow-hidden rounded-xl border border-line bg-black/60">
+      <div className="relative overflow-hidden rounded-xl border border-line bg-bg-raised">
         <button
           type="button"
           onClick={onCopy}
           aria-label={copied ? "Copied" : "Copy code"}
-          className="absolute right-3 top-3 inline-flex h-8 items-center gap-1.5 rounded-full border border-line bg-bg-panel/80 px-3 text-[11px] font-medium text-fg-muted backdrop-blur-sm transition-colors duration-200 hover:border-line-strong hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
+          className="absolute right-3 top-3 inline-flex h-8 items-center gap-1.5 rounded-full bg-white/[0.06] px-3 text-[12px] font-medium text-fg-muted transition-colors duration-200 hover:bg-white/[0.1] hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
         >
           {copied ? (
             <>
@@ -72,7 +77,7 @@ export function CodeBlock({ code, language, caption, className }: CodeBlockProps
             </>
           )}
         </button>
-        <pre className="overflow-x-auto p-5 pr-20 text-[13px] leading-relaxed font-mono text-fg/90">
+        <pre className="overflow-x-auto p-5 pr-20 text-[13px] leading-[1.6] font-mono text-fg/90">
           <code>{code}</code>
         </pre>
       </div>

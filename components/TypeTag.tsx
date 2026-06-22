@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Tiny mono type tag — one of the only places monospace appears.
+ * SF Mono stack, calm tracking, no all-caps shouting.
  */
 export function TypeTag({
   type,
@@ -15,7 +16,7 @@ export function TypeTag({
   return (
     <span
       className={cn(
-        "inline-block font-mono text-[10px] tracking-[0.2em] text-fg-subtle uppercase",
+        "inline-block font-mono text-[11px] tracking-[0.05em] text-fg-subtle",
         className
       )}
     >

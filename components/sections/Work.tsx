@@ -13,9 +13,11 @@ import type { Project } from "@/lib/types";
 /**
  * The heart of the site — the work.
  *
- * - Optional featured spotlight band above the grids (`featured: true` on a project).
+ * - Optional featured spotlight band above the grids (`featured: true`).
  * - Category bands rendered in `categories` order.
- * - Project cards open a shared detail drawer.
+ * - Project tiles open a shared detail drawer.
+ *
+ * Apple-fidelity pass: vast vertical rhythm, calm spacing, no neon glows.
  */
 export function Work() {
   const [selected, setSelected] = React.useState<Project | null>(null);
@@ -26,7 +28,6 @@ export function Work() {
     setOpen(true);
   }, []);
 
-  // Keep the project mounted after close to allow exit animations & focus restore.
   const onOpenChange = React.useCallback((next: boolean) => {
     setOpen(next);
   }, []);
@@ -50,9 +51,9 @@ export function Work() {
     <section
       id="work"
       aria-label="The work"
-      className="relative py-28 md:py-44 scroll-mt-24"
+      className="relative apple-section scroll-mt-16"
     >
-      <div className="container flex flex-col gap-20 md:gap-32">
+      <div className="container max-w-[1100px] flex flex-col gap-20 md:gap-28">
         <Reveal>
           <SectionHeading
             eyebrow="The work"
@@ -62,17 +63,17 @@ export function Work() {
                 <span className="text-fg-muted">grouped by what they do.</span>
               </>
             }
-            lead="Every project here is shipped in the open. Click any card for the full story — what it does, who it's for, how to use it."
+            lead="Every project here is shipped in the open. Open any tile for the full story — what it does, who it's for, how to use it."
           />
         </Reveal>
 
         {featured && (
-          <Reveal y={24}>
+          <Reveal y={28}>
             <FeaturedProject project={featured} onOpen={onOpen} />
           </Reveal>
         )}
 
-        <div className="flex flex-col gap-24 md:gap-32">
+        <div className="flex flex-col gap-24 md:gap-28">
           {categories.map((cat) => (
             <CategorySection
               key={cat.id}

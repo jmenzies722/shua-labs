@@ -5,36 +5,41 @@
 @layer base {
   :root {
     color-scheme: dark;
+    /* Apple system font stack — renders SF Pro on Apple devices. */
+    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+      "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo,
+      Consolas, monospace;
   }
 
   html {
     scroll-behavior: smooth;
-    /* Apple off-white selection */
     color-scheme: dark;
+    font-family: var(--font-sans);
   }
 
   body {
     @apply bg-bg text-fg font-sans antialiased;
-    background-image:
-      radial-gradient(
-        ellipse at 50% -5%,
-        rgba(10, 132, 255, 0.07),
-        transparent 55%
-      ),
-      radial-gradient(
-        ellipse at 90% 110%,
-        rgba(10, 132, 255, 0.03),
-        transparent 60%
-      );
+    background-color: #000000;
+    /* Very faint, tasteful gradient — toned down from v2's neon. */
+    background-image: radial-gradient(
+      ellipse at 50% -10%,
+      rgba(41, 151, 255, 0.04),
+      transparent 60%
+    );
     background-attachment: fixed;
-    /* Subtle film grain */
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Body type baseline — Apple SF Pro Text. */
+    font-size: 17px;
+    line-height: 1.47059;
+    letter-spacing: -0.022em;
+    font-weight: 400;
   }
 
   ::selection {
-    background: rgba(10, 132, 255, 0.4);
+    background: rgba(41, 151, 255, 0.35);
     color: #ffffff;
   }
 
@@ -42,9 +47,9 @@
     @apply outline-none;
   }
 
-  /* Hairline divider helper */
+  /* Hairline divider helper. */
   .hairline {
-    border-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -61,8 +66,124 @@
   }
 }
 
+@layer components {
+  /* Apple display headline — used for hero. */
+  .apple-headline {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+  }
+
+  /* Apple section headline. */
+  .apple-section-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  /* Apple sub/intro copy. */
+  .apple-sub {
+    font-size: clamp(19px, 2.2vw, 28px);
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.012em;
+    color: #86868b;
+  }
+
+  /* Apple eyebrow — readable, not micro-caps. */
+  .apple-eyebrow {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    line-height: 1.2;
+  }
+
+  /* Apple chevron text link — accent blue, underline on hover, glyph nudges right. */
+  .apple-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: #2997ff;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .apple-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .apple-link::after {
+    content: "\203A";
+    display: inline-block;
+    margin-left: 2px;
+    transition: transform 250ms cubic-bezier(0.28, 0.11, 0.32, 1);
+  }
+  .apple-link:hover::after {
+    transform: translateX(3px);
+  }
+
+  /* Apple primary pill button. */
+  .apple-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #0071e3;
+    color: #ffffff;
+    border-radius: 980px;
+    padding: 8px 18px;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 1.2;
+    transition: background-color 250ms ease;
+    white-space: nowrap;
+  }
+  .apple-btn-primary:hover {
+    background: #0077ed;
+  }
+  .apple-btn-primary.apple-btn-lg {
+    padding: 12px 24px;
+    font-size: 19px;
+  }
+
+  /* Apple ghost / secondary pill. */
+  .apple-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: #1d1d1f;
+    color: #f5f5f7;
+    border-radius: 980px;
+    padding: 8px 18px;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    line-height: 1.2;
+    transition: background-color 250ms ease;
+    white-space: nowrap;
+  }
+  .apple-btn-ghost:hover {
+    background: #2a2a2c;
+  }
+  .apple-btn-ghost.apple-btn-lg {
+    padding: 12px 24px;
+    font-size: 19px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  /* Section rhythm — vast Apple whitespace. */
+  .apple-section {
+    padding-top: clamp(80px, 12vw, 140px);
+    padding-bottom: clamp(80px, 12vw, 140px);
   }
 }

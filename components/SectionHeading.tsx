@@ -11,7 +11,12 @@ interface SectionHeadingProps {
 }
 
 /**
- * Section heading — eyebrow (small, accent-tinted), display title, lead copy.
+ * Section heading — Apple eyebrow + section headline + sub copy.
+ *
+ * - Eyebrow: 19px semibold, accent-blue. (Not micro-caps — Apple eyebrows are
+ *   readable.)
+ * - Title: clamp(32,5vw,56) / 600 / 1.08 / -0.01em.
+ * - Sub: clamp(19,2.2vw,28) / 400 / 1.4 / #86868b.
  */
 export function SectionHeading({
   eyebrow,
@@ -31,18 +36,14 @@ export function SectionHeading({
       )}
     >
       {eyebrow && (
-        <span className="text-[11px] font-mono uppercase tracking-[0.18em] text-accent-hi">
-          {eyebrow}
-        </span>
+        <span className="apple-eyebrow text-accent">{eyebrow}</span>
       )}
-      <h2 className="text-balance text-3xl md:text-5xl font-semibold tracking-tighter text-fg leading-[1.05]">
-        {title}
-      </h2>
+      <h2 className="apple-section-title text-balance text-fg">{title}</h2>
       {lead && (
         <p
           className={cn(
-            "text-balance text-base md:text-lg text-fg-muted leading-relaxed",
-            align === "center" ? "max-w-2xl" : "max-w-2xl"
+            "apple-sub text-balance",
+            align === "center" ? "max-w-3xl mx-auto" : "max-w-3xl"
           )}
         >
           {lead}

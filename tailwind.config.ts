@@ -1,9 +1,8 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Shua Labs v2 — Dark & Premium.
- * Apple Pro / Pro Display XDR / Linear vibe.
- * Near-black surfaces, Apple off-white type, one luminous Apple-blue accent used as glow.
+ * Shua Labs v2.1 — Apple Fidelity Pass.
+ * San Francisco system stack, Apple's exact dark palette, bento tiles, chevron links.
  */
 const config: Config = {
   darkMode: "class",
@@ -21,95 +20,99 @@ const config: Config = {
         lg: "3rem",
       },
       screens: {
-        "2xl": "1240px",
+        "2xl": "1100px",
       },
     },
     extend: {
       colors: {
-        // Layered near-black surfaces
+        // Apple's exact dark palette.
         bg: {
-          DEFAULT: "#06060A",
-          base: "#06060A",
+          DEFAULT: "#000000",
+          base: "#000000",
           deep: "#000000",
-          panel: "#0E0E11",
-          raised: "#141418",
-          card: "#101014",
+          panel: "#1d1d1f", // Apple's signature dark tile.
+          raised: "#161617", // Slightly lighter elevated surface.
+          card: "#1d1d1f",
+          tile: "#1d1d1f",
         },
-        // Apple off-white + muted gray
         fg: {
-          DEFAULT: "#F5F5F7",
-          muted: "#86868B",
-          subtle: "#6E6E73",
+          DEFAULT: "#f5f5f7", // Apple primary text.
+          muted: "#86868b", // Apple secondary text.
+          subtle: "#6e6e73", // Apple tertiary text.
         },
         line: {
-          DEFAULT: "rgba(255,255,255,0.08)",
-          strong: "rgba(255,255,255,0.14)",
+          DEFAULT: "rgba(255,255,255,0.12)", // Apple hairline.
+          strong: "rgba(255,255,255,0.2)",
         },
-        // One accent — Apple blue, used as glow
+        // Apple blue — dark mode link color + primary fill.
         accent: {
-          DEFAULT: "#0A84FF",
-          hi: "#409CFF",
-          soft: "rgba(10, 132, 255, 0.14)",
-          ring: "rgba(10, 132, 255, 0.55)",
-          glow: "rgba(10, 132, 255, 0.35)",
+          DEFAULT: "#2997ff", // Apple dark-mode link blue.
+          hi: "#2997ff",
+          fill: "#0071e3", // Apple primary button fill.
+          fillHover: "#0077ed",
+          soft: "rgba(41, 151, 255, 0.10)",
+          ring: "rgba(41, 151, 255, 0.5)",
+          glow: "rgba(41, 151, 255, 0.2)",
         },
-        // Tier dots — muted, not loud (used at low opacity)
+        // Quiet tier dots — kept for the meta pills.
         tier: {
-          free: "#34D399",
-          freemium: "#60A5FA",
-          paid: "#A78BFA",
-          wip: "#F59E0B",
+          free: "#34d399",
+          freemium: "#60a5fa",
+          paid: "#a78bfa",
+          wip: "#f59e0b",
         },
       },
       fontFamily: {
         sans: [
-          "var(--font-sans)",
-          "ui-sans-serif",
-          "system-ui",
           "-apple-system",
+          "BlinkMacSystemFont",
           "SF Pro Display",
+          "SF Pro Text",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
           "sans-serif",
         ],
         mono: [
-          "var(--font-mono)",
           "ui-monospace",
-          "SFMono-Regular",
+          "SF Mono",
+          "JetBrains Mono",
           "Menlo",
+          "Consolas",
           "monospace",
         ],
       },
       letterSpacing: {
-        tightest: "-0.045em",
-        tighter: "-0.03em",
+        "apple-tight": "-0.015em",
+        "apple-section": "-0.01em",
+        "apple-body": "-0.022em",
+        "apple-sub": "-0.012em",
       },
       borderRadius: {
+        "3xl": "28px",
         "2xl": "20px",
-        xl: "16px",
+        xl: "18px",
         lg: "14px",
         md: "10px",
         sm: "8px",
+        pill: "980px",
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(10, 132, 255, 0.35), 0 24px 64px -24px rgba(10, 132, 255, 0.45)",
-        "glow-sm":
-          "0 0 0 1px rgba(10, 132, 255, 0.28), 0 12px 32px -16px rgba(10, 132, 255, 0.35)",
-        hairline: "0 0 0 1px rgba(255, 255, 255, 0.08)",
-        "hairline-hi": "0 0 0 1px rgba(255, 255, 255, 0.14)",
+        // Toned-down "glow" — actually just a tasteful accent ring now.
+        ring: "0 0 0 1px rgba(41, 151, 255, 0.55)",
+        "ring-soft": "0 0 0 1px rgba(41, 151, 255, 0.3)",
+        hairline: "0 0 0 1px rgba(255, 255, 255, 0.12)",
+        "hairline-hi": "0 0 0 1px rgba(255, 255, 255, 0.2)",
+        tile: "0 8px 24px -12px rgba(0,0,0,0.5)",
       },
       backgroundImage: {
-        "panel-grad":
-          "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.00) 100%)",
-        "card-grad":
-          "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.00) 60%)",
+        "tile-grad":
+          "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 100%)",
       },
       keyframes: {
-        "slow-pulse": {
-          "0%, 100%": { opacity: "0.55", transform: "scale(1)" },
-          "50%": { opacity: "0.85", transform: "scale(1.03)" },
-        },
         "drawer-in": {
-          "0%": { transform: "translateX(24px)", opacity: "0" },
-          "100%": { transform: "translateX(0)", opacity: "1" },
+          "0%": { transform: "translateY(12px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
         "sheet-in": {
           "0%": { transform: "translateY(24px)", opacity: "0" },
@@ -121,13 +124,13 @@ const config: Config = {
         },
       },
       animation: {
-        "slow-pulse": "slow-pulse 9s ease-in-out infinite",
-        "drawer-in": "drawer-in 360ms cubic-bezier(0.16,1,0.3,1) both",
-        "sheet-in": "sheet-in 360ms cubic-bezier(0.16,1,0.3,1) both",
+        "drawer-in": "drawer-in 360ms cubic-bezier(0.28,0.11,0.32,1) both",
+        "sheet-in": "sheet-in 360ms cubic-bezier(0.28,0.11,0.32,1) both",
         "fade-in": "fade-in 240ms ease-out both",
       },
       transitionTimingFunction: {
-        premium: "cubic-bezier(0.16, 1, 0.3, 1)",
+        apple: "cubic-bezier(0.28, 0.11, 0.32, 1)",
+        premium: "cubic-bezier(0.28, 0.11, 0.32, 1)",
       },
     },
   },

@@ -14,22 +14,17 @@ const NAV_LINKS: { label: string; href: string }[] = [
 ];
 
 /**
- * Sticky glassy nav.
- * - Picks up a blurred dark backdrop + hairline border after a few px of scroll.
- * - Collapses to a full-screen overlay menu on mobile.
+ * Apple-exact sticky nav.
+ *
+ * - Height ~48px.
+ * - backdrop-filter: blur(20px) saturate(180%); bg rgba(0,0,0,0.8).
+ * - Links 12-14px, opacity ~80% → 100% on hover, very tight spacing.
+ * - Wordmark left.
+ * - Full-screen overlay menu on mobile.
  */
 export function Nav() {
-  const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Close overlay on hash navigation, and lock body scroll while open.
   React.useEffect(() => {
     if (!open) return;
     const prevOverflow = document.body.style.overflow;
@@ -39,7 +34,6 @@ export function Nav() {
     };
   }, [open]);
 
-  // Close mobile overlay on Esc.
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -53,16 +47,19 @@ export function Nav() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-40 transition-all duration-300 ease-premium",
-          scrolled
-            ? "bg-bg/70 backdrop-blur-xl border-b border-line"
-            : "bg-transparent border-b border-transparent"
+          "fixed inset-x-0 top-0 z-40",
+          "border-b border-line"
         )}
+        style={{
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        }}
       >
-        <div className="container flex h-16 items-center justify-between">
+        <div className="container flex h-12 items-center justify-between">
           <Link
             href="#top"
-            className="text-[15px] font-semibold tracking-tight text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
+            className="text-[14px] font-semibold tracking-tight text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
             aria-label="Shua Labs — home"
           >
             Shua Labs
@@ -70,31 +67,31 @@ export function Nav() {
 
           <nav
             aria-label="Primary"
-            className="hidden md:flex items-center gap-1"
+            className="hidden md:flex items-center gap-7"
           >
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="px-3 py-2 text-sm text-fg-muted transition-colors duration-200 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-md"
+                className="text-[12px] text-fg/80 transition-colors duration-200 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
               >
                 {l.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-4">
             <Link
               href="https://github.com/jmenzies722/shua-labs"
               target="_blank"
               rel="noreferrer noopener"
               aria-label="GitHub"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white/[0.02] text-fg-muted transition-colors duration-200 hover:text-fg hover:border-line-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
+              className="text-fg/80 transition-colors duration-200 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
             >
-              <Github className="h-4 w-4" />
+              <Github className="h-[14px] w-[14px]" />
             </Link>
             <Link href="#consulting">
-              <Button size="md" variant="primary">
+              <Button size="sm" variant="primary">
                 Let&apos;s talk
               </Button>
             </Link>
@@ -105,37 +102,37 @@ export function Nav() {
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-fg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
+            className="md:hidden inline-flex h-9 w-9 items-center justify-center text-fg/80 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
           >
             <Menu className="h-5 w-5" />
           </button>
         </div>
       </header>
 
-      {/* Mobile full-screen overlay menu */}
+      {/* Mobile full-screen overlay menu. */}
       {open && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="fixed inset-0 z-50 bg-bg/95 backdrop-blur-xl animate-fade-in md:hidden"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl animate-fade-in md:hidden"
         >
-          <div className="container flex h-16 items-center justify-between">
-            <span className="text-[15px] font-semibold tracking-tight text-fg">
+          <div className="container flex h-12 items-center justify-between">
+            <span className="text-[14px] font-semibold tracking-tight text-fg">
               Shua Labs
             </span>
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-fg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
+              className="inline-flex h-9 w-9 items-center justify-center text-fg/80 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
           <nav
             aria-label="Mobile"
-            className="container flex flex-col gap-2 pt-10"
+            className="container flex flex-col gap-1 pt-10"
           >
             {NAV_LINKS.map((l) => (
               <Link
@@ -147,7 +144,7 @@ export function Nav() {
                 {l.label}
               </Link>
             ))}
-            <div className="mt-8 flex flex-col gap-3">
+            <div className="mt-10 flex flex-col gap-3">
               <Link href="#consulting" onClick={() => setOpen(false)}>
                 <Button size="lg" variant="primary" className="w-full">
                   Let&apos;s talk
