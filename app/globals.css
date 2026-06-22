@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Apple off-white selection */
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+    background-image:
+      radial-gradient(
+        ellipse at 50% -5%,
+        rgba(10, 132, 255, 0.07),
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse at 90% 110%,
+        rgba(10, 132, 255, 0.03),
+        transparent 60%
+      );
+    background-attachment: fixed;
+    /* Subtle film grain */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: rgba(10, 132, 255, 0.4);
+    color: #ffffff;
+  }
+
+  *:focus-visible {
+    @apply outline-none;
+  }
+
+  /* Hairline divider helper */
+  .hairline {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
