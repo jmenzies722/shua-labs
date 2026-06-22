@@ -52,4 +52,4 @@ Then add to your MCP client config:
 
 ## Status
 
-🚧 Scaffolded. Next: implement the four tools against boto3, ship the IAM policy, add tests against a real read-only role.
+✅ **Implemented.** All four tools are live against boto3, the least-privilege IAM policy ships in `iam-policy.json`, and the server loads and registers cleanly. Next: run against the real Shua Labs read-only role and add response snapshots as tests.

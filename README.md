@@ -23,7 +23,7 @@ Legend: 🟢 Free · 🔵 Freemium · 🟣 Paid · 🚧 WIP
 
 | Project | What it does | Who it's for | Type | Status | Link |
 |---------|-------------|--------------|------|--------|------|
-| [AWS Read-Only MCP](./mcp/aws-readonly-mcp) | Lets Claude query AWS state (cost, resources, alarms) with **zero write access** | Anyone running agents near AWS | MCP | 🟢🚧 | — |
+| [AWS Read-Only MCP](./mcp/aws-readonly-mcp) | Lets Claude query AWS state (cost, resources, alarms) with **zero write access** | Anyone running agents near AWS | MCP | 🟢 | [code](./mcp/aws-readonly-mcp) |
 | [`/aws-cost`](./skills/aws-cost) | Estimates monthly AWS cost from Terraform before you apply | Infra teams | Skill | 🟢🚧 | — |
 | [`/threat-model`](./skills/threat-model) | Generates an OWASP-style threat model for any repo | Security-minded builders | Skill | 🟢🚧 | — |
 | [Infra Reviewer](./agents/infra-reviewer) | Autonomous Terraform/Docker reviewer that comments on PRs | DevOps / platform teams | Agent | 🔵🚧 | — |
