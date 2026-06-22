@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+
+# Env / secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+aws-credentials*
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
