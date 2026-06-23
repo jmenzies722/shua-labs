@@ -6,53 +6,52 @@ import type { Project } from "@/lib/types";
  * changing `category` (must match an id in data/categories.ts).
  *
  * `featured: true` elevates a project to the full-bleed spotlight band above the grids.
+ *
+ * HONESTY RULE: a card may only claim status "Shipping"/"Beta" when it is
+ * actually public and installable. Anything not yet public is tier "WIP" and
+ * status "WIP" or "Planned". No install command that 404s. No "Live" link to "#".
  */
 export const projects: Project[] = [
   // ────────────────────────────────────────────────────────────────────────
   // AI ENABLEMENT
   // ────────────────────────────────────────────────────────────────────────
   {
-    slug: "aws-read-only-mcp",
-    name: "AWS Read-Only MCP",
+    slug: "aws-architect-mcp",
+    name: "AWS Architect MCP",
     type: "MCP",
-    tier: "Free",
+    tier: "WIP",
     category: "ai-enablement",
-    principles: ["Open by default", "Production-grade"],
-    tags: ["MCP", "AWS", "TypeScript"],
+    principles: ["Production-grade", "Built to enable"],
+    tags: ["MCP", "AWS", "Terraform", "IAM"],
     oneLiner:
-      "Lets an agent query your AWS state (cost, resources, alarms) with zero write access.",
+      "Designs AWS architectures and generates the Terraform, IAM policies, and cost estimates to ship them.",
     featured: true,
     links: [
       { label: "GitHub", href: "https://github.com/jmenzies722/shua-labs" },
     ],
     detail: {
       description:
-        "An MCP server that exposes a curated, read-only slice of your AWS account to an AI agent — cost, resources, alarms, logs — and refuses anything that could mutate state. Designed so you can let an agent investigate your infrastructure without ever giving it a write key.\n\nShips with a least-privilege IAM policy, structured tool definitions, and per-call audit logs. Drop it into Claude Desktop or any MCP-compatible host.",
+        "An MCP server that turns an AI agent into an AWS solutions architect. Give it a goal and it selects a reference pattern, designs the architecture, and emits the artifacts to build it — ready-to-apply Terraform, a least-privilege IAM policy, a monthly cost estimate, and a scaffolded project layout.\n\nReal, working TypeScript today — running in a private beta. Public release and an npm package are next once the tool surface is locked.",
       forWho:
-        "Platform and SRE teams who want agents to help triage AWS without holding the master key.",
+        "Engineers who want an agent that can design AWS infrastructure and hand back the IaC, not just talk about it.",
       snippet: {
         language: "bash",
-        caption: "Install (npm)",
-        code: `npm i -g @shua-labs/aws-readonly-mcp
-
-# Then add to your MCP host config:
-{
-  "mcpServers": {
-    "aws-readonly": {
-      "command": "aws-readonly-mcp",
-      "env": { "AWS_PROFILE": "shua-labs-ro" }
-    }
-  }
-}`,
+        caption: "MCP tools it exposes",
+        code: `select-pattern         # pick an AWS reference architecture
+design-architecture    # produce a full architecture design
+generate-terraform     # emit ready-to-apply Terraform
+generate-iam-policy    # least-privilege IAM for the design
+estimate-cost          # monthly cost estimate
+scaffold-project       # lay down the repo structure`,
       },
-      status: "Shipping",
+      status: "WIP",
     },
   },
   {
     slug: "agent-tracer",
     name: "Agent Tracer",
     type: "AGENT",
-    tier: "Freemium",
+    tier: "WIP",
     category: "ai-enablement",
     principles: ["Production-grade", "Built to enable"],
     tags: ["Observability", "Tracing", "OpenTelemetry"],
@@ -68,7 +67,7 @@ export const projects: Project[] = [
         "Anyone running agents in production who is tired of guessing what they did and why.",
       snippet: {
         language: "ts",
-        caption: "Wrap your agent",
+        caption: "Planned interface",
         code: `import { trace } from "@shua-labs/agent-tracer";
 
 const tracedAgent = trace(myAgent, {
@@ -78,14 +77,14 @@ const tracedAgent = trace(myAgent, {
 
 await tracedAgent.run({ message: "..." });`,
       },
-      status: "Beta",
+      status: "Planned",
     },
   },
   {
     slug: "infra-reviewer",
     name: "Infra Reviewer",
     type: "AGENT",
-    tier: "Freemium",
+    tier: "WIP",
     category: "ai-enablement",
     principles: ["Open by default", "Production-grade"],
     tags: ["Terraform", "Docker", "GitHub Actions"],
@@ -101,7 +100,7 @@ await tracedAgent.run({ message: "..." });`,
         "Teams shipping infra-as-code who want a competent extra reviewer that never sleeps.",
       snippet: {
         language: "yaml",
-        caption: ".github/workflows/review.yml",
+        caption: "Planned interface (.github/workflows/review.yml)",
         code: `name: Infra Review
 on: [pull_request]
 jobs:
@@ -113,7 +112,7 @@ jobs:
         with:
           anthropic-api-key: \${{ secrets.ANTHROPIC_API_KEY }}`,
       },
-      status: "Beta",
+      status: "Planned",
     },
   },
 
@@ -124,7 +123,7 @@ jobs:
     slug: "aws-cost",
     name: "/aws-cost",
     type: "SKILL",
-    tier: "Free",
+    tier: "WIP",
     category: "developer-tools",
     principles: ["Open by default", "Built to enable"],
     tags: ["Terraform", "FinOps", "CLI"],
@@ -140,21 +139,21 @@ jobs:
         "Engineers who don't want to find out about a five-figure mistake from the bill.",
       snippet: {
         language: "bash",
-        caption: "Run in any Terraform repo",
+        caption: "Planned interface",
         code: `# In Claude Code:
 /aws-cost
 
 # Or directly:
 npx @shua-labs/aws-cost ./infra`,
       },
-      status: "Shipping",
+      status: "Planned",
     },
   },
   {
     slug: "threat-model",
     name: "/threat-model",
     type: "SKILL",
-    tier: "Free",
+    tier: "WIP",
     category: "developer-tools",
     principles: ["Open by default", "Built to enable"],
     tags: ["Security", "OWASP", "CLI"],
@@ -169,35 +168,33 @@ npx @shua-labs/aws-cost ./infra`,
         "Engineers who need a credible first-draft threat model in minutes, not an afternoon.",
       snippet: {
         language: "bash",
-        caption: "Run in any repo",
+        caption: "Planned interface",
         code: `# In Claude Code:
 /threat-model
 
 # Output: THREAT_MODEL.md`,
       },
-      status: "Shipping",
+      status: "Planned",
     },
   },
   {
     slug: "pr-reviewer-saas",
     name: "PR Reviewer SaaS",
     type: "APP",
-    tier: "Paid",
+    tier: "WIP",
     category: "developer-tools",
     principles: ["Production-grade", "Built to enable"],
     tags: ["SaaS", "GitHub App", "Reviews"],
     oneLiner: "Hosted agent that reviews every PR on your repo.",
     links: [
       { label: "GitHub", href: "https://github.com/jmenzies722/shua-labs" },
-      // TODO: replace with live product URL when deployed
-      { label: "Live", href: "#" },
     ],
     detail: {
       description:
         "A hosted version of Infra Reviewer extended to full code review — install the GitHub App, get senior-level review comments on every PR within minutes, with team-tunable strictness and a budget cap.\n\nFor teams that want the agent in place without standing up the workflow themselves.",
       forWho:
         "Engineering teams that want consistent, high-signal PR review without paying a senior salary for it.",
-      status: "WIP",
+      status: "Planned",
     },
   },
 ];
