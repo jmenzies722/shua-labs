@@ -27,7 +27,7 @@ export const projects: Project[] = [
       "Designs AWS architectures and generates the Terraform, IAM policies, and cost estimates to ship them.",
     featured: true,
     links: [
-      { label: "GitHub", href: "https://github.com/jmenzies722/shua-labs" },
+      { label: "GitHub", href: "https://github.com/jmenzies722/aws-architect-mcp" },
     ],
     detail: {
       description:

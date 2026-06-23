@@ -7,6 +7,12 @@ import type { JourneyEntry } from "@/lib/types";
  */
 export const journey: JourneyEntry[] = [
   {
+    date: "2026-06-23",
+    title: "AWS Architect MCP — source opened",
+    detail:
+      "First tool open-sourced under MIT: an MCP server that designs AWS architectures and emits the Terraform, IAM, and cost estimates to ship them.",
+  },
+  {
     date: "2026-06-22",
     title: "Site live on Vercel",
     detail:
