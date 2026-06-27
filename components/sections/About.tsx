@@ -14,10 +14,12 @@ const LINKS: { label: string; href: string; external: boolean }[] = [
     href: "https://github.com/jmenzies722/shua-labs",
     external: true,
   },
-  // TODO: replace with real LinkedIn URL.
-  { label: "LinkedIn", href: "#", external: false },
-  // TODO: replace with real contact email.
-  { label: "Email", href: "mailto:hello@shualabs.com", external: false },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/josh-m01/",
+    external: true,
+  },
+  { label: "Email", href: "mailto:jmenzies722@gmail.com", external: false },
 ];
 
 export function About() {

@@ -19,7 +19,7 @@ export const projects: Project[] = [
     slug: "aws-architect-mcp",
     name: "AWS Architect MCP",
     type: "MCP",
-    tier: "WIP",
+    tier: "Free",
     category: "ai-enablement",
     principles: ["Production-grade", "Built to enable"],
     tags: ["MCP", "AWS", "Terraform", "IAM"],
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     ],
     detail: {
       description:
-        "An MCP server that turns an AI agent into an AWS solutions architect. Give it a goal and it selects a reference pattern, designs the architecture, and emits the artifacts to build it — ready-to-apply Terraform, a least-privilege IAM policy, a monthly cost estimate, and a scaffolded project layout.\n\nReal, working TypeScript today — running in a private beta. Public release and an npm package are next once the tool surface is locked.",
+        "An MCP server that turns an AI agent into an AWS solutions architect. Give it a goal and it selects a reference pattern, designs the architecture, and emits the artifacts to build it — ready-to-apply Terraform, a least-privilege IAM policy, a monthly cost estimate, and a scaffolded project layout.\n\nReal, working TypeScript — live on GitHub. npm package coming once the tool surface is locked.",
       forWho:
         "Engineers who want an agent that can design AWS infrastructure and hand back the IaC, not just talk about it.",
       snippet: {

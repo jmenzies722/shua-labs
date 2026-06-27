@@ -14,8 +14,7 @@ export const offers: Offer[] = [
       "A fixed one-week audit that ranks your highest-ROI automation opportunities and hands you a build roadmap.",
     price: "From $2,500",
     priceNote: "Fee credits 100% toward a build booked within 60 days.",
-    // TODO: replace with Calendly / contact link
-    cta: { label: "Book an audit", href: "#contact" },
+    cta: { label: "Book an audit", href: "mailto:jmenzies722@gmail.com?subject=AI%20Readiness%20Audit" },
   },
   {
     id: "production-grade-ai-agent",
@@ -24,8 +23,7 @@ export const offers: Offer[] = [
     deliverable:
       "I build and deploy a custom AI agent that does it — integrated into your stack, with logging, cost caps, fallbacks, and observability. Not a demo. Something that survives real traffic.",
     price: "From $8,000",
-    // TODO: replace with Calendly / contact link
-    cta: { label: "Start a build", href: "#contact" },
+    cta: { label: "Start a build", href: "mailto:jmenzies722@gmail.com?subject=Production%20AI%20Agent%20Build" },
     flagship: true,
   },
   {
@@ -37,7 +35,6 @@ export const offers: Offer[] = [
       "Embedded, ongoing — I stand up, integrate, and maintain your AI systems. Your fractional AI lead.",
     price: "From $5,000/mo",
     priceNote: "3-month minimum.",
-    // TODO: replace with Calendly / contact link
-    cta: { label: "Talk retainer", href: "#contact" },
+    cta: { label: "Talk retainer", href: "mailto:jmenzies722@gmail.com?subject=Fractional%20AI%20Engineer" },
   },
 ];
