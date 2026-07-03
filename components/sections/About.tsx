@@ -46,14 +46,13 @@ export function About() {
         <Reveal delay={0.08} className="lg:col-span-7">
           <div className="flex flex-col gap-6 text-[19px] md:text-[21px] leading-[1.47] text-fg/90">
             <p>
-              I ship developer and AI enablement tools in the open, and I help
-              businesses adopt them. The work here is the proof — small, sharp
-              products that make engineers and teams measurably more capable.
+              I build developer and AI enablement tools in the open. Shua Labs
+              is where they live — small, sharp products that make engineers and
+              teams measurably more capable.
             </p>
             <p className="text-fg-muted">
-              Everything ships under MIT. Everything is built like it&apos;s
-              going to production, because it is. If something you see solves a
-              real problem at your company, we should talk.
+              Everything ships under MIT, and everything is built like it&apos;s
+              going to production, because it is. Follow along on GitHub.
             </p>
           </div>
 

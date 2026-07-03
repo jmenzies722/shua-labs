@@ -63,8 +63,8 @@ export function Hero() {
           }}
           className="apple-sub mt-6 mx-auto max-w-3xl text-balance"
         >
-          Open-source products and tools for developer and AI enablement — and
-          the expertise to put them to work.
+          The home for the products and tools I ship — open-source,
+          production-grade, for developer and AI enablement.
         </motion.p>
 
         <motion.div

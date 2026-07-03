@@ -4,7 +4,6 @@ import { AppleLink } from "@/components/AppleLink";
 
 const FOOTER_LINKS: { label: string; href: string }[] = [
   { label: "Work", href: "#work" },
-  { label: "Consulting", href: "#consulting" },
   { label: "Journey", href: "#journey" },
   { label: "About", href: "#about" },
 ];

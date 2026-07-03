@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "Work", href: "#work" },
-  { label: "Consulting", href: "#consulting" },
   { label: "Journey", href: "#journey" },
   { label: "About", href: "#about" },
 ];
@@ -90,9 +89,9 @@ export function Nav() {
             >
               <Github className="h-[14px] w-[14px]" />
             </Link>
-            <Link href="#consulting">
+            <Link href="#work">
               <Button size="sm" variant="primary">
-                Let&apos;s talk
+                Explore the work
               </Button>
             </Link>
           </div>
@@ -145,9 +144,9 @@ export function Nav() {
               </Link>
             ))}
             <div className="mt-10 flex flex-col gap-3">
-              <Link href="#consulting" onClick={() => setOpen(false)}>
+              <Link href="#work" onClick={() => setOpen(false)}>
                 <Button size="lg" variant="primary" className="w-full">
-                  Let&apos;s talk
+                  Explore the work
                 </Button>
               </Link>
               <Link
