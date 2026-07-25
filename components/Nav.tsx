@@ -6,10 +6,16 @@ import { Github, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
+/**
+ * Root-relative, not bare hashes. A bare "#work" resolves against the CURRENT
+ * route, so from /registry it would scroll nowhere instead of returning home.
+ * "/#work" works from every page.
+ */
 const NAV_LINKS: { label: string; href: string }[] = [
-  { label: "Work", href: "#work" },
-  { label: "Journey", href: "#journey" },
-  { label: "About", href: "#about" },
+  { label: "Work", href: "/#work" },
+  { label: "Registry", href: "/registry" },
+  { label: "Journey", href: "/#journey" },
+  { label: "About", href: "/#about" },
 ];
 
 /**
@@ -57,7 +63,7 @@ export function Nav() {
       >
         <div className="container flex h-12 items-center justify-between">
           <Link
-            href="#top"
+            href="/#top"
             className="text-[14px] font-semibold tracking-tight text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
             aria-label="Shua Labs — home"
           >
@@ -89,7 +95,7 @@ export function Nav() {
             >
               <Github className="h-[14px] w-[14px]" />
             </Link>
-            <Link href="#work">
+            <Link href="/#work">
               <Button size="sm" variant="primary">
                 Explore the work
               </Button>
@@ -144,7 +150,7 @@ export function Nav() {
               </Link>
             ))}
             <div className="mt-10 flex flex-col gap-3">
-              <Link href="#work" onClick={() => setOpen(false)}>
+              <Link href="/#work" onClick={() => setOpen(false)}>
                 <Button size="lg" variant="primary" className="w-full">
                   Explore the work
                 </Button>

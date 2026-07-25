@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { Principles } from "@/components/sections/Principles";
 import { Work } from "@/components/sections/Work";
+import { RegistryTeaser } from "@/components/sections/RegistryTeaser";
 import { Journey } from "@/components/sections/Journey";
 import { About } from "@/components/sections/About";
 import { Footer } from "@/components/sections/Footer";
@@ -14,6 +15,7 @@ export default function HomePage() {
         <Hero />
         <Principles />
         <Work />
+        <RegistryTeaser />
         <Journey />
         <About />
       </main>
