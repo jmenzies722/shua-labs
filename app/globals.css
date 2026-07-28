@@ -8,8 +8,6 @@
     /* Notion's stack — inherits the OS UI face. */
     --font-sans: var(--font-body), ui-sans-serif, -apple-system,
       BlinkMacSystemFont, "Segoe UI", sans-serif;
-    /* The brand gradient. Exactly one element per page may use this. */
-    --grad-brand: linear-gradient(120deg, #a78bfa 0%, #7c6cff 40%, #38bdf8 100%);
     --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo,
       Consolas, monospace;
   }
@@ -212,27 +210,6 @@
   }
 }
 
-@layer components {
-  /*
-   * The brand gradient on text. ONE element per page — the hero headline.
-   * A fallback colour is set first so the words are never invisible if
-   * background-clip:text is unsupported; that failure mode cost us a blank page once already.
-   */
-  .grad-brand-text {
-    color: #f2f3fb;
-    background: var(--grad-brand);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
-    .grad-brand-text {
-      -webkit-text-fill-color: #f2f3fb;
-      background: none;
-    }
-  }
-}
 
 @layer components {
   /*

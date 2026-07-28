@@ -98,7 +98,7 @@ export function Pipeline({ products }: { products: Product[] }) {
                   {product.verdict ? (
                     <span
                       className={`font-mono text-[10px] uppercase tracking-[0.1em] ${
-                        product.verdict === "NO-GO" ? "text-amber-400" : "text-tier-free"
+                        product.verdict === "NO-GO" ? "text-fg-subtle" : "text-fg"
                       }`}
                     >
                       {product.verdict}
@@ -107,7 +107,7 @@ export function Pipeline({ products }: { products: Product[] }) {
                   {days !== null ? (
                     <span
                       className={`ml-auto font-mono text-[11px] tabular-nums ${
-                        stale ? "text-amber-400" : "text-fg-subtle"
+                        stale ? "text-fg" : "text-fg-subtle"
                       }`}
                     >
                       {days}d in stage{stale ? " · stalled" : ""}

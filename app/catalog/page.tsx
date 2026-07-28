@@ -4,7 +4,7 @@ import Script from "next/script";
 import { Puzzle } from "lucide-react";
 
 import { CatalogTable } from "@/components/hub/CatalogTable";
-import { TopNav } from "@/components/site/TopNav";
+import { SiteNav } from "@/components/site/SiteNav";
 import { catalog, catalogSections } from "@/lib/catalog";
 
 export const metadata: Metadata = {
@@ -28,11 +28,11 @@ export default function CatalogPage() {
 
   return (
     <>
-      <TopNav />
+      <SiteNav />
       <div>
-        <main className="mx-auto max-w-[1020px] px-[clamp(24px,4vw,52px)] pb-[clamp(76px,10vw,116px)] pt-[clamp(48px,7vw,84px)]">
+        <main className="mx-auto max-w-[1120px] px-6 pb-28 pt-16">
           <header>
-            <h1 className="grad-brand-text font-display text-[clamp(32px,4.8vw,52px)] font-semibold leading-[1.05] tracking-[-0.035em]">
+            <h1 className="text-[clamp(32px,4.8vw,52px)] font-semibold leading-[1.05] tracking-[-0.035em] text-fg">
               Catalog
             </h1>
             <p className="mt-5 max-w-[54ch] text-[17px] leading-[1.65] text-fg-muted">

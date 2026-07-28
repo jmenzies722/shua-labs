@@ -1,22 +1,30 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Shua Labs v4 — APE.
+ * Shua Labs v6 — clean.
  *
  * Token NAMES are unchanged from v2 on purpose: /registry and every existing component styles
  * against `bg-bg-panel`, `text-fg-muted`, `border-line`. Swapping the values re-skins the whole
  * site without touching those files.
  *
- * This is the canonical Shua Labs system (`~/.claude/skills/design/design-tokens.md`),
- * confirmed 2026-07-06 and shipped in platform-eng-lab. The site previously ran its own
- * "Apple" identity, then briefly a Notion one; both were drift. This is the decided language.
+ * Black and white, with room to breathe.
  *
- *   · #06070d deep blue-black page; surfaces are white-alpha steps, not lighter greys
- *   · violet #7c6cff for EVERYTHING interactive — links, buttons, active nav, focus ring
- *   · --grad-brand appears exactly ONCE per page (the hero headline). It is a brand signal,
- *     not decoration. Put it on a button and it stops meaning anything.
- *   · depth = surface alpha + accent glow. Never hard shadows, never backdrop-filter stacks.
- *   · text never pure white — #f2f3fb headings, #e7e9f3 prose, #8b93b8 meta
+ * The previous versions were dense and hairline-heavy — editorial, and consistently not what
+ * was wanted. "Clean and modern" in ordinary usage means the opposite: centred, generous
+ * whitespace, soft raised cards with real corner radius, and large clear type. Structure comes
+ * from grouped surfaces rather than from rules between things.
+ *
+ * The APE violet system is Shua Labs' documented default, and it was the wrong call here —
+ * Josh asked for Notion's monochrome twice. Claude Design also returned monochrome
+ * independently. A colourless palette is a real position, not an absence of one: with no hue
+ * doing the work, hierarchy has to come from weight, spacing, and alpha, which is harder to
+ * fake and reads as considered.
+ *
+ *   · #000 page. Every surface is white at a low alpha, so depth is one variable.
+ *   · text is white stepped down by alpha — 100 / 82 / 62 / 45%
+ *   · interactive elements are WHITE, distinguished by underline and opacity, never by colour
+ *   · status pills differ by alpha and label, not by hue
+ *   · no gradient, no glow, no backdrop-filter
  */
 const config: Config = {
   darkMode: "class",
@@ -40,34 +48,35 @@ const config: Config = {
     extend: {
       colors: {
         bg: {
-          DEFAULT: "#06070d",
-          base: "#06070d",
-          deep: "#04050a",
-          // Surfaces are alpha over the page, so they stay coherent on any band.
-          panel: "rgba(255,255,255,0.02)",
-          raised: "rgba(255,255,255,0.05)",
-          card: "rgba(255,255,255,0.05)",
-          tile: "rgba(255,255,255,0.02)",
+          // Not pure #000 — a hair of lift stops cards from looking like holes.
+          DEFAULT: "#0a0a0a",
+          base: "#0a0a0a",
+          deep: "#000000",
+          panel: "#131313",
+          raised: "#1a1a1a",
+          card: "#131313",
+          tile: "#131313",
         },
         fg: {
-          DEFAULT: "#f2f3fb",
-          body: "#e7e9f3",
-          muted: "#c8cce4",
-          subtle: "#8b93b8",
+          DEFAULT: "#ffffff",
+          body: "rgba(255,255,255,0.82)",
+          muted: "rgba(255,255,255,0.62)",
+          subtle: "rgba(255,255,255,0.45)",
         },
         line: {
-          DEFAULT: "rgba(255,255,255,0.09)",
+          DEFAULT: "rgba(255,255,255,0.08)",
           strong: "rgba(255,255,255,0.16)",
         },
+        // "Accent" is white. Links read as links via underline and opacity, not hue.
         accent: {
-          DEFAULT: "#7c6cff",
-          hi: "#a78bfa",
-          sky: "#38bdf8",
-          fill: "#7c6cff",
-          fillHover: "#6a58ff",
-          soft: "rgba(124,108,255,0.12)",
-          ring: "rgba(124,108,255,0.55)",
-          glow: "rgba(124,108,255,0.5)",
+          DEFAULT: "#ffffff",
+          hi: "#ffffff",
+          sky: "#ffffff",
+          fill: "#ffffff",
+          fillHover: "rgba(255,255,255,0.88)",
+          soft: "rgba(255,255,255,0.08)",
+          ring: "rgba(255,255,255,0.55)",
+          glow: "rgba(255,255,255,0.12)",
         },
         /**
          * Notion's tag palette — background/text pairs, all desaturated.
@@ -75,30 +84,30 @@ const config: Config = {
          */
         tag: {
           gray: "rgba(255,255,255,0.06)",
-          grayText: "#8b93b8",
+          grayText: "rgba(255,255,255,0.62)",
           brown: "rgba(255,255,255,0.06)",
-          brownText: "#c8cce4",
-          orange: "rgba(255,180,84,0.10)",
-          orangeText: "#ffb454",
-          yellow: "rgba(255,214,102,0.10)",
-          yellowText: "#ffd666",
-          green: "rgba(52,211,153,0.12)",
-          greenText: "#34d399",
-          blue: "rgba(56,189,248,0.12)",
-          blueText: "#38bdf8",
-          purple: "rgba(124,108,255,0.14)",
-          purpleText: "#a78bfa",
-          pink: "rgba(179,166,255,0.12)",
-          pinkText: "#b3a6ff",
-          red: "rgba(255,138,128,0.12)",
-          redText: "#ff8a80",
+          brownText: "rgba(255,255,255,0.62)",
+          orange: "rgba(255,255,255,0.06)",
+          orangeText: "rgba(255,255,255,0.62)",
+          yellow: "rgba(255,255,255,0.06)",
+          yellowText: "rgba(255,255,255,0.62)",
+          green: "rgba(255,255,255,0.12)",
+          greenText: "#ffffff",
+          blue: "rgba(255,255,255,0.06)",
+          blueText: "rgba(255,255,255,0.62)",
+          purple: "rgba(255,255,255,0.06)",
+          purpleText: "rgba(255,255,255,0.62)",
+          pink: "rgba(255,255,255,0.06)",
+          pinkText: "rgba(255,255,255,0.62)",
+          red: "rgba(255,255,255,0.06)",
+          redText: "rgba(255,255,255,0.62)",
         },
         // Legacy tier dots — remapped onto the Notion palette so older components stay coherent.
         tier: {
-          free: "#34d399",
-          freemium: "#38bdf8",
-          paid: "#a78bfa",
-          wip: "#ffb454",
+          free: "#ffffff",
+          freemium: "rgba(255,255,255,0.62)",
+          paid: "rgba(255,255,255,0.62)",
+          wip: "rgba(255,255,255,0.45)",
         },
       },
       fontFamily: {
@@ -129,23 +138,23 @@ const config: Config = {
         "apple-sub": "-0.008em",
       },
       borderRadius: {
-        // Lifted from the Claude Design composition — larger, calmer corners than Notion's 3px.
-        "3xl": "18px",
-        "2xl": "14px",
-        xl: "11px",
-        lg: "8px",
-        md: "7px",
-        sm: "6px",
+        // Generous. Small radii read as utilitarian; this is the single clearest "modern" signal.
+        "3xl": "28px",
+        "2xl": "20px",
+        xl: "16px",
+        lg: "12px",
+        md: "10px",
+        sm: "8px",
         pill: "999px",
       },
       boxShadow: {
-        ring: "0 0 0 1px rgba(124,108,255,0.6)",
-        "ring-soft": "0 0 0 1px rgba(124,108,255,0.3)",
+        ring: "0 0 0 1px rgba(255,255,255,0.6)",
+        "ring-soft": "0 0 0 1px rgba(255,255,255,0.3)",
         hairline: "0 0 0 1px rgba(255,255,255,0.09)",
         "hairline-hi": "0 0 0 1px rgba(255,255,255,0.16)",
-        // Depth is accent glow, not a drop shadow. No backdrop-filter anywhere — the returned
+        // Depth is a hairline plus a black drop. No colour, no backdrop-filter — the returned
         // design stacked 24 of them and the compositor could not render a single frame.
-        tile: "0 0 0 1px rgba(255,255,255,0.09), 0 18px 48px -24px rgba(124,108,255,0.28)",
+        tile: "0 0 0 1px rgba(255,255,255,0.11), 0 18px 48px -24px rgba(0,0,0,0.9)",
       },
       backgroundImage: {
         "tile-grad": "none",

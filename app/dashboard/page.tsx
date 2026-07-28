@@ -4,7 +4,7 @@ import { BarChart3 } from "lucide-react";
 
 import { PageIcon } from "@/components/hub/PageIcon";
 import { Pipeline } from "@/components/hub/Pipeline";
-import { Sidebar } from "@/components/hub/Sidebar";
+import { SiteNav } from "@/components/site/SiteNav";
 import { offers } from "@/data/offers";
 import { products } from "@/data/products";
 import { revenue } from "@/data/revenue";
@@ -53,9 +53,9 @@ export default function DashboardPage() {
 
   return (
     <>
-    <Sidebar />
-    <div className="lg:pl-[240px]">
-    <main className="mx-auto max-w-[1020px] px-[clamp(24px,4vw,52px)] pb-[clamp(76px,10vw,116px)] pt-[clamp(48px,7vw,84px)]">
+    <SiteNav />
+    <div>
+    <main className="mx-auto max-w-[1120px] px-6 pb-28 pt-16">
       <header className="border-b border-line pb-6">
         <PageIcon icon={BarChart3} label="Dashboard" />
         <h1 className="mt-5 text-[40px] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
@@ -210,9 +210,9 @@ function Kpi({
 }) {
   const toneClass =
     tone === "good"
-      ? "text-tier-free"
+      ? "text-fg"
       : tone === "warn"
-        ? "text-amber-400"
+        ? "text-fg-body"
         : tone === "muted"
           ? "text-fg-subtle"
           : "text-fg";
@@ -224,7 +224,7 @@ function Kpi({
       >
         {value}
       </dd>
-      {note ? <p className="mt-1 text-[11px] text-amber-400/80">{note}</p> : null}
+      {note ? <p className="mt-1 text-[11px] text-fg-subtle">{note}</p> : null}
     </div>
   );
 }
