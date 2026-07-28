@@ -1,19 +1,22 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Shua Labs v3 — Notion dark pass.
+ * Shua Labs v4 — APE.
  *
  * Token NAMES are unchanged from v2 on purpose: /registry and every existing component styles
  * against `bg-bg-panel`, `text-fg-muted`, `border-line`. Swapping the values re-skins the whole
  * site without touching those files.
  *
- * These are Notion's real dark-mode values, not an inverted light theme:
- *   · #191919 page / #202020 rail — charcoal, never pure black. Pure #000 crushes the
- *     hairlines and the whole structure disappears.
- *   · text at rgba-white ~81%, not #fff — full white on charcoal is glare at body size
- *   · borders at ~9% white; structure comes from spacing, with hairlines as a last resort
- *   · small radii (3px), not pills — Notion is square-ish and calm
- *   · dark tag pairs: deep desaturated bg, luminous text of the same hue
+ * This is the canonical Shua Labs system (`~/.claude/skills/design/design-tokens.md`),
+ * confirmed 2026-07-06 and shipped in platform-eng-lab. The site previously ran its own
+ * "Apple" identity, then briefly a Notion one; both were drift. This is the decided language.
+ *
+ *   · #06070d deep blue-black page; surfaces are white-alpha steps, not lighter greys
+ *   · violet #7c6cff for EVERYTHING interactive — links, buttons, active nav, focus ring
+ *   · --grad-brand appears exactly ONCE per page (the hero headline). It is a brand signal,
+ *     not decoration. Put it on a button and it stops meaning anything.
+ *   · depth = surface alpha + accent glow. Never hard shadows, never backdrop-filter stacks.
+ *   · text never pure white — #f2f3fb headings, #e7e9f3 prose, #8b93b8 meta
  */
 const config: Config = {
   darkMode: "class",
@@ -37,71 +40,71 @@ const config: Config = {
     extend: {
       colors: {
         bg: {
-          DEFAULT: "#191919",
-          base: "#191919",
-          deep: "#141414",
-          // The rail and secondary surfaces sit *above* the page, Notion-style.
-          panel: "#202020",
-          raised: "#2c2c2c",
-          card: "#202020",
-          tile: "#202020",
+          DEFAULT: "#06070d",
+          base: "#06070d",
+          deep: "#04050a",
+          // Surfaces are alpha over the page, so they stay coherent on any band.
+          panel: "rgba(255,255,255,0.02)",
+          raised: "rgba(255,255,255,0.05)",
+          card: "rgba(255,255,255,0.05)",
+          tile: "rgba(255,255,255,0.02)",
         },
         fg: {
-          // ~81% white. Full #fff at body size on charcoal is glare, not contrast.
-          DEFAULT: "#d4d4d4",
-          muted: "#9b9b9b",
-          subtle: "#6f6f6f",
+          DEFAULT: "#f2f3fb",
+          body: "#e7e9f3",
+          muted: "#c8cce4",
+          subtle: "#8b93b8",
         },
         line: {
-          DEFAULT: "#2f2f2f",
-          strong: "#3d3d3d",
+          DEFAULT: "rgba(255,255,255,0.09)",
+          strong: "rgba(255,255,255,0.16)",
         },
         accent: {
-          // Notion's dark-mode link blue — lifted for legibility on charcoal.
-          DEFAULT: "#529cca",
-          hi: "#6db3de",
-          fill: "#2383e2",
-          fillHover: "#3d94e8",
-          soft: "#143a4e",
-          ring: "rgba(82, 156, 202, 0.55)",
-          glow: "rgba(82, 156, 202, 0.14)",
+          DEFAULT: "#7c6cff",
+          hi: "#a78bfa",
+          sky: "#38bdf8",
+          fill: "#7c6cff",
+          fillHover: "#6a58ff",
+          soft: "rgba(124,108,255,0.12)",
+          ring: "rgba(124,108,255,0.55)",
+          glow: "rgba(124,108,255,0.5)",
         },
         /**
          * Notion's tag palette — background/text pairs, all desaturated.
          * Deliberately quiet: a page of shouting tags is unreadable.
          */
         tag: {
-          gray: "#373737",
-          grayText: "#9b9b9b",
-          brown: "#4a3228",
-          brownText: "#b08268",
-          orange: "#5c3b23",
-          orangeText: "#d9884f",
-          yellow: "#56452f",
-          yellowText: "#cb912f",
-          green: "#243d30",
-          greenText: "#5fa97b",
-          blue: "#143a4e",
-          blueText: "#5aa8d6",
-          purple: "#3c2d49",
-          purpleText: "#a175e0",
-          pink: "#4e2c3c",
-          pinkText: "#e06fae",
-          red: "#522e2a",
-          redText: "#ff7369",
+          gray: "rgba(255,255,255,0.06)",
+          grayText: "#8b93b8",
+          brown: "rgba(255,255,255,0.06)",
+          brownText: "#c8cce4",
+          orange: "rgba(255,180,84,0.10)",
+          orangeText: "#ffb454",
+          yellow: "rgba(255,214,102,0.10)",
+          yellowText: "#ffd666",
+          green: "rgba(52,211,153,0.12)",
+          greenText: "#34d399",
+          blue: "rgba(56,189,248,0.12)",
+          blueText: "#38bdf8",
+          purple: "rgba(124,108,255,0.14)",
+          purpleText: "#a78bfa",
+          pink: "rgba(179,166,255,0.12)",
+          pinkText: "#b3a6ff",
+          red: "rgba(255,138,128,0.12)",
+          redText: "#ff8a80",
         },
         // Legacy tier dots — remapped onto the Notion palette so older components stay coherent.
         tier: {
-          free: "#5fa97b",
-          freemium: "#5aa8d6",
-          paid: "#a175e0",
-          wip: "#d9884f",
+          free: "#34d399",
+          freemium: "#38bdf8",
+          paid: "#a78bfa",
+          wip: "#ffb454",
         },
       },
       fontFamily: {
         // Notion's actual stack — ui-sans-serif first so it inherits the OS UI face.
         sans: [
-          "var(--font-display)",
+          "var(--font-body)",
           "ui-sans-serif",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -115,7 +118,7 @@ const config: Config = {
           "Menlo",
           "monospace",
         ],
-        // Same family as body — weight and tracking do the differentiating, not a second face.
+        // Space Grotesk — the technical-but-crafted display face of the APE system.
         display: ["var(--font-display)", "ui-sans-serif", "-apple-system", "sans-serif"],
         serif: ["var(--font-display)", "ui-sans-serif", "sans-serif"],
       },
@@ -126,22 +129,23 @@ const config: Config = {
         "apple-sub": "-0.008em",
       },
       borderRadius: {
-        // Notion is square-ish. Nothing is a pill unless it's a tag.
-        "3xl": "8px",
-        "2xl": "6px",
-        xl: "5px",
-        lg: "4px",
-        md: "3px",
-        sm: "3px",
+        // Lifted from the Claude Design composition — larger, calmer corners than Notion's 3px.
+        "3xl": "18px",
+        "2xl": "14px",
+        xl: "11px",
+        lg: "8px",
+        md: "7px",
+        sm: "6px",
         pill: "999px",
       },
       boxShadow: {
-        ring: "0 0 0 1px rgba(82, 156, 202, 0.6)",
-        "ring-soft": "0 0 0 1px rgba(82, 156, 202, 0.3)",
-        hairline: "0 0 0 1px #2f2f2f",
-        "hairline-hi": "0 0 0 1px #3d3d3d",
-        // Notion's dark menu shadow — deeper, because there is no light to catch an edge.
-        tile: "rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 3px 6px, rgba(15, 15, 15, 0.4) 0px 9px 24px",
+        ring: "0 0 0 1px rgba(124,108,255,0.6)",
+        "ring-soft": "0 0 0 1px rgba(124,108,255,0.3)",
+        hairline: "0 0 0 1px rgba(255,255,255,0.09)",
+        "hairline-hi": "0 0 0 1px rgba(255,255,255,0.16)",
+        // Depth is accent glow, not a drop shadow. No backdrop-filter anywhere — the returned
+        // design stacked 24 of them and the compositor could not render a single frame.
+        tile: "0 0 0 1px rgba(255,255,255,0.09), 0 18px 48px -24px rgba(124,108,255,0.28)",
       },
       backgroundImage: {
         "tile-grad": "none",

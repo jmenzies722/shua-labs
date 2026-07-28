@@ -1,18 +1,27 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Route transition.
  *
- * A template re-mounts on every navigation (a layout does not), which is what makes this the
- * right place for it. Short and small — 220ms, 8px — because a page transition you notice is a
- * page transition that is too long. It removes the hard cut between routes without ever making
- * you wait.
+ * A template re-mounts on every navigation (a layout does not), which is why it lives here.
+ *
+ * Same invariant as Reveal: **it must not put `opacity: 0` into server-rendered HTML.** This
+ * wraps every route, so getting it wrong blanks the entire site until hydration — which is
+ * exactly what happened. It renders plain until mount, then animates only on client-side
+ * navigations, where JS is provably running and there is no SSR pass to poison.
+ *
+ * 220ms / 8px. A page transition you notice is one that is too long.
  */
 export default function Template({ children }: { children: React.ReactNode }) {
   const reduced = useReducedMotion();
-  if (reduced) return <>{children}</>;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted || reduced) return <>{children}</>;
 
   return (
     <motion.div

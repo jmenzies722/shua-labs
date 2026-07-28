@@ -1,31 +1,34 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, Manrope } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 
 import { profile } from "@/data/profile";
 import "./globals.css";
 
 /**
- * Type system — Manrope and JetBrains Mono.
+ * Type system — the APE stack.
  *
- * Manrope does display AND body. It is a modern geometric sans with slightly closed apertures
- * and genuinely good numerals, so it holds up tight-tracked at 5rem and still reads cleanly at
- * 16px. Weight and tracking do the differentiating rather than a second face — that single-voice
- * discipline is what makes an interface read as robust instead of assembled.
+ *   Space Grotesk  display. Technical-but-crafted; the slightly odd terminals are what stop
+ *                  the brand reading as another neutral-sans startup page.
+ *   Inter          body. Invisible on purpose at 16px — the display face carries personality,
+ *                  running text should just be legible.
+ *   JetBrains Mono labels, statuses, prices, metrics. Deliberate infrastructure texture, and
+ *                  real tabular figures for the dashboard.
  *
- * JetBrains Mono for data, labels, and prices: real tabular figures, engineered rather than
- * decorative, and it sits alongside Manrope without arguing with it.
- *
- * Deliberately not Inter or Space Grotesk — those are the defaults everything already uses,
- * so they signal nothing.
- *
- * (Geist was the first choice; Next 14's bundled Google Fonts list predates it.)
+ * next/font self-hosts all three at build time — no runtime request, no layout shift.
  *
  * next/font self-hosts both at build time — no runtime request, no layout shift.
  */
-const display = Manrope({
+const display = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   variable: "--font-display",
+  display: "swap",
+});
+
+const body = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-body",
   display: "swap",
 });
 
@@ -61,7 +64,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   // Matches the page surface so mobile browser chrome blends instead of banding.
-  themeColor: "#191919",
+  themeColor: "#06070d",
   colorScheme: "dark",
 };
 
@@ -70,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${display.variable} ${mono.variable}`}
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
     >
       <body>{children}</body>
     </html>

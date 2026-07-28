@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { AmbientLight } from "@/components/site/AmbientLight";
-import { KineticHeadline } from "@/components/site/KineticHeadline";
 import { TopNav } from "@/components/site/TopNav";
 import { Reveal } from "@/components/Reveal";
 import { Tag } from "@/components/hub/Tag";
@@ -41,15 +40,22 @@ export default function HomePage() {
       <TopNav />
       <main className="relative z-10">
         {/* ── Statement ─────────────────────────────────────────────── */}
-        <section className="mx-auto max-w-[1080px] px-6 pb-24 pt-32 lg:px-10 lg:pt-40">
+        <section className="mx-auto max-w-[940px] px-[clamp(24px,4vw,52px)] pb-[clamp(40px,6vw,64px)] pt-[clamp(52px,8vw,104px)]">
           <Reveal delay={0.05}>
-            <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-fg-subtle">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
               {profile.name} · {profile.role} · {profile.location}
             </p>
-            <KineticHeadline
-              text="I build the platforms AI agents actually run on."
-              className="mt-6 max-w-[16ch] font-display text-[clamp(2.5rem,6.2vw,4.5rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-fg"
-            />
+            {/*
+              Plain h1 on purpose. The gradient is painted on THIS element and clipped to its
+              text; splitting the line into per-word spans (as a kinetic reveal must) leaves
+              those children with an inherited transparent fill and no background of their own,
+              so the words render invisible. Gradient text and per-word masking are mutually
+              exclusive — the gradient is the system's one brand signal, so it wins.
+              Motion comes from the surrounding Reveal.
+            */}
+            <h1 className="grad-brand-text mt-7 max-w-[19ch] text-balance font-display text-[clamp(40px,6.6vw,78px)] font-semibold leading-[1.01] tracking-[-0.04em]">
+              I build the platforms AI agents actually run on.
+            </h1>
             <p className="mt-7 max-w-[46ch] text-[18px] leading-[1.6] text-fg-muted">
               And I show my work — the reasoning as well as the code. If a design has a limit,
               the write-up says where it breaks.
@@ -79,11 +85,11 @@ export default function HomePage() {
 
 
         {/* ── Prose — narrow measure, deliberately ──────────────────── */}
-        <section className="mx-auto max-w-[1080px] px-6 py-20 lg:px-10">
+        <section className="mx-auto max-w-[940px] px-[clamp(24px,4vw,52px)] pb-[clamp(48px,7vw,80px)]">
           <Reveal>
             <div className="flex max-w-[62ch] flex-col gap-5">
               {profile.about.map((paragraph) => (
-                <p key={paragraph.slice(0, 24)} className="text-[17px] leading-[1.7] text-fg-muted">
+                <p key={paragraph.slice(0, 24)} className="text-[17px] leading-[1.7] text-fg-body">
                   {paragraph}
                 </p>
               ))}
@@ -93,9 +99,9 @@ export default function HomePage() {
 
         {/* ── Focus — two-column, wide again ────────────────────────── */}
         <section className="border-t border-line">
-          <div className="mx-auto max-w-[1080px] px-6 py-16 lg:px-10">
+          <div className="mx-auto max-w-[940px] px-[clamp(24px,4vw,52px)] py-[clamp(48px,7vw,80px)]">
             <Reveal>
-              <h2 className="font-mono text-[12px] uppercase tracking-[0.14em] text-fg-subtle">
+              <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
                 What I work on
               </h2>
               <dl className="mt-8 flex flex-col divide-y divide-line border-y border-line">
@@ -104,7 +110,7 @@ export default function HomePage() {
                     key={area.title}
                     className="group flex flex-col gap-2 py-6 transition-all duration-300 md:flex-row md:gap-12 hover:pl-2"
                   >
-                    <dt className="w-[240px] shrink-0 font-display text-[21px] font-semibold leading-tight tracking-[-0.02em] text-fg transition-colors duration-300 group-hover:text-accent">
+                    <dt className="w-[240px] shrink-0 font-display text-[21px] font-semibold leading-tight tracking-[-0.02em] text-fg transition-colors duration-300 group-hover:text-accent-hi">
                       {area.title}
                     </dt>
                     <dd className="max-w-[54ch] text-[16px] leading-[1.65] text-fg-muted">
@@ -126,9 +132,9 @@ export default function HomePage() {
 
         {/* ── Evidence ──────────────────────────────────────────────── */}
         <section className="border-t border-line bg-bg-deep">
-          <div className="mx-auto max-w-[1080px] px-6 py-16 lg:px-10">
+          <div className="mx-auto max-w-[940px] px-[clamp(24px,4vw,52px)] py-[clamp(48px,7vw,80px)]">
             <Reveal>
-              <h2 className="font-mono text-[12px] uppercase tracking-[0.14em] text-fg-subtle">
+              <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
                 Selected work
               </h2>
 
@@ -171,7 +177,7 @@ export default function HomePage() {
 
               {building.length > 0 ? (
                 <div className="mt-10">
-                  <p className="font-mono text-[12px] uppercase tracking-[0.14em] text-fg-subtle">
+                  <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-fg-subtle">
                     In progress
                   </p>
                   <ul className="mt-4 flex flex-col gap-2">
@@ -192,7 +198,7 @@ export default function HomePage() {
 
         {/* ── Close ─────────────────────────────────────────────────── */}
         <section className="border-t border-line">
-          <div className="mx-auto max-w-[1080px] px-6 py-20 lg:px-10">
+          <div className="mx-auto max-w-[940px] px-[clamp(24px,4vw,52px)] pb-[clamp(48px,7vw,80px)]">
             <Reveal>
               <Link
                 href="/catalog"

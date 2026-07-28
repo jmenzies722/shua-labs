@@ -55,7 +55,7 @@ export default function DashboardPage() {
     <>
     <Sidebar />
     <div className="lg:pl-[240px]">
-    <main className="mx-auto max-w-[900px] px-6 pb-32 pt-16 lg:px-16">
+    <main className="mx-auto max-w-[1020px] px-[clamp(24px,4vw,52px)] pb-[clamp(76px,10vw,116px)] pt-[clamp(48px,7vw,84px)]">
       <header className="border-b border-line pb-6">
         <PageIcon icon={BarChart3} label="Dashboard" />
         <h1 className="mt-5 text-[40px] font-bold leading-[1.15] tracking-[-0.025em] text-fg">

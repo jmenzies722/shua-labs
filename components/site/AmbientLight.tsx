@@ -55,10 +55,10 @@ export function AmbientLight() {
     <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
       <div
         ref={ref}
-        className="h-[800px] w-[800px] rounded-full opacity-[0.55] blur-[120px] will-change-transform"
+        className="h-[760px] w-[760px] rounded-full opacity-40 blur-[140px] will-change-transform"
         style={{
           background:
-            "radial-gradient(circle, rgba(82,156,202,0.10) 0%, rgba(82,156,202,0.04) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(124,108,255,0.07) 0%, rgba(124,108,255,0.025) 40%, transparent 70%)",
         }}
       />
     </div>

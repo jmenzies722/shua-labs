@@ -30,9 +30,9 @@ export default function CatalogPage() {
     <>
       <TopNav />
       <div>
-        <main className="mx-auto max-w-[1080px] px-6 pb-32 pt-32 lg:px-10">
+        <main className="mx-auto max-w-[1020px] px-[clamp(24px,4vw,52px)] pb-[clamp(76px,10vw,116px)] pt-[clamp(48px,7vw,84px)]">
           <header>
-            <h1 className="font-display text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold leading-[1.05] tracking-[-0.035em] text-fg">
+            <h1 className="grad-brand-text font-display text-[clamp(32px,4.8vw,52px)] font-semibold leading-[1.05] tracking-[-0.035em]">
               Catalog
             </h1>
             <p className="mt-5 max-w-[54ch] text-[17px] leading-[1.65] text-fg-muted">
