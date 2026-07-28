@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
+import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { profile } from "@/data/profile";
 import { projects } from "@/data/projects";
@@ -168,6 +169,7 @@ export default function HomePage() {
           </div>
         </section>
       </main>
+      <SiteFooter />
     </>
   );
 }

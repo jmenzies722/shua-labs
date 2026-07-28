@@ -1,17 +1,16 @@
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/sections/Footer";
+import { SiteNav } from "@/components/site/SiteNav";
+import { SiteFooter } from "@/components/site/SiteFooter";
 
-export default function RegistryLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+/**
+ * Registry used its own Nav and Footer, so the site had two different headers depending on
+ * which tab you were on. Same shell as everywhere else now.
+ */
+export default function RegistryLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Nav />
-      {/* pt-12 clears the fixed 48px nav. */}
-      <main className="pt-12">{children}</main>
-      <Footer />
+      <SiteNav />
+      <main>{children}</main>
+      <SiteFooter />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { RegistryCard } from "@/components/registry/RegistryCard";
+import { PageHeader, SectionHead } from "@/components/site/PageHeader";
 import { KIND_META, KIND_ORDER, byKind, registryCounts } from "@/lib/registry";
 
 export const metadata: Metadata = {
@@ -25,41 +26,17 @@ export default function RegistryPage() {
   ];
 
   return (
-    <div className="container py-16 md:py-24">
-      <header className="max-w-3xl">
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-subtle">
-          Shua Labs · Registry
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-[-0.03em] text-fg md:text-6xl">
-          The catalogue, and the
-          <br />
-          checks that keep it true.
-        </h1>
-        <p className="mt-5 max-w-2xl text-[17px] leading-[1.5] text-fg-muted">
-          Most AI setups are a folder of prompts nobody has looked at in months.
-          This is the same thing with a manifest, a validator, and a health check
-          — so when it breaks, something says so.
-        </p>
-      </header>
+    <div className="mx-auto max-w-[1120px] px-6">
+      <PageHeader
+        eyebrow="Shua Labs · Registry"
+        title="The catalogue, and the checks that keep it true."
+        description="Most AI setups are a folder of prompts nobody has looked at in months. This is the same thing with a manifest, a validator, and a health check."
+        stats={stats.map((s) => ({ value: s.n, label: s.l }))}
+      />
 
-      <dl className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.l} className="bg-bg-panel px-5 py-4">
-            <dt className="sr-only">{s.l}</dt>
-            <dd>
-              <span className="block font-mono text-[26px] font-semibold tabular-nums tracking-tight text-fg">
-                {s.n}
-              </span>
-              <span className="mt-0.5 block text-[12.5px] text-fg-subtle">
-                {s.l}
-              </span>
-            </dd>
-          </div>
-        ))}
-      </dl>
 
-      <section className="mt-10 rounded-2xl border border-line bg-bg-panel p-6 md:p-7">
-        <p className="font-mono text-[11px] uppercase tracking-[0.13em] text-accent">
+      <section className="reveal rounded-2xl border border-line bg-bg-panel p-7">
+        <p className="text-[13px] font-medium uppercase tracking-[0.14em] text-fg-subtle">
           The problem this exists for
         </p>
         <p className="mt-3 max-w-3xl text-[16px] leading-[1.55] text-fg-muted">
@@ -81,20 +58,17 @@ export default function RegistryPage() {
         const meta = KIND_META[kind];
 
         return (
-          <section key={kind} className="mt-16" id={kind}>
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <h2 className="text-2xl font-semibold tracking-[-0.02em] text-fg">
-                {meta.plural}
+          <section key={kind} className="reveal mt-16 scroll-mt-20" id={kind}>
+            <div className="mb-7 text-center">
+              <h2 className="text-[26px] font-semibold tracking-[-0.025em] text-fg">
+                {meta.plural} <span className="text-fg-subtle">{entries.length}</span>
               </h2>
-              <span className="font-mono text-[12px] tabular-nums text-fg-subtle">
-                {entries.length}
-              </span>
+              <p className="mx-auto mt-2 max-w-[56ch] text-[15px] text-fg-muted">
+                {meta.blurb}
+              </p>
             </div>
-            <p className="mt-2 max-w-2xl text-[14.5px] leading-[1.5] text-fg-muted">
-              {meta.blurb}
-            </p>
 
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {entries.map((entry) => (
                 <li key={entry.slug}>
                   <RegistryCard entry={entry} />
@@ -105,8 +79,8 @@ export default function RegistryPage() {
         );
       })}
 
-      <section className="mt-20 border-t border-line pt-8">
-        <p className="max-w-2xl text-[14.5px] leading-[1.55] text-fg-subtle">
+      <section className="reveal mt-20 pb-28">
+        <p className="mx-auto max-w-[64ch] text-center text-[15px] leading-[1.6] text-fg-subtle">
           Agent entries on this page are generated from the registry file on the
           machine that runs them, and CI fails if the two fall out of step. The
           site cannot claim something the registry no longer says.

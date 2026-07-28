@@ -4,6 +4,8 @@ import { BarChart3 } from "lucide-react";
 
 import { PageIcon } from "@/components/hub/PageIcon";
 import { Pipeline } from "@/components/hub/Pipeline";
+import { PageHeader, SectionHead } from "@/components/site/PageHeader";
+import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteNav } from "@/components/site/SiteNav";
 import { offers } from "@/data/offers";
 import { products } from "@/data/products";
@@ -56,23 +58,14 @@ export default function DashboardPage() {
     <SiteNav />
     <div>
     <main className="mx-auto max-w-[1120px] px-6 pb-28 pt-16">
-      <header className="border-b border-line pb-6">
-        <PageIcon icon={BarChart3} label="Dashboard" />
-        <h1 className="mt-5 text-[40px] font-bold leading-[1.15] tracking-[-0.025em] text-fg">
-          Dashboard
-        </h1>
-        <p className="mt-2 text-[13px] text-fg-subtle">Private · side income only</p>
-        <p className="max-w-[26rem] text-[13px] leading-snug text-fg-subtle">
-          Salary is not tracked here. Mixing a paycheck in would swamp every trend and hide the
-          only numbers this page exists to show.
-        </p>
-      </header>
-
+      <PageHeader
+        eyebrow="Private · side income only"
+        title="Dashboard"
+        description="Salary is not tracked here. Mixing a paycheck in would swamp every trend and hide the only numbers this page exists to show."
+      />
       {/* ── Pipeline ─────────────────────────────────────────────────── */}
-      <section className="mt-10">
-        <h2 className="mb-5 border-b border-line pb-3 text-[20px] font-semibold tracking-[-0.02em] text-fg">
-          Pipeline
-        </h2>
+      <section className="reveal pb-14">
+        <SectionHead title="Pipeline" note="What is moving, and what is stuck." />
         <Pipeline products={products} />
       </section>
 
@@ -100,7 +93,7 @@ export default function DashboardPage() {
       </dl>
 
       {allTime === 0 ? (
-        <section className="mt-10 rounded-2xl border border-line bg-bg-panel p-8">
+        <section className="reveal rounded-2xl border border-line bg-bg-panel p-8">
           <h2 className="text-[19px] font-semibold tracking-[-0.02em] text-fg">
             No side income logged yet
           </h2>
@@ -125,10 +118,8 @@ export default function DashboardPage() {
       ) : (
         <>
           {/* ── Trend ────────────────────────────────────────────────── */}
-          <section className="mt-12">
-            <h2 className="border-b border-line pb-3 text-[20px] font-semibold tracking-[-0.02em] text-fg">
-              Monthly
-            </h2>
+          <section className="reveal pb-14">
+            <SectionHead title="Monthly" />
             <ul className="mt-5 flex flex-col gap-2.5">
               {months.map((month) => (
                 <li key={month.month} className="flex items-center gap-4">
@@ -150,10 +141,8 @@ export default function DashboardPage() {
           </section>
 
           {/* ── By stream ────────────────────────────────────────────── */}
-          <section className="mt-12">
-            <h2 className="border-b border-line pb-3 text-[20px] font-semibold tracking-[-0.02em] text-fg">
-              By stream
-            </h2>
+          <section className="reveal pb-14">
+            <SectionHead title="By stream" />
             <div className="mt-5 overflow-hidden rounded-2xl border border-line">
               <table className="w-full text-[14px]">
                 <thead>
@@ -192,6 +181,7 @@ export default function DashboardPage() {
         </>
       )}
     </main>
+    <SiteFooter />
     </div>
     </>
   );
