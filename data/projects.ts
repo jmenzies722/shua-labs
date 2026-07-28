@@ -44,7 +44,9 @@ generate-iam-policy    # least-privilege IAM for the design
 estimate-cost          # monthly cost estimate
 scaffold-project       # lay down the repo structure`,
       },
-      status: "WIP",
+      // Genuinely running: the MCP server is installed and all eight tools respond.
+      // "WIP" was underclaiming the only thing here that actually ships.
+      status: "Beta",
     },
   },
   {
