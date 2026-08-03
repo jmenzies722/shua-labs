@@ -1,8 +1,15 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Shua Labs v2.1 — Apple Fidelity Pass.
- * San Francisco system stack, Apple's exact dark palette, bento tiles, chevron links.
+ * Shua Labs v3 — the ledger.
+ *
+ * Monochrome by constraint, not by taste. There is no accent colour in this
+ * palette and adding one is a regression: the only emphasis available is
+ * inversion (white ground, black ink), which is why emphasis stays rare and
+ * therefore still means something.
+ *
+ * Mono is the interface voice — labels, status, data, structure. The sans stack
+ * is reserved for prose that is actually meant to be read at length.
  */
 const config: Config = {
   darkMode: "class",
@@ -14,62 +21,40 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: {
-        DEFAULT: "1.25rem",
-        md: "2rem",
-        lg: "3rem",
-      },
-      screens: {
-        "2xl": "1100px",
-      },
+      padding: { DEFAULT: "1.25rem", md: "2rem", lg: "3rem" },
+      screens: { "2xl": "1180px" },
     },
     extend: {
       colors: {
-        // Apple's exact dark palette.
         bg: {
           DEFAULT: "#000000",
           base: "#000000",
-          deep: "#000000",
-          panel: "#1d1d1f", // Apple's signature dark tile.
-          raised: "#161617", // Slightly lighter elevated surface.
-          card: "#1d1d1f",
-          tile: "#1d1d1f",
+          panel: "#0a0a0a",
+          raised: "#111111",
+          card: "#0c0c0c",
+          hi: "#161616",
         },
+        // Contrast-checked against #000. `subtle` clears 4.5:1 because it carries
+        // real body copy; `faint` clears 3:1 and is only ever used for meta text
+        // that repeats information available elsewhere.
         fg: {
-          DEFAULT: "#f5f5f7", // Apple primary text.
-          muted: "#86868b", // Apple secondary text.
-          subtle: "#6e6e73", // Apple tertiary text.
+          DEFAULT: "#fafafa", // 20.1:1
+          muted: "#8a8a8a", //  5.6:1
+          subtle: "#7a7a7a", //  4.6:1
+          faint: "#626262", //  3.1:1
         },
         line: {
-          DEFAULT: "rgba(255,255,255,0.12)", // Apple hairline.
-          strong: "rgba(255,255,255,0.2)",
-        },
-        // Apple blue — dark mode link color + primary fill.
-        accent: {
-          DEFAULT: "#2997ff", // Apple dark-mode link blue.
-          hi: "#2997ff",
-          fill: "#0071e3", // Apple primary button fill.
-          fillHover: "#0077ed",
-          soft: "rgba(41, 151, 255, 0.10)",
-          ring: "rgba(41, 151, 255, 0.5)",
-          glow: "rgba(41, 151, 255, 0.2)",
-        },
-        // Quiet tier dots — kept for the meta pills.
-        tier: {
-          free: "#34d399",
-          freemium: "#60a5fa",
-          paid: "#a78bfa",
-          wip: "#f59e0b",
+          DEFAULT: "rgba(255,255,255,0.10)",
+          strong: "rgba(255,255,255,0.20)",
+          hi: "rgba(255,255,255,0.34)",
         },
       },
       fontFamily: {
         sans: [
           "-apple-system",
           "BlinkMacSystemFont",
-          "SF Pro Display",
           "SF Pro Text",
           "Helvetica Neue",
-          "Helvetica",
           "Arial",
           "sans-serif",
         ],
@@ -82,55 +67,61 @@ const config: Config = {
           "monospace",
         ],
       },
-      letterSpacing: {
-        "apple-tight": "-0.015em",
-        "apple-section": "-0.01em",
-        "apple-body": "-0.022em",
-        "apple-sub": "-0.012em",
-      },
       borderRadius: {
-        "3xl": "28px",
-        "2xl": "20px",
-        xl: "18px",
-        lg: "14px",
-        md: "10px",
-        sm: "8px",
+        // Terminals do not have rounded corners. Nothing here exceeds 4px.
+        none: "0px",
+        sm: "2px",
+        DEFAULT: "2px",
+        md: "3px",
+        lg: "4px",
+        xl: "4px",
+        "2xl": "4px",
+        "3xl": "4px",
         pill: "980px",
       },
       boxShadow: {
-        // Toned-down "glow" — actually just a tasteful accent ring now.
-        ring: "0 0 0 1px rgba(41, 151, 255, 0.55)",
-        "ring-soft": "0 0 0 1px rgba(41, 151, 255, 0.3)",
-        hairline: "0 0 0 1px rgba(255, 255, 255, 0.12)",
-        "hairline-hi": "0 0 0 1px rgba(255, 255, 255, 0.2)",
-        tile: "0 8px 24px -12px rgba(0,0,0,0.5)",
-      },
-      backgroundImage: {
-        "tile-grad":
-          "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.00) 100%)",
+        hairline: "0 0 0 1px rgba(255,255,255,0.10)",
+        "hairline-hi": "0 0 0 1px rgba(255,255,255,0.34)",
+        invert: "0 0 0 1px #ffffff",
       },
       keyframes: {
-        "drawer-in": {
-          "0%": { transform: "translateY(12px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        "sheet-in": {
-          "0%": { transform: "translateY(24px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
+        blink: {
+          "0%, 49%": { opacity: "1" },
+          "50%, 100%": { opacity: "0" },
         },
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        "boot-line": {
+          "0%": { opacity: "0", transform: "translateY(4px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "sheet-in": {
+          "0%": { transform: "translateY(16px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        "drawer-in": {
+          "0%": { transform: "translateY(10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        scan: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(100vh)" },
+        },
       },
       animation: {
-        "drawer-in": "drawer-in 360ms cubic-bezier(0.28,0.11,0.32,1) both",
-        "sheet-in": "sheet-in 360ms cubic-bezier(0.28,0.11,0.32,1) both",
-        "fade-in": "fade-in 240ms ease-out both",
+        blink: "blink 1.05s step-end infinite",
+        "fade-in": "fade-in 220ms ease-out both",
+        "boot-line": "boot-line 260ms ease-out both",
+        "sheet-in": "sheet-in 260ms cubic-bezier(0.2,0.7,0.3,1) both",
+        "drawer-in": "drawer-in 240ms cubic-bezier(0.2,0.7,0.3,1) both",
+        scan: "scan 7s linear infinite",
       },
       transitionTimingFunction: {
-        apple: "cubic-bezier(0.28, 0.11, 0.32, 1)",
-        premium: "cubic-bezier(0.28, 0.11, 0.32, 1)",
+        term: "cubic-bezier(0.2, 0.7, 0.3, 1)",
+        apple: "cubic-bezier(0.2, 0.7, 0.3, 1)",
+        premium: "cubic-bezier(0.2, 0.7, 0.3, 1)",
       },
     },
   },

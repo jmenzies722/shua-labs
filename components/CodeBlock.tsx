@@ -12,8 +12,11 @@ interface CodeBlockProps {
 }
 
 /**
- * Apple-quiet code block. SF Mono on #161617, copy affordance top-right.
- * No syntax highlighting — reads as a snippet, not a feature.
+ * Code block. Square hairline box, no syntax highlighting.
+ *
+ * Highlighting is deliberately absent: it would introduce the only colour on
+ * the site, and these snippets are read for shape rather than parsed line by
+ * line.
  */
 export function CodeBlock({
   code,
@@ -42,42 +45,44 @@ export function CodeBlock({
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
-      // Silently fail — copy is non-critical.
+      // Copy is non-critical — fail silently rather than throwing a dialog.
     }
   }, [code]);
 
   return (
     <figure className={cn("group/codeblock", className)}>
       {caption && (
-        <figcaption className="mb-2 flex items-center gap-2 text-[12px] font-mono text-fg-subtle">
+        <figcaption className="mb-2 flex items-center gap-2 font-mono text-[11px] text-fg-faint">
           {language && (
-            <span className="rounded-sm bg-white/[0.05] px-1.5 py-0.5">
+            <span className="border border-line px-1.5 py-0.5 uppercase tracking-[0.1em]">
               {language}
             </span>
           )}
           <span>{caption}</span>
         </figcaption>
       )}
-      <div className="relative overflow-hidden rounded-xl border border-line bg-bg-raised">
+
+      <div className="relative overflow-hidden border border-line bg-bg-panel">
         <button
           type="button"
           onClick={onCopy}
           aria-label={copied ? "Copied" : "Copy code"}
-          className="absolute right-3 top-3 inline-flex h-8 items-center gap-1.5 rounded-full bg-white/[0.06] px-3 text-[12px] font-medium text-fg-muted transition-colors duration-200 hover:bg-white/[0.1] hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
+          className="absolute right-2.5 top-2.5 inline-flex h-7 items-center gap-1.5 border border-line bg-bg px-2.5 font-mono text-[11px] text-fg-muted transition-colors duration-200 hover:border-line-hi hover:text-fg"
         >
           {copied ? (
             <>
-              <Check className="h-3.5 w-3.5" aria-hidden="true" />
-              Copied
+              <Check className="h-3 w-3" aria-hidden="true" />
+              copied
             </>
           ) : (
             <>
-              <Copy className="h-3.5 w-3.5" aria-hidden="true" />
-              Copy
+              <Copy className="h-3 w-3" aria-hidden="true" />
+              copy
             </>
           )}
         </button>
-        <pre className="overflow-x-auto p-5 pr-20 text-[13px] leading-[1.6] font-mono text-fg/90">
+
+        <pre className="overflow-x-auto p-4 pr-24 font-mono text-[12.5px] leading-[1.7] text-fg/90">
           <code>{code}</code>
         </pre>
       </div>

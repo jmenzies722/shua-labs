@@ -59,7 +59,7 @@ export default function RegistryPage() {
       </dl>
 
       <section className="mt-10 rounded-2xl border border-line bg-bg-panel p-6 md:p-7">
-        <p className="font-mono text-[11px] uppercase tracking-[0.13em] text-accent">
+        <p className="font-mono text-[11px] uppercase tracking-[0.13em] text-fg-subtle">
           The problem this exists for
         </p>
         <p className="mt-3 max-w-3xl text-[16px] leading-[1.55] text-fg-muted">

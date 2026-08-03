@@ -72,7 +72,7 @@ export default function RegistryEntryPage({
     <article className="container py-14 md:py-20">
       <Link
         href="/registry"
-        className="inline-flex items-center gap-1.5 font-mono text-[12px] text-fg-subtle transition-colors duration-200 hover:text-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
+        className="inline-flex items-center gap-1.5 font-mono text-[12px] text-fg-subtle transition-colors duration-200 hover:text-fg focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg rounded-sm"
       >
         <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
         Registry
@@ -165,8 +165,8 @@ export default function RegistryEntryPage({
       )}
 
       {entry.notes && (
-        <section className="mt-8 max-w-2xl rounded-2xl border-l-2 border-accent bg-accent/[0.06] px-5 py-4">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-accent">
+        <section className="mt-8 max-w-2xl rounded-2xl border-l-2 border-line-hi bg-white/[0.03] px-5 py-4">
+          <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-fg">
             Why it is built this way
           </p>
           <p className="mt-2 text-[14.5px] leading-[1.55] text-fg-muted">
@@ -184,7 +184,7 @@ export default function RegistryEntryPage({
                   href={l.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-1 text-[14px] text-accent transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring rounded-sm"
+                  className="inline-flex items-center gap-1 text-[14px] text-fg underline underline-offset-4 transition-opacity duration-200 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg rounded-sm"
                 >
                   {l.label}
                   <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />

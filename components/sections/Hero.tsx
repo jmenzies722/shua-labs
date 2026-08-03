@@ -3,101 +3,130 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { AppleLink } from "@/components/AppleLink";
+import { Terminal } from "@/components/Terminal";
+import { platformStats } from "@/lib/platform-stats";
+import { registryCounts } from "@/lib/registry";
+import type { TypedLine } from "@/lib/useTypewriter";
 
 /**
- * Apple-fidelity hero.
+ * Hero.
  *
- * - Centered, calm, vast vertical room.
- * - Eyebrow + huge SF semibold headline + gray sub + a primary pill and a
- *   chevron text-link as the secondary action.
- * - Very faint background gradient — toned down from v2's neon glow.
- * - Respects prefers-reduced-motion.
+ * The headline states what the site is; the terminal states where the work
+ * actually stands. The numbers in the boot sequence are derived from the same
+ * data the platform renders, so the hero cannot drift into claiming more than the
+ * ledger below it shows.
  */
 export function Hero() {
   const reduced = useReducedMotion();
-  const ease: [number, number, number, number] = [0.28, 0.11, 0.32, 1];
+  const ease: [number, number, number, number] = [0.2, 0.7, 0.3, 1];
+
+  const lines = React.useMemo<TypedLine[]>(() => {
+    const s = platformStats();
+    const c = registryCounts();
+    return [
+      { text: "shua status", prompt: true, pauseAfter: 220 },
+      { text: "" },
+      { text: `public        ${c.open} repos, servers and tools`, dim: true },
+      { text: `agent crew    ${c.agents} agents, ${c.servers} MCP servers`, dim: true },
+      {
+        text: `building      ${s.open ? s.open.name : "nothing"}  (1 of ${s.total})`,
+        dim: true,
+      },
+      {
+        text: `ship gate     ${s.artifactsDone}/${s.artifactsTotal} artifacts public`,
+        dim: true,
+        pauseAfter: 300,
+      },
+      { text: "" },
+      { text: "the unfinished boxes stay on the page." },
+    ];
+  }, []);
 
   return (
     <section
       id="top"
       aria-label="Hero"
-      className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden pt-24 pb-20"
+      className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden pb-20 pt-28"
     >
-      {/* Background: faint, tasteful gradient. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(41,151,255,0.06),transparent_60%)]" />
-      </div>
+      <div className="container max-w-[1180px]">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
+          {/* Left — the claim */}
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: reduced ? 0 : 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.5, ease }}
+              className="term-label"
+            >
+              shua labs
+            </motion.p>
 
-      <div className="container relative max-w-[1100px] text-center">
-        <motion.p
-          initial={{ opacity: 0, y: reduced ? 0 : 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reduced ? 0 : 0.9, ease }}
-          className="apple-eyebrow text-accent"
-        >
-          Shua Labs
-        </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.06, ease }}
+              className="term-display mt-5 text-balance text-fg"
+            >
+              Infrastructure
+              <br />
+              for agents.
+              <br />
+              <span className="text-fg-subtle">In the open.</span>
+            </motion.h1>
 
-        <motion.h1
-          initial={{ opacity: 0, y: reduced ? 0 : 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: reduced ? 0 : 0.95,
-            delay: reduced ? 0 : 0.08,
-            ease,
-          }}
-          className="apple-headline mt-5 text-balance text-fg"
-        >
-          Build. <span className="text-fg-muted">In the open.</span>
-        </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: reduced ? 0 : 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.13, ease }}
+              className="term-prose mt-7 max-w-xl text-balance"
+            >
+              Gateways, sandboxes, controllers, and the harness work that makes
+              a whole team faster with agents. I&apos;m Josh — a platform engineer in
+              New York building the layer underneath AI agents, and publishing
+              it as I go.
+            </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: reduced ? 0 : 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: reduced ? 0 : 0.95,
-            delay: reduced ? 0 : 0.16,
-            ease,
-          }}
-          className="apple-sub mt-6 mx-auto max-w-3xl text-balance"
-        >
-          The home for the products and tools I ship — open-source,
-          production-grade, for developer and AI enablement.
-        </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: reduced ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.17, ease }}
+              className="mt-4 max-w-xl font-mono text-[13px] leading-[1.6] text-fg-subtle"
+            >
+              Everything here shows its real state. Shipped work is public and
+              installable; unfinished work shows exactly which boxes are still
+              empty.
+            </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: reduced ? 0 : 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: reduced ? 0 : 0.95,
-            delay: reduced ? 0 : 0.24,
-            ease,
-          }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4"
-        >
-          <Link href="#work">
-            <Button size="lg" variant="primary">
-              Explore the work
-            </Button>
-          </Link>
-          <AppleLink
-            href="https://github.com/jmenzies722/shua-labs"
-            external
+            <motion.div
+              initial={{ opacity: 0, y: reduced ? 0 : 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.2, ease }}
+              className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4"
+            >
+              <Link
+                href="#shipped"
+                className="border border-fg bg-fg px-5 py-2.5 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-bg transition-colors duration-200 hover:bg-transparent hover:text-fg"
+              >
+                See the work
+              </Link>
+              <Link href="/registry" className="term-link font-mono text-[13px]">
+                Browse the registry
+                <span className="arrow" aria-hidden>
+                  →
+                </span>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right — the state */}
+          <motion.div
+            initial={{ opacity: 0, y: reduced ? 0 : 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.24, ease }}
           >
-            View on GitHub
-          </AppleLink>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: reduced ? 0 : 0.9, delay: reduced ? 0 : 0.4 }}
-          className="mt-20 font-mono text-[12px] tracking-[0.05em] text-fg-subtle"
-        >
-          Open source &nbsp;·&nbsp; Developer &amp; AI enablement &nbsp;·&nbsp; MIT
-        </motion.p>
+            <Terminal lines={lines} title="shua@labs — status" />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

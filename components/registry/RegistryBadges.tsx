@@ -22,9 +22,11 @@ export function AvailabilityBadge({
   return (
     <Badge
       className={cn(
-        "font-mono uppercase tracking-[0.08em]",
+        "rounded-none font-mono uppercase tracking-[0.08em]",
+        // Inversion is the only emphasis this palette has, and public is the
+        // state worth emphasising — it is the one that means "you can have it".
         isPublic
-          ? "border-accent/40 bg-accent/10 text-accent"
+          ? "border-fg bg-fg text-bg"
           : "border-line text-fg-subtle",
         className
       )}
@@ -32,8 +34,8 @@ export function AvailabilityBadge({
       <span
         aria-hidden="true"
         className={cn(
-          "h-1.5 w-1.5 rounded-full",
-          isPublic ? "bg-accent" : "bg-fg-subtle"
+          "h-1.5 w-1.5",
+          isPublic ? "bg-bg" : "bg-fg-faint"
         )}
       />
       {isPublic ? "Public" : "Private"}
@@ -55,7 +57,12 @@ export function KindBadge({
   className?: string;
 }) {
   return (
-    <Badge className={cn("font-mono uppercase tracking-[0.08em]", className)}>
+    <Badge
+      className={cn(
+        "rounded-none font-mono uppercase tracking-[0.08em]",
+        className
+      )}
+    >
       {KIND_LABEL[kind]}
     </Badge>
   );
@@ -69,7 +76,7 @@ export function ReadOnlyBadge({ className }: { className?: string }) {
   return (
     <Badge
       className={cn(
-        "border-accent/30 bg-accent/[0.07] font-mono uppercase tracking-[0.08em] text-accent/90",
+        "rounded-none border-line-hi font-mono uppercase tracking-[0.08em] text-fg",
         className
       )}
       title="Holds no Edit or Write tools — enforced by the registry validator"
@@ -97,7 +104,7 @@ export function ChipList({
       {shown.map((item) => (
         <li
           key={item}
-          className="rounded-md border border-line bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-fg-subtle"
+          className="border border-line bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-fg-subtle"
         >
           {item}
         </li>

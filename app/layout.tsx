@@ -1,17 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
+const TITLE = "Shua Labs — infrastructure for agents, built in the open";
+const DESCRIPTION =
+  "Josh Menzies builds the layer underneath AI agents: gateways, sandboxes, controllers, and the measurement that tells you whether any of it works. Open source, with the unfinished parts shown honestly.";
+
 export const metadata: Metadata = {
-  title: "Shua Labs — Build. In the open.",
-  description:
-    "Open-source products and tools for developer and AI enablement — and the expertise to put them to work. Built in the open by Josh Menzies.",
+  title: TITLE,
+  description: DESCRIPTION,
   metadataBase: new URL("https://shualabs.com"),
-  openGraph: {
-    title: "Shua Labs — Build. In the open.",
-    description:
-      "Open-source products and tools for developer and AI enablement — and the expertise to put them to work.",
-    type: "website",
-  },
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
   robots: { index: true, follow: true },
 };
 

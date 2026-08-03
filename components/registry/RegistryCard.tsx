@@ -27,10 +27,10 @@ export function RegistryCard({ entry }: { entry: RegistryEntry }) {
     entry.kind === "agent" ? entry.capabilities ?? [] : [];
 
   return (
-    <Card className="group h-full hover:border-line-strong">
+    <Card className="group h-full rounded-none border-0 bg-transparent hover:bg-white/[0.02]">
       <Link
         href={`/registry/${entry.slug}`}
-        className="flex h-full flex-col gap-3 rounded-2xl p-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-ring"
+        className="flex h-full flex-col gap-3 p-5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-fg"
       >
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">

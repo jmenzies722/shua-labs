@@ -7,61 +7,62 @@ import { Reveal, RevealGroup } from "@/components/Reveal";
 import { formatDateStamp } from "@/lib/utils";
 
 /**
- * Building-in-the-open changelog — Apple-quiet vertical timeline.
- * Newest first. Accent nodes are tiny dots without neon glow.
+ * The changelog. Newest first.
+ *
+ * Nodes are hollow squares on a hairline rule rather than filled dots — the
+ * filled square is reserved for a passed gate artifact, and reusing it here
+ * would imply these entries are gates. They are not; they are just history.
  */
 export function Journey() {
   return (
     <section
       id="journey"
       aria-labelledby="journey-title"
-      className="relative apple-section scroll-mt-16"
+      className="term-section scroll-mt-14"
     >
-      <div className="container max-w-[1100px]">
+      <div className="container max-w-[1180px]">
         <Reveal>
           <SectionHeading
             id="journey-title"
-            eyebrow="Journey"
+            eyebrow="changelog"
             title={
               <>
-                Building in the open,{" "}
-                <span className="text-fg-muted">one entry at a time.</span>
+                What actually happened,{" "}
+                <span className="text-fg-subtle">including the reversals.</span>
               </>
             }
-            lead="The momentum log. Public, dated, honest."
+            lead="Dates come from commits, not from memory. Superseded decisions stay on the record — a changelog that edits its own past is a brochure."
           />
         </Reveal>
 
-        <div className="mt-16 md:mt-20 relative max-w-3xl">
+        <div className="relative mt-14 max-w-3xl">
           <div
             aria-hidden
-            className="absolute left-[7px] top-2 bottom-2 w-px bg-line"
+            className="absolute bottom-2 left-[4px] top-2 w-px bg-line"
           />
 
-          <RevealGroup className="flex flex-col gap-12" stagger={0.08}>
+          <RevealGroup className="flex flex-col gap-10" stagger={0.06}>
             {journey.map((entry, i) => (
-              <Reveal key={entry.date + i} y={20}>
-                <article className="relative pl-10">
+              <Reveal key={entry.date + i} y={16}>
+                <article className="relative pl-9">
                   <span
                     aria-hidden
-                    className="absolute left-0 top-2 inline-flex h-3.5 w-3.5 items-center justify-center"
-                  >
-                    <span className="relative h-2 w-2 rounded-full bg-accent" />
-                  </span>
+                    className="absolute left-0 top-[7px] block h-[9px] w-[9px] border border-line-hi bg-bg"
+                  />
 
                   <time
                     dateTime={entry.date}
-                    className="block font-mono text-[12px] tracking-[0.05em] text-fg-subtle"
+                    className="block font-mono text-[11px] tracking-[0.12em] text-fg-faint"
                   >
                     {formatDateStamp(entry.date)}
                   </time>
 
-                  <h3 className="mt-2 text-[22px] md:text-[24px] font-semibold tracking-apple-section leading-[1.15] text-fg">
+                  <h3 className="mt-2 font-mono text-[17px] font-semibold leading-[1.25] tracking-[-0.03em] text-fg sm:text-[19px]">
                     {entry.title}
                   </h3>
 
                   {entry.detail && (
-                    <p className="mt-2 text-[15px] leading-[1.47] text-fg-muted max-w-2xl">
+                    <p className="term-prose mt-2.5 max-w-2xl text-[15px]">
                       {entry.detail}
                     </p>
                   )}
