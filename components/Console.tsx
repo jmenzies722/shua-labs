@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   complete,
@@ -24,10 +25,15 @@ interface Block {
 /**
  * Full-screen console.
  *
- * Opens on `~` or the nav button, closes on Escape. Commands resolve through
- * lib/console-commands against live data — this is a second view of the site's
- * own dataset rather than a scripted demo, which is the only version worth
- * showing to someone evaluating whether you can build things.
+ * Opens on `~`, the nav button, or the hero hint; closes on Escape. Commands
+ * resolve through lib/console-commands against live data — this is a second
+ * view of the site's own dataset rather than a scripted demo.
+ *
+ * The input is a separate, non-scrolling bar pinned to the bottom rather than
+ * the last line of scrolling output. On iOS, the keyboard resizes the visual
+ * viewport and a fixed bottom bar stays glued above it; an input living inside
+ * the scroll flow would need to be scrolled back into view by hand every time
+ * the keyboard opens.
  */
 export function Console({
   open,
@@ -45,15 +51,18 @@ export function Console({
   const inputRef = React.useRef<HTMLInputElement>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
-  // Focus on open; lock the page behind it.
+  // Focus on open; lock the page behind it. requestAnimationFrame rather than
+  // a fixed setTimeout keeps the call as close as possible to the triggering
+  // tap — iOS Safari only pops the keyboard for a focus() call it can still
+  // trace back to a user gesture, and an arbitrary delay risks losing that.
   React.useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const t = window.setTimeout(() => inputRef.current?.focus(), 40);
+    const raf = requestAnimationFrame(() => inputRef.current?.focus());
     return () => {
       document.body.style.overflow = prev;
-      window.clearTimeout(t);
+      cancelAnimationFrame(raf);
     };
   }, [open]);
 
@@ -64,6 +73,7 @@ export function Console({
 
   const submit = React.useCallback(() => {
     const input = value;
+    if (!input.trim()) return;
     const result = runCommand(input);
 
     if (result.clear) {
@@ -72,11 +82,10 @@ export function Console({
       setBlocks((b) => [...b, { input, lines: result.lines }]);
     }
 
-    if (input.trim()) {
-      setHistory((h) => [...h, input.trim()]);
-    }
+    setHistory((h) => [...h, input.trim()]);
     setHistoryIndex(null);
     setValue("");
+    inputRef.current?.focus();
 
     if (result.close) onClose();
     if (result.navigate) {
@@ -135,7 +144,7 @@ export function Console({
       aria-modal="true"
       aria-label="Console"
       className="term-scanlines fixed inset-0 z-[60] flex flex-col bg-black/97 animate-fade-in backdrop-blur-sm"
-      onClick={() => inputRef.current?.focus()}
+      style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div className="flex shrink-0 items-center justify-between border-b border-line px-4 py-3">
         <span className="font-mono text-[11px] tracking-[0.12em] text-fg-subtle">
@@ -144,7 +153,7 @@ export function Console({
         <button
           type="button"
           onClick={onClose}
-          className="font-mono text-[11px] text-fg-subtle transition-colors hover:text-fg"
+          className="-m-2 p-2 font-mono text-[11px] text-fg-subtle transition-colors hover:text-fg"
         >
           [ esc to close ]
         </button>
@@ -152,7 +161,8 @@ export function Console({
 
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto px-4 py-5 sm:px-6"
+        onClick={() => inputRef.current?.focus()}
+        className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 py-5 sm:px-6"
       >
         <div className="mx-auto max-w-4xl">
           {blocks.map((b, i) => (
@@ -178,42 +188,43 @@ export function Console({
               ))}
             </div>
           ))}
+        </div>
+      </div>
 
-          {/* Prompt */}
-          <div className="flex items-center font-mono text-[13px]">
-            <span className="text-fg-faint">$&nbsp;</span>
-            <input
-              ref={inputRef}
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              onKeyDown={onKeyDown}
-              spellCheck={false}
-              autoComplete="off"
-              aria-label="Console input"
-              className="flex-1 bg-transparent text-fg caret-transparent outline-none"
-            />
-            <span className="term-cursor -ml-[0.58em]" aria-hidden />
-          </div>
+      {/* Pinned input bar — stays above the iOS keyboard instead of living in
+          the scroll flow, and its own row never needs to be scrolled into view. */}
+      <div
+        className="shrink-0 border-t border-line bg-black px-4 pt-3 sm:px-6"
+        style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+      >
+        <div className="mx-auto flex max-w-4xl items-center gap-3">
+          <span className="font-mono text-[13px] text-fg-faint">$</span>
+          <input
+            ref={inputRef}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={onKeyDown}
+            spellCheck={false}
+            autoComplete="off"
+            autoCapitalize="none"
+            autoCorrect="off"
+            enterKeyHint="go"
+            aria-label="Console input"
+            // text-base (16px) on mobile stops iOS Safari auto-zooming the
+            // page on focus; it steps back down to 13px from sm: up, where
+            // that bug does not apply.
+            className="min-w-0 flex-1 bg-transparent py-2 font-mono text-base text-fg caret-fg outline-none sm:text-[13px]"
+          />
+          <button
+            type="button"
+            onClick={submit}
+            aria-label="Run command"
+            className="-mr-1 inline-flex h-9 w-9 shrink-0 items-center justify-center text-fg-subtle transition-colors hover:text-fg sm:hidden"
+          >
+            <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </div>
   );
-}
-
-/** Opens the console on `~` from anywhere on the page. */
-export function useConsoleHotkey(onOpen: () => void) {
-  React.useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      const el = document.activeElement;
-      const typing =
-        el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement;
-      if (typing) return;
-      if (e.key === "~" || e.key === "`") {
-        e.preventDefault();
-        onOpen();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onOpen]);
 }

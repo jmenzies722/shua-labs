@@ -224,7 +224,8 @@ export function Topology({ className }: { className?: string }) {
         <div className="term-label mb-3">{node?.label}</div>
         <p className="term-prose text-[14px]">{node?.detail}</p>
         <p className="mt-5 font-mono text-[11px] text-fg-faint">
-          hover or click a node
+          <span className="sm:hidden">tap a node · scroll to see the rest</span>
+          <span className="hidden sm:inline">hover or click a node</span>
         </p>
       </div>
     </div>

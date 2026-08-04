@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Terminal } from "@/components/Terminal";
 import { platformStats } from "@/lib/platform-stats";
 import { registryCounts } from "@/lib/registry";
+import { openConsole } from "@/lib/consoleBus";
 import type { TypedLine } from "@/lib/useTypewriter";
 
 /**
@@ -46,7 +47,7 @@ export function Hero() {
     <section
       id="top"
       aria-label="Hero"
-      className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden pb-20 pt-28"
+      className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden pb-20 pt-[calc(7rem+env(safe-area-inset-top))]"
     >
       <div className="container max-w-[1180px]">
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
@@ -115,6 +116,25 @@ export function Hero() {
                   →
                 </span>
               </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.28 }}
+              className="mt-6"
+            >
+              {/* Desktop: the ~ key already opens it, so this is a label.
+                  Mobile: there is no physical keyboard, so it has to be the
+                  trigger itself — same handler, same visual weight either way. */}
+              <button
+                type="button"
+                onClick={openConsole}
+                className="font-mono text-[12px] text-fg-faint transition-colors hover:text-fg-muted"
+              >
+                or press <span className="text-fg-subtle">~</span> for a live console
+                <span className="hidden sm:inline"> — try `status`</span>
+              </button>
             </motion.div>
           </div>
 

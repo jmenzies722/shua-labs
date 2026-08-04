@@ -15,11 +15,19 @@
     scroll-behavior: smooth;
     color-scheme: dark;
     font-family: var(--font-mono);
+    /* iOS/Android draw a grey flash rectangle on every tap by default; every
+       interactive element here already has its own hover/active state, so the
+       default flash reads as a rendering glitch rather than feedback. */
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply bg-bg text-fg antialiased;
     background-color: #000;
+    /* Skips the ~300ms tap delay and double-tap-to-zoom on buttons and links.
+       Pinch-zoom on the page as a whole is untouched — this only scopes the
+       browser's own double-tap gesture on individual elements. */
+    touch-action: manipulation;
     /* Faint terminal grid. Monochrome — no colour anywhere in this file. */
     background-image:
       linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
