@@ -1,8 +1,5 @@
-import { services } from "@/data/platform";
 import { stackLayers } from "@/data/stack";
-import { platformStats, gateScore } from "@/lib/platform-stats";
 import { allEntries, registryCounts } from "@/lib/registry";
-import { GATE_ARTIFACTS } from "@/lib/types";
 
 /**
  * The console command engine.
@@ -61,18 +58,11 @@ const COMMANDS: {
   },
   {
     name: "status",
-    help: "platform state, live",
+    help: "what's real, right now",
     run: () => {
-      const s = platformStats();
       const c = registryCounts();
       return {
         lines: [
-          strong("platform"),
-          dim(row("services", String(s.total))),
-          dim(row("shipped", String(s.shipped))),
-          dim(row("building", s.open ? s.open.name : "nothing")),
-          dim(row("gate artifacts", `${s.artifactsDone}/${s.artifactsTotal} public`)),
-          blank(),
           strong("registry"),
           dim(row("agents", String(c.agents))),
           dim(row("mcp servers", String(c.servers))),
@@ -97,63 +87,6 @@ const COMMANDS: {
           ]),
           blank(),
           dim("open <slug> to view a detail page"),
-        ],
-      };
-    },
-  },
-  {
-    name: "services",
-    help: "the seven platform services and their gates",
-    run: () => ({
-      lines: [
-        strong("platform services"),
-        blank(),
-        ...services.map((s) => {
-          const score = gateScore(s.gate);
-          const boxes =
-            "■".repeat(score) + "□".repeat(GATE_ARTIFACTS.length - score);
-          return dim(
-            `${String(s.n).padStart(2, "0")}  ${s.name.padEnd(16)}${boxes}  ${s.status}`
-          );
-        }),
-        blank(),
-        dim("gate <name> for what is blocking each one"),
-      ],
-    }),
-  },
-  {
-    name: "gate",
-    args: "<service>",
-    help: "what is blocking a service",
-    run: (args) => {
-      const slug = args[0];
-      if (!slug) {
-        return { lines: [dim("usage: gate <service>  (try: gate shua-gateway)")] };
-      }
-      const svc = services.find((s) => s.slug === slug || s.name === slug);
-      if (!svc) {
-        return {
-          lines: [
-            plain(`no service named "${slug}"`),
-            dim("run `services` for the list"),
-          ],
-        };
-      }
-      return {
-        lines: [
-          strong(`${svc.name} — gate ${gateScore(svc.gate)}/4`),
-          blank(),
-          ...GATE_ARTIFACTS.flatMap((k) => {
-            const item = svc.gate[k];
-            return [
-              plain(`[${item.done ? "x" : " "}] ${k}`),
-              ...(item.done
-                ? item.href
-                  ? [dim("    " + item.href)]
-                  : []
-                : [dim("    " + (item.blocker ?? "not started"))]),
-            ];
-          }),
         ],
       };
     },
@@ -199,10 +132,10 @@ const COMMANDS: {
     help: "the short version",
     run: () => ({
       lines: [
-        strong("Josh Menzies — platform engineer, New York"),
+        strong("Josh Menzies — AI platform engineer, New York"),
         blank(),
-        plain("Building the layer underneath AI agents: gateways, sandboxes,"),
-        plain("controllers, and the measurement that says whether it works."),
+        plain("Building the developer-experience and infrastructure layer"),
+        plain("underneath AI-assisted engineering teams."),
         blank(),
         dim("github.com/jmenzies722"),
         dim("linkedin.com/in/josh-m01"),
@@ -222,7 +155,7 @@ const COMMANDS: {
         return {
           lines: [
             plain(`no registry entry "${slug}"`),
-            dim("run `registry` for the list"),
+            dim("run `projects` for the list"),
           ],
         };
       }

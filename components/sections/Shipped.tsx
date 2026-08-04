@@ -5,32 +5,32 @@ import { Reveal, RevealGroup } from "@/components/Reveal";
 import { TermLink } from "@/components/TermLink";
 
 /**
- * Shipped — the things that are genuinely public right now.
+ * The work — everything genuinely public right now.
  *
  * Derived from `availability === "public"` rather than a hand-kept list, so
- * this section cannot drift into showing something that was never opened. If a
- * card is here, a stranger can go get it.
+ * this section cannot drift into showing something that was never opened. If
+ * a card is here, it's real: public source, a working install, MIT.
  */
 export function Shipped() {
   const shipped = allEntries().filter((e) => e.availability === "public");
 
   return (
     <section
-      id="shipped"
-      aria-label="Shipped work"
+      id="work"
+      aria-label="The work"
       className="term-section scroll-mt-14"
     >
       <div className="container max-w-[1180px]">
         <Reveal>
           <SectionHeading
-            eyebrow="shipped"
+            eyebrow="the work"
             title={
               <>
-                Out in the open,{" "}
-                <span className="text-fg-subtle">and usable today.</span>
+                Developer tools and AI infrastructure,{" "}
+                <span className="text-fg-subtle">shipped and public.</span>
               </>
             }
-            lead="Public source, working install commands, MIT. This list is generated from the availability flag on each entry, so nothing can appear here that is not genuinely open."
+            lead="Public source, working installs, MIT. Every card here is something you can go use right now."
           />
         </Reveal>
 

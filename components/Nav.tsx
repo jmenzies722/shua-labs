@@ -5,33 +5,24 @@ import Link from "next/link";
 import { Github, Menu, X, TerminalSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { openConsole } from "@/lib/consoleBus";
-import { platformStats } from "@/lib/platform-stats";
 import { registryCounts } from "@/lib/registry";
 
 /**
- * Root-relative, not bare hashes. A bare "#roadmap" resolves against the CURRENT
+ * Root-relative, not bare hashes. A bare "#work" resolves against the CURRENT
  * route, so from /registry it would scroll nowhere instead of returning home.
  */
 const NAV_LINKS: { label: string; href: string }[] = [
-  { label: "work", href: "/#shipped" },
+  { label: "work", href: "/#work" },
   { label: "about", href: "/#about" },
   { label: "registry", href: "/registry" },
-  { label: "architecture", href: "/#stack" },
-  { label: "roadmap", href: "/#roadmap" },
 ];
 
 /**
- * Sticky nav.
- *
- * The header stat leads with what is actually usable — public repos and
- * catalogued tools — rather than the roadmap's gate score. A visitor who has
- * not scrolled past the hero yet has no context for "gate 0/28"; "3 public"
- * reads correctly with zero context. The gate score itself still lives inside
- * the roadmap section, where its meaning is explained.
+ * Sticky nav. The header stat is what's actually real and usable — public
+ * repos and the full catalogue count — nothing speculative.
  */
 export function Nav() {
   const [open, setOpen] = React.useState(false);
-  const s = platformStats();
   const c = registryCounts();
 
   React.useEffect(() => {
@@ -161,7 +152,7 @@ export function Nav() {
             ))}
 
             <p className="mt-8 font-mono text-[11px] tracking-[0.1em] text-fg-faint">
-              {c.open} public · {c.total} catalogued · gate {s.artifactsDone}/{s.artifactsTotal}
+              {c.open} public · {c.total} catalogued
             </p>
 
             <div className="mt-6 flex flex-col gap-3 pb-6">

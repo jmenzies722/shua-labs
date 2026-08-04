@@ -1,20 +1,17 @@
 import * as React from "react";
 import Link from "next/link";
 import { TermLink } from "@/components/TermLink";
-import { platformStats } from "@/lib/platform-stats";
+import { registryCounts } from "@/lib/registry";
 
 const FOOTER_LINKS: { label: string; href: string }[] = [
-  { label: "work", href: "/#shipped" },
+  { label: "work", href: "/#work" },
   { label: "about", href: "/#about" },
   { label: "registry", href: "/registry" },
-  { label: "architecture", href: "/#stack" },
-  { label: "roadmap", href: "/#roadmap" },
-  { label: "changelog", href: "/#journey" },
 ];
 
 export function Footer() {
   const year = new Date().getFullYear();
-  const s = platformStats();
+  const c = registryCounts();
 
   return (
     <footer className="relative border-t border-line bg-black">
@@ -25,8 +22,7 @@ export function Footer() {
               shua labs
             </span>
             <p className="text-[12.5px] leading-[1.6] text-fg-subtle">
-              The publishing surface for CONTROL PLANE. Not a company, not an
-              incubator, and not for hire.
+              Developer tools and AI infrastructure, built by Josh Menzies.
             </p>
             <TermLink
               href="https://github.com/jmenzies722/shua-labs"
@@ -51,12 +47,8 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-line pt-8 font-mono text-[11px] tracking-[0.08em] text-fg-faint md:flex-row md:items-center md:justify-between">
-          <p>
-            &copy; {year} shua labs · MIT
-          </p>
-          <p>
-            gate artifacts public: {s.artifactsDone}/{s.artifactsTotal}
-          </p>
+          <p>&copy; {year} shua labs · MIT</p>
+          <p>{c.open} public repos</p>
         </div>
       </div>
     </footer>

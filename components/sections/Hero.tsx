@@ -4,7 +4,6 @@ import * as React from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { Terminal } from "@/components/Terminal";
-import { platformStats } from "@/lib/platform-stats";
 import { registryCounts } from "@/lib/registry";
 import { openConsole } from "@/lib/consoleBus";
 import type { TypedLine } from "@/lib/useTypewriter";
@@ -12,27 +11,21 @@ import type { TypedLine } from "@/lib/useTypewriter";
 /**
  * Hero.
  *
- * One body paragraph, not three — a first-time visitor should know who this
- * is and what to look at next within a few seconds, not read a mission
- * statement before reaching the CTA. The terminal on the right carries the
- * "here's the real state" honesty, so the prose does not have to repeat it.
+ * Only real, shipped state gets a line here — no roadmap, no "building X."
+ * If it isn't public, it doesn't get a place in the first thing someone sees.
  */
 export function Hero() {
   const reduced = useReducedMotion();
   const ease: [number, number, number, number] = [0.2, 0.7, 0.3, 1];
 
   const lines = React.useMemo<TypedLine[]>(() => {
-    const s = platformStats();
     const c = registryCounts();
     return [
-      { text: "shua status", prompt: true, pauseAfter: 220 },
+      { text: "shua status", prompt: true, pauseAfter: 200 },
       { text: "" },
       { text: `public       ${c.open} repos, servers and tools`, dim: true },
       { text: `agent crew   ${c.agents} agents, ${c.servers} MCP servers`, dim: true },
-      {
-        text: `building     ${s.open ? s.open.name : "nothing"}  (${s.artifactsDone}/${s.artifactsTotal} gate)`,
-        dim: true,
-      },
+      { text: `install      /plugin install claude-max@claude-max`, dim: true },
     ];
   }, []);
 
@@ -49,7 +42,7 @@ export function Hero() {
             <motion.p
               initial={{ opacity: 0, y: reduced ? 0 : 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.5, ease }}
+              transition={{ duration: reduced ? 0 : 0.45, ease }}
               className="term-label"
             >
               shua labs
@@ -58,7 +51,7 @@ export function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: reduced ? 0 : 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.06, ease }}
+              transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.05, ease }}
               className="term-display mt-5 text-balance text-fg"
             >
               AI platform
@@ -69,27 +62,24 @@ export function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: reduced ? 0 : 14 }}
+              initial={{ opacity: 0, y: reduced ? 0 : 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.13, ease }}
+              transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.11, ease }}
               className="term-prose mt-7 max-w-xl text-balance"
             >
-              I&apos;m Josh, a platform engineer in New York working on the
-              infrastructure and developer experience underneath AI-assisted
-              teams — gateways, evals as a CI gate, and the observability that
-              says whether an agent actually helped. Shipped work below is
-              public and installable; nothing here claims to be further along
-              than it is.
+              I&apos;m Josh — a platform engineer in New York building
+              developer tools and AI infrastructure. Everything below is
+              public, real, and installable today.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: reduced ? 0 : 12 }}
+              initial={{ opacity: 0, y: reduced ? 0 : 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.2, ease }}
+              transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.17, ease }}
               className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4"
             >
               <Link
-                href="#shipped"
+                href="#work"
                 className="border border-fg bg-fg px-5 py-2.5 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-bg transition-colors duration-200 hover:bg-transparent hover:text-fg"
               >
                 See the work
@@ -105,7 +95,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.28 }}
+              transition={{ duration: reduced ? 0 : 0.5, delay: reduced ? 0 : 0.24 }}
               className="mt-6"
             >
               <button
@@ -120,9 +110,9 @@ export function Hero() {
 
           {/* Right — the state */}
           <motion.div
-            initial={{ opacity: 0, y: reduced ? 0 : 20 }}
+            initial={{ opacity: 0, y: reduced ? 0 : 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduced ? 0 : 0.7, delay: reduced ? 0 : 0.24, ease }}
+            transition={{ duration: reduced ? 0 : 0.55, delay: reduced ? 0 : 0.2, ease }}
           >
             <Terminal lines={lines} title="shua@labs — status" />
           </motion.div>
