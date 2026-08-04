@@ -129,6 +129,52 @@ GITHUB_TOKEN="$(gh auth token)" \\
 
 export const tools: RegistryEntry[] = [
   {
+    slug: "claude-max",
+    name: "claude-max",
+    kind: "tool",
+    availability: "public",
+    summary:
+      "Audits your entire Claude setup — Code, Desktop, Warp, Cursor — against a 9-dimension rubric and hands back a ranked fix plan.",
+    description:
+      "`/claude-max` scores Skills, Subagents, Hooks, settings.json, MCP, Registry portability, CLAUDE.md/memory, output style, and cross-tool unification — each 0–10 with a one-line justification and the single highest-leverage fix, rolled into an overall grade. It reads your actual files rather than assuming, and a version-dependent claim gets marked ⚠️verify instead of stated as fact.\n\nAUDIT is read-only by default. FIX applies approved items with a backup first and re-scores what it touched. REGISTRY turns a `~/.claude` directory into a versioned, installable plugin — the same mechanism this site's own agent registry runs on.",
+    install: {
+      label: "Install",
+      code: `/plugin marketplace add jmenzies722/claude-max
+/plugin install claude-max@claude-max
+
+# then, in any project:
+/claude-max`,
+    },
+    links: [
+      { label: "GitHub", href: "https://github.com/jmenzies722/claude-max" },
+      { label: "MIT licence", href: "https://github.com/jmenzies722/claude-max/blob/main/LICENSE" },
+    ],
+    notes:
+      "No theater rule: a hook only counts toward the score if it uses exit code 2 — the only thing that actually blocks under bypassPermissions.",
+  },
+  {
+    slug: "claude-setup",
+    name: "claude-setup",
+    kind: "tool",
+    availability: "public",
+    summary:
+      "Scores a Claude Code environment 0–100, detects your engineering profile, and generates a tailored CLAUDE.md.",
+    description:
+      "`/setup` checks six layers — CLAUDE.md, settings and hooks, MCP servers (including OAuth MCPs it detects from live session context, since those never show up in settings.json), skills, credentials, and memory — and grades the result S through D. First run detects an engineering profile from installed tools (DevOps/Platform, AI Builder, Full-stack, Researcher, Enterprise) and tailors its recommendations to it.\n\nEvery fix shows a diff before it applies, merges into existing config rather than overwriting it, and re-runs the layer scan afterward to confirm it actually worked. A 10-step onboarding mode walks a fresh machine through setup with a verification gate at each step.",
+    install: {
+      label: "Install",
+      code: `curl -fsSL https://raw.githubusercontent.com/jmenzies722/claude-setup/main/install.sh | bash
+
+# then, in any Claude Code session:
+/setup`,
+    },
+    links: [
+      { label: "GitHub", href: "https://github.com/jmenzies722/claude-setup" },
+    ],
+    notes:
+      "Honest scoring by design — the README states it plainly: a 60 is better feedback than a fake 90.",
+  },
+  {
     slug: "agent-registry",
     name: "agent-registry",
     kind: "tool",

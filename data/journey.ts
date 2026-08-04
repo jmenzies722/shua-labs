@@ -11,6 +11,12 @@ import type { JourneyEntry } from "@/lib/types";
  */
 export const journey: JourneyEntry[] = [
   {
+    date: "2026-08-04",
+    title: "Registry audit — two real tools surfaced, four scaffolds archived",
+    detail:
+      "A full pass over every GitHub repo found claude-max and claude-setup — public, installable, on-brand — sitting unlisted. Both are on the registry now. platform-eng-lab, helix-platform, agentlint, and luminatra got archived instead of featured; archiving is reversible, nothing was deleted.",
+  },
+  {
     date: "2026-08-03",
     title: "Site rebuilt as an evidence ledger",
     detail:
