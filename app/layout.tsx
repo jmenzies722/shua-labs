@@ -4,13 +4,17 @@ import { ConsoleRoot } from "@/components/ConsoleRoot";
 
 const TITLE = "Shua Labs — AI platform engineering, built in the open";
 const DESCRIPTION =
-  "Josh Menzies builds the platform and developer-experience layer underneath AI-assisted engineering teams: gateways, evals as a CI gate, and the observability that says whether it worked. Open source, with the unfinished parts shown honestly.";
+  "Josh Menzies builds developer tools and AI infrastructure — public source, working installs, MIT.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  metadataBase: new URL("https://shualabs.com"),
+  // Was pointed at shualabs.com — a domain that was never actually bought
+  // and doesn't resolve, which silently broke every relative OG/canonical
+  // URL Next.js generated from it. This is the domain that's actually live.
+  metadataBase: new URL("https://shua-labs.vercel.app"),
   openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
   robots: { index: true, follow: true },
 };
 

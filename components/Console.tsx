@@ -143,8 +143,18 @@ export function Console({
       role="dialog"
       aria-modal="true"
       aria-label="Console"
-      className="term-scanlines fixed inset-0 z-[60] flex flex-col bg-black/97 animate-fade-in backdrop-blur-sm"
-      style={{ paddingTop: "env(safe-area-inset-top)" }}
+      className="term-scanlines fixed inset-0 z-[60] flex flex-col animate-fade-in"
+      style={{
+        paddingTop: "env(safe-area-inset-top)",
+        // Inline rather than a Tailwind opacity utility, same reason as Nav's
+        // header: bleed-through here isn't a blur problem, it's an opacity
+        // one — blur only softens the shapes behind it, it doesn't dim their
+        // brightness, so a near-white headline still reads clearly through a
+        // mild backdrop no matter how much blur radius you add. Push both up.
+        backgroundColor: "rgba(0, 0, 0, 0.96)",
+        backdropFilter: "blur(28px) saturate(120%)",
+        WebkitBackdropFilter: "blur(28px) saturate(120%)",
+      }}
     >
       <div className="flex shrink-0 items-center justify-between border-b border-line px-4 py-3">
         <span className="font-mono text-[11px] tracking-[0.12em] text-fg-subtle">
