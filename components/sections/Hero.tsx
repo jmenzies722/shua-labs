@@ -12,10 +12,10 @@ import type { TypedLine } from "@/lib/useTypewriter";
 /**
  * Hero.
  *
- * The headline states what the site is; the terminal states where the work
- * actually stands. The numbers in the boot sequence are derived from the same
- * data the platform renders, so the hero cannot drift into claiming more than the
- * ledger below it shows.
+ * One body paragraph, not three — a first-time visitor should know who this
+ * is and what to look at next within a few seconds, not read a mission
+ * statement before reaching the CTA. The terminal on the right carries the
+ * "here's the real state" honesty, so the prose does not have to repeat it.
  */
 export function Hero() {
   const reduced = useReducedMotion();
@@ -27,19 +27,12 @@ export function Hero() {
     return [
       { text: "shua status", prompt: true, pauseAfter: 220 },
       { text: "" },
-      { text: `public        ${c.open} repos, servers and tools`, dim: true },
-      { text: `agent crew    ${c.agents} agents, ${c.servers} MCP servers`, dim: true },
+      { text: `public       ${c.open} repos, servers and tools`, dim: true },
+      { text: `agent crew   ${c.agents} agents, ${c.servers} MCP servers`, dim: true },
       {
-        text: `building      ${s.open ? s.open.name : "nothing"}  (1 of ${s.total})`,
+        text: `building     ${s.open ? s.open.name : "nothing"}  (${s.artifactsDone}/${s.artifactsTotal} gate)`,
         dim: true,
       },
-      {
-        text: `ship gate     ${s.artifactsDone}/${s.artifactsTotal} artifacts public`,
-        dim: true,
-        pauseAfter: 300,
-      },
-      { text: "" },
-      { text: "the unfinished boxes stay on the page." },
     ];
   }, []);
 
@@ -68,9 +61,9 @@ export function Hero() {
               transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.06, ease }}
               className="term-display mt-5 text-balance text-fg"
             >
-              Infrastructure
+              AI platform
               <br />
-              for agents.
+              engineering.
               <br />
               <span className="text-fg-subtle">In the open.</span>
             </motion.h1>
@@ -81,21 +74,12 @@ export function Hero() {
               transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.13, ease }}
               className="term-prose mt-7 max-w-xl text-balance"
             >
-              Gateways, sandboxes, controllers, and the harness work that makes
-              a whole team faster with agents. I&apos;m Josh — a platform engineer in
-              New York building the layer underneath AI agents, and publishing
-              it as I go.
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: reduced ? 0 : 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.17, ease }}
-              className="mt-4 max-w-xl font-mono text-[13px] leading-[1.6] text-fg-subtle"
-            >
-              Everything here shows its real state. Shipped work is public and
-              installable; unfinished work shows exactly which boxes are still
-              empty.
+              I&apos;m Josh, a platform engineer in New York working on the
+              infrastructure and developer experience underneath AI-assisted
+              teams — gateways, evals as a CI gate, and the observability that
+              says whether an agent actually helped. Shipped work below is
+              public and installable; nothing here claims to be further along
+              than it is.
             </motion.p>
 
             <motion.div
@@ -124,16 +108,12 @@ export function Hero() {
               transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.28 }}
               className="mt-6"
             >
-              {/* Desktop: the ~ key already opens it, so this is a label.
-                  Mobile: there is no physical keyboard, so it has to be the
-                  trigger itself — same handler, same visual weight either way. */}
               <button
                 type="button"
                 onClick={openConsole}
-                className="font-mono text-[12px] text-fg-faint transition-colors hover:text-fg-muted"
+                className="font-mono text-[11.5px] text-fg-faint transition-colors hover:text-fg-muted"
               >
                 or press <span className="text-fg-subtle">~</span> for a live console
-                <span className="hidden sm:inline"> — try `status`</span>
               </button>
             </motion.div>
           </div>

@@ -5,12 +5,11 @@ import { platformStats } from "@/lib/platform-stats";
 
 const FOOTER_LINKS: { label: string; href: string }[] = [
   { label: "work", href: "/#shipped" },
+  { label: "about", href: "/#about" },
   { label: "registry", href: "/registry" },
-  { label: "enablement", href: "/#enablement" },
   { label: "architecture", href: "/#stack" },
   { label: "roadmap", href: "/#roadmap" },
   { label: "changelog", href: "/#journey" },
-  { label: "about", href: "/#about" },
 ];
 
 export function Footer() {

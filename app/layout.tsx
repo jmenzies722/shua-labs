@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { ConsoleRoot } from "@/components/ConsoleRoot";
 
-const TITLE = "Shua Labs — infrastructure for agents, built in the open";
+const TITLE = "Shua Labs — AI platform engineering, built in the open";
 const DESCRIPTION =
-  "Josh Menzies builds the layer underneath AI agents: gateways, sandboxes, controllers, and the measurement that tells you whether any of it works. Open source, with the unfinished parts shown honestly.";
+  "Josh Menzies builds the platform and developer-experience layer underneath AI-assisted engineering teams: gateways, evals as a CI gate, and the observability that says whether it worked. Open source, with the unfinished parts shown honestly.";
 
 export const metadata: Metadata = {
   title: TITLE,

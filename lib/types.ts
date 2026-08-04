@@ -75,12 +75,6 @@ export interface PhaseGroup {
   description: string;
 }
 
-export interface PrincipleEntry {
-  id: string;
-  definition: string;
-  icon: "Github" | "Shield" | "Sparkles" | "Wrench" | "Layers" | "Zap";
-}
-
 export interface JourneyEntry {
   /** ISO date YYYY-MM-DD. */
   date: string;

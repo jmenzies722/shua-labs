@@ -15,9 +15,29 @@ const LINKS: { label: string; href: string; external: boolean }[] = [
 ];
 
 /**
- * About. Deliberately short — the ledger above is the argument, and a long bio
- * under an empty ledger is the exact substitution this site is designed to
- * avoid.
+ * What "AI platform engineering" means here, condensed to one clause each.
+ * This replaced a full problem/approach/evidence section per pillar — three
+ * short lines say the same thing a hiring manager scans for in five seconds
+ * instead of three paragraphs they have to read to find it.
+ */
+const FOCUS: { label: string; detail: string }[] = [
+  {
+    label: "Developer experience",
+    detail: "one harness config synced across every tool, drift checked rather than trusted.",
+  },
+  {
+    label: "Platform governance",
+    detail: "narrow agents with declared tools and handoffs; verifiers hold no write access.",
+  },
+  {
+    label: "Cost & reliability",
+    detail: "a trust-boundary gateway, budgets that can refuse a request, and IAM checked before apply.",
+  },
+];
+
+/**
+ * About. Moved up to sit right after the shipped work — a hiring manager
+ * wants "who is this" early, not after scrolling past the roadmap.
  */
 export function About() {
   return (
@@ -39,25 +59,31 @@ export function About() {
             Josh Menzies
           </h2>
           <p className="mt-4 max-w-md font-mono text-[13px] text-fg-subtle">
-            Platform engineer moving into AI infrastructure. New York.
+            AI platform engineer. New York.
           </p>
         </Reveal>
 
         <Reveal delay={0.06} className="lg:col-span-7">
-          <div className="flex flex-col gap-5">
-            <p className="term-prose text-[17px] text-fg/90">
-              I build infrastructure for systems where a model is load-bearing
-              rather than decorative — gateways, sandboxes, controllers, and the
-              measurement that tells you whether any of it is working.
-            </p>
-            <p className="term-prose">
-              This site exists to stop me from starting an eighth thing. Every
-              service on the platform has to reach four public artifacts before the
-              next one begins, and the gaps stay visible here until they close.
-            </p>
-          </div>
+          <p className="term-prose text-[17px] text-fg/90">
+            I build the platform and developer-experience layer underneath
+            AI-assisted engineering teams — the harness every engineer shares,
+            the gateway their agents run through, and the evals and
+            observability that turn "the agent helped" into something you can
+            actually measure.
+          </p>
 
-          <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-3">
+          <dl className="mt-10 flex flex-col gap-4 border-t border-line pt-8">
+            {FOCUS.map((f) => (
+              <div key={f.label} className="flex flex-wrap gap-x-2.5 gap-y-1">
+                <dt className="font-mono text-[13px] font-semibold text-fg">
+                  {f.label}
+                </dt>
+                <dd className="text-[13.5px] text-fg-muted">— {f.detail}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3">
             {LINKS.map((l) => (
               <li key={l.label}>
                 <TermLink
