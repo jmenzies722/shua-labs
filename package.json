@@ -9,7 +9,9 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "sync:registry": "node scripts/sync-registry.mjs",
-    "check:registry": "node scripts/sync-registry.mjs --check"
+    "check:registry": "node scripts/sync-registry.mjs --check",
+    "sync:projects": "node scripts/sync-projects.mjs",
+    "check:projects": "node scripts/sync-projects.mjs --check"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.17",
