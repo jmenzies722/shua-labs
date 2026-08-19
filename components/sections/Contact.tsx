@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { VIEWPORT, Y_COPY, revealTransition } from "@/lib/motion";
 
 /**
  * Contact - One decisive CTA to collaborate, partner, or join the conversation.
@@ -17,10 +18,10 @@ export function Contact() {
     >
       <div className="site-shell">
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
+          initial={reduced ? false : { opacity: 0, y: Y_COPY }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: reduced ? 0 : 0.45 }}
+          viewport={VIEWPORT}
+          transition={revealTransition(reduced)}
           className="mx-auto max-w-xl text-center"
         >
           <p className="label-text mb-3">Get in touch</p>
