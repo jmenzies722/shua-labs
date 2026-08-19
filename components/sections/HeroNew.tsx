@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Hero - Building what comes next.
@@ -10,76 +10,66 @@ import { motion } from "framer-motion";
  * for an AI-native world.
  */
 export function HeroNew() {
+  const reduced = useReducedMotion();
+  const enter = (delay: number) =>
+    reduced
+      ? { initial: false as const, animate: undefined, transition: undefined }
+      : {
+          initial: { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.55, delay, ease: [0.25, 0.1, 0.25, 1] as const },
+        };
+
   return (
     <section
       id="top"
       aria-label="Hero"
-      className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden pt-[calc(6rem+env(safe-area-inset-top))]"
+      className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden border-b border-line pt-[calc(5.5rem+env(safe-area-inset-top))] pb-20"
     >
-      <div className="container max-w-[1400px]">
-        <div className="max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            <p className="label-text mb-6">Shua Labs</p>
+      <div className="site-shell">
+        <div className="max-w-[40rem] border-l border-line pl-5 sm:max-w-[46rem] sm:pl-7">
+          <motion.div {...enter(0)}>
+            <p className="label-text mb-5">Shua Labs</p>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-            className="display-hero text-balance mb-8"
-          >
+          <motion.h1 {...enter(0.06)} className="display-hero text-balance mb-6">
             Building what comes next.
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="body-text-large max-w-2xl text-balance mb-12"
+            {...enter(0.12)}
+            className="body-text-large max-w-xl text-balance mb-9"
           >
             Shua Labs creates ventures, products, and systems for an AI-native world.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex flex-wrap gap-4"
-          >
-            <a
-              href="#contact"
-              className="btn-primary"
-            >
+          <motion.div {...enter(0.18)} className="flex flex-wrap gap-3">
+            <a href="#contact" className="btn-primary">
               Get in touch
             </a>
-            <a
-              href="#what-we-build"
-              className="btn-secondary"
-            >
+            <a href="#what-we-build" className="btn-secondary">
               What we build
             </a>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={reduced ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ duration: 0.6, delay: reduced ? 0 : 0.4 }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2"
+        aria-hidden
       >
-        <div className="w-6 h-10 border-2 border-line/50 rounded-full flex justify-center pt-2">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 bg-white rounded-full"
-          />
-        </div>
+        <span className="relative block h-8 w-px bg-line">
+          {!reduced && (
+            <motion.span
+              className="absolute inset-x-0 top-0 mx-auto h-2 w-px bg-white"
+              animate={{ y: [0, 18, 0], opacity: [1, 0.25, 1] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+          )}
+        </span>
       </motion.div>
     </section>
   );

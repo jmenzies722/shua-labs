@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const PRINCIPLES = [
   {
@@ -28,42 +28,44 @@ const PRINCIPLES = [
  * The principles that guide how we approach problems and build solutions.
  */
 export function HowWeWork() {
+  const reduced = useReducedMotion();
+
   return (
     <section
       id="how-we-work"
       aria-label="How we work"
-      className="section-padding-sm"
-      style={{ backgroundColor: "rgba(10, 10, 10, 0.5)" }}
+      className="section-padding-sm section-rule scroll-mt-14"
     >
-      <div className="container max-w-[1400px]">
+      <div className="site-shell">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: reduced ? 0 : 0.45 }}
+          className="mb-10 max-w-2xl md:mb-12"
         >
-          <p className="label-text mb-4">How we work</p>
+          <p className="label-text mb-3">How we work</p>
           <h2 className="display-section text-balance">
             Our operating thesis.
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <ol className="grid gap-0 md:grid-cols-2">
           {PRINCIPLES.map((principle, index) => (
-            <motion.div
+            <motion.li
               key={principle.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={reduced ? false : { opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="p-8 border border-line rounded-lg hover:border-line-hi transition-colors duration-300"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : index * 0.05 }}
+              className="border-t border-line py-7 md:px-7 md:odd:border-r md:odd:pl-0 md:even:pr-0"
             >
-              <h3 className="heading-medium mb-3">{principle.title}</h3>
+              <p className="index-text mb-3">0{index + 1}</p>
+              <h3 className="heading-medium mb-2">{principle.title}</h3>
               <p className="body-text">{principle.description}</p>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

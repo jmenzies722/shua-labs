@@ -1,57 +1,45 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * Contact - One decisive CTA to collaborate, partner, or join the conversation.
  */
 export function Contact() {
+  const reduced = useReducedMotion();
+
   return (
     <section
       id="contact"
       aria-label="Contact"
-      className="section-padding"
+      className="section-padding section-rule scroll-mt-14"
     >
-      <div className="container max-w-[1400px]">
+      <div className="site-shell">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: reduced ? 0 : 0.45 }}
+          className="mx-auto max-w-xl text-center"
         >
-          <p className="label-text mb-4">Get in touch</p>
-          <h2 className="display-section text-balance mb-8">
+          <p className="label-text mb-3">Get in touch</p>
+          <h2 className="display-section text-balance mb-5">
             Let's build something together.
           </h2>
-          <p className="body-text-large text-balance mb-12">
+          <p className="body-text-large text-balance mb-8">
             Whether you're looking to collaborate, partner, or just have a conversation
             about the future of AI-native systems, we'd love to hear from you.
           </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+          <a
+            href="mailto:jmenzies722@gmail.com"
+            className="btn-primary"
           >
-            <a
-              href="mailto:jmenzies722@gmail.com"
-              className="btn-primary text-lg px-10 py-5"
-            >
-              Start a conversation
-            </a>
-          </motion.div>
+            Start a conversation
+          </a>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="body-text mt-8"
-          >
+          <p className="body-text mt-6">
             Or reach out directly at{" "}
             <a
               href="mailto:jmenzies722@gmail.com"
@@ -59,7 +47,7 @@ export function Contact() {
             >
               jmenzies722@gmail.com
             </a>
-          </motion.p>
+          </p>
         </motion.div>
       </div>
     </section>
