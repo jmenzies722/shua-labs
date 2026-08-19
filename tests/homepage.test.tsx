@@ -21,10 +21,11 @@ test("states the live venture-company homepage purpose", () => {
 test("wires the founder photo and a contact path; does not publish the retired catalogue", () => {
   render(<HomePage />);
 
-  expect(screen.getByRole("img", { name: /josh menzies/i })).toHaveAttribute(
-    "src",
-    "/static/josh-menzies.jpg"
-  );
+  const photos = screen.getAllByRole("img", { name: /josh menzies/i });
+  expect(photos.length).toBeGreaterThan(0);
+  for (const photo of photos) {
+    expect(photo).toHaveAttribute("src", "/static/josh-menzies.jpg");
+  }
   expect(
     screen.getAllByRole("link", { name: /start a conversation|get in touch/i })
   ).not.toHaveLength(0);
