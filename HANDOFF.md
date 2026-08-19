@@ -30,7 +30,7 @@ Updated: 2026-08-19
 - **Outcome:** PR #9 merge conflicts resolved by preferring master's live homepage (B/W layout, founder photo at `/static/josh-menzies.jpg`, NavNew). Added `/thesis`, an additive Signals section, vitest against live copy, and a sitemap entry for `/thesis`. Removed macOS `* 2` collision files. No deploy. No merge.
 - **Repo:** `jmenzies722/shua-labs`
 - **Branch:** `feat/parent-company-redesign`
-- **Status:** done
-- **Tests:** `npm test` — 2 passed (live homepage copy + founder photo). `tsc --noEmit` pass.
-- **PR:** https://github.com/jmenzies722/shua-labs/pull/9 — open, not merged
-- **Next:** Confirm PR #9 is mergeable / not dirty. Do not merge. Do not deploy.
+- **Status:** done — PR #9 is mergeable (`clean` / not dirty)
+- **Tests:** `npm test` — 2 passed (live homepage copy + founder photo). `tsc --noEmit` pass. `next build` pass, including `/thesis`.
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/9 — open, mergeable, not merged
+- **Next:** Stop. Do not merge. Do not deploy. Ivy stays out unless asked.
