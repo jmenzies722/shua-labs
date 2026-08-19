@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { ConsoleRoot } from "@/components/ConsoleRoot";
-
-const TITLE = "Shua Labs — AI platform engineering, built in the open";
-const DESCRIPTION =
-  "Josh Menzies builds developer tools and AI infrastructure — public source, working installs, MIT.";
+const TITLE = "Shua Labs — Building what comes next";
+const DESCRIPTION = "Shua Labs creates ventures, products, and systems for an AI-native world.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -35,12 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
-        {children}
-        {/* Mounted once, globally — every open trigger (nav, hero, `~`) shares
-            this one instance instead of each route growing its own. */}
-        <ConsoleRoot />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -35,3 +35,4 @@ yarn-error.log*
 # python caches (left from prior shua-labs work)
 .ruff_cache/
 __pycache__/
+.worktrees/

@@ -1,0 +1,4 @@
+"use client";
+import { ventureAreas } from "@/data/company";
+import { useState } from "react";
+export function VentureAreas() { const [active, setActive] = useState<number | null>(null); return <section id="focus" className="section shell"><p className="eyebrow">What we build</p><h2>Built for a world<br />that won&apos;t sit still.</h2><div className="areas">{ventureAreas.map((area, index) => <article key={area.number} className={`area ${active === index ? "active" : ""}`}><span>{area.number}</span><h3>{area.title}</h3><p>{area.description}</p><button onClick={() => setActive(active === index ? null : index)} aria-expanded={active === index}>{active === index ? "Close" : "Explore"} <b>↗</b></button>{active === index && <div className="area-reveal"><p>Built from the conviction that the most important tools should make ambitious people more capable—not more dependent.</p><a href="#contact">Start a conversation →</a></div>}</article>)}</div></section>; }

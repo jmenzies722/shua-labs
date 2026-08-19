@@ -1,0 +1,2 @@
+const signals = ["Technology should increase human agency.", "Useful systems earn trust through use, not theater.", "The next company starts with a problem worth staying close to."];
+export function Signals() { return <section className="section shell signals"><p className="eyebrow">Signals</p><h2>What we&apos;re thinking about.</h2><div>{signals.map((signal, index) => <article key={signal}><span>0{index + 1} · 2026</span><p>{signal}</p></article>)}</div><a href="/thesis">Read the thesis <span>↗</span></a></section>; }
