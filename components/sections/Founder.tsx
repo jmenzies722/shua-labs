@@ -15,7 +15,7 @@ export function Founder() {
       id="founder"
       aria-label="Founder"
       className="section-padding-sm"
-      style={{ backgroundColor: "rgba(18, 18, 24, 0.3)" }}
+      style={{ backgroundColor: "rgba(10, 10, 10, 0.3)" }}
     >
       <div className="container max-w-[1400px]">
         <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -67,10 +67,10 @@ export function Founder() {
             className="relative"
           >
             {/* Founder visual placeholder */}
-            <div className="aspect-square bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-2xl border border-line flex items-center justify-center">
+            <div className="aspect-square bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-line flex items-center justify-center">
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-4xl font-bold text-blue-400">JM</span>
+                <div className="w-24 h-24 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+                  <span className="text-4xl font-bold text-fg">JM</span>
                 </div>
                 <p className="label-text">New York</p>
               </div>

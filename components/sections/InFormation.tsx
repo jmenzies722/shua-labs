@@ -28,7 +28,7 @@ export function InFormation() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -41,7 +41,7 @@ export function InFormation() {
             ease: "easeInOut",
             delay: 1,
           }}
-          className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-3xl"
+          className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-white/[0.03] rounded-full blur-3xl"
         />
       </div>
 
@@ -74,8 +74,8 @@ export function InFormation() {
             }}
             className="mt-16 w-32 h-32 mx-auto relative"
           >
-            <div className="absolute inset-0 border-2 border-blue-500/20 rounded-full" />
-            <div className="absolute inset-2 border border-blue-400/30 rounded-full" />
+            <div className="absolute inset-0 border-2 border-white/20 rounded-full" />
+            <div className="absolute inset-2 border border-white/30 rounded-full" />
             <motion.div
               animate={{
                 opacity: [0.5, 1, 0.5],
@@ -85,7 +85,7 @@ export function InFormation() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute inset-0 bg-blue-500/10 rounded-full blur-sm"
+              className="absolute inset-0 bg-white/10 rounded-full blur-sm"
             />
           </motion.div>
         </motion.div>

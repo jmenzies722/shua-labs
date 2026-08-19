@@ -4,11 +4,11 @@ Updated: 2026-08-19
 
 ## Current state
 
-- Live == git. https://shua-labs.vercel.app matches master `dc5586c`.
-- Live title/hero: AI platform engineering, in the open.
-- The dirty CLI venture-company page is gone. `feat/parent-company-redesign` is still missing.
-- Job 1 kit is on master (PR #1 merged).
-- Do not rewrite copy. Do not deploy.
+- Palette pass only. Same copy. Same layout. Same routes. Same URL.
+- Black / white / gray. Background `#000`. Surfaces near-black. Text `#fff` / `#a1a1a1`. Hairline gray borders.
+- Blue, glow, and blue tint removed from theme, CSS, and component classes.
+- Live ≠ git. `master` is not the live studio site. Do not ship from `master` to prod.
+- Do not rewrite copy. Do not deploy. Do not merge.
 - Do not create a Vercel project.
 - No second product until Josh names the outcome and the repo.
 - One build at a time.
@@ -17,21 +17,22 @@ Updated: 2026-08-19
 
 - https://github.com/jmenzies722/shua-labs
 - Stack: Next.js App Router, TypeScript, Tailwind. Site content is data-driven (`data/`).
-- Live deploys from this git tree (master `dc5586c`).
+- Live is a dirty CLI deploy. This branch is git only.
 
 ## Do not
 
 - Rewrite homepage or live-site copy.
 - Deploy.
 - Create a Vercel project.
+- Merge.
 - Start a second product until Josh names it.
 
 ## Packet (this job)
 
-- **Outcome:** HANDOFF.md updated. Live == git. No copy rewrite. No deploy.
+- **Outcome:** Black / white / gray palette pass. Blue tokens, glow shadows, glow-pulse, and blue component classes removed. Copy, layout, and routes unchanged.
 - **Repo:** `jmenzies722/shua-labs`
-- **Branch:** `feat/handoff-live-eq-git`
-- **Status:** pr-ready
-- **Tests:** live page fetched (AI platform engineering, in the open); master SHA `dc5586c`; this file only.
+- **Branch:** `feat/bw-palette`
+- **Status:** done
+- **Tests:** grep for `#3b82f6`, `rgba(59, 130, 246`, `blue-glow`, `text-blue-`, `bg-blue-`, `ring-blue-` in theme/CSS/components — none. `git diff` does not change homepage sentences. Routes unchanged. `prefer-reduced-motion` kept.
 - **PR:** (opened after this commit)
-- **Next:** Shua merge. Ivy stays out. No deploy. No copy rewrite.
+- **Next:** Shua reviews. No deploy. No merge. Ivy stays out.

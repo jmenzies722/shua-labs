@@ -33,7 +33,7 @@ export function HowWeWork() {
       id="how-we-work"
       aria-label="How we work"
       className="section-padding-sm"
-      style={{ backgroundColor: "rgba(18, 18, 24, 0.5)" }}
+      style={{ backgroundColor: "rgba(10, 10, 10, 0.5)" }}
     >
       <div className="container max-w-[1400px]">
         <motion.div

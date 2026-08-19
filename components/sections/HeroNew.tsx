@@ -16,10 +16,10 @@ export function HeroNew() {
       aria-label="Hero"
       className="relative isolate flex min-h-[100svh] w-full flex-col justify-center overflow-hidden pt-[calc(6rem+env(safe-area-inset-top))]"
     >
-      {/* Ambient background glow */}
+      {/* Ambient background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-600/5 rounded-full blur-3xl animate-pulse-slow delay-200" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-white/[0.03] rounded-full blur-3xl animate-pulse-slow delay-200" />
       </div>
 
       <div className="container max-w-[1400px] relative z-10">
@@ -83,7 +83,7 @@ export function HeroNew() {
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 bg-blue-400 rounded-full"
+            className="w-1.5 h-1.5 bg-white rounded-full"
           />
         </div>
       </motion.div>

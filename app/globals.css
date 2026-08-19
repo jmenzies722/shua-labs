@@ -20,12 +20,9 @@
 
   body {
     @apply bg-bg text-fg antialiased;
-    background-color: #0a0a0f;
+    background-color: #000000;
     touch-action: manipulation;
-    /* Rich near-black with subtle electric blue ambient glow */
-    background-image:
-      radial-gradient(ellipse at top, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-      radial-gradient(ellipse at bottom right, rgba(59, 130, 246, 0.02) 0%, transparent 40%);
+    background-image: none;
     background-attachment: fixed;
     font-family: var(--font-sans);
     font-size: 16px;
@@ -36,14 +33,13 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Electric blue selection */
   ::selection {
-    background: rgba(59, 130, 246, 0.3);
-    color: #f8fafc;
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
   }
 
   *:focus-visible {
-    @apply outline-none ring-2 ring-blue-500/50 ring-offset-2 ring-offset-bg;
+    @apply outline-none ring-2 ring-white/40 ring-offset-2 ring-offset-bg;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -104,7 +100,7 @@
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    @apply text-blue-400;
+    @apply text-fg-muted;
   }
 
   .body-text {
@@ -125,8 +121,8 @@
 
   /* ── Modern Card Components ───────────────────────────────────────────── */
   .venture-card {
-    @apply border border-line rounded-lg p-8 transition-all duration-300 hover:border-line-hi hover:shadow-blue-glow;
-    background-color: #121218;
+    @apply border border-line rounded-lg p-8 transition-all duration-300 hover:border-line-hi;
+    background-color: #0a0a0a;
   }
 
   .venture-card-inner {
@@ -135,27 +131,27 @@
 
   /* ── Modern Button Styles ──────────────────────────────────────────────── */
   .btn-primary {
-    @apply bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300 hover:bg-blue-500 hover:shadow-blue-glow-strong active:scale-[0.98];
+    @apply bg-white text-black px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300 hover:bg-[#e5e5e5] active:scale-[0.98];
   }
 
   .btn-secondary {
     @apply border border-line text-fg px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300 hover:border-line-hi active:scale-[0.98];
-    background-color: #121218;
+    background-color: #0a0a0a;
   }
   .btn-secondary:hover {
-    background-color: #1a1a22;
+    background-color: #171717;
   }
 
   .btn-ghost {
     @apply text-fg-muted px-6 py-3 rounded-lg font-medium text-base transition-all duration-300 hover:text-fg active:scale-[0.98];
   }
   .btn-ghost:hover {
-    background-color: rgba(18, 18, 24, 0.5);
+    background-color: rgba(10, 10, 10, 0.5);
   }
 
   /* ── Modern Link Styles ───────────────────────────────────────────────── */
   .link-primary {
-    @apply text-blue-400 font-medium transition-colors duration-200 hover:text-blue-300 underline decoration-1 underline-offset-4;
+    @apply text-fg font-medium transition-colors duration-200 hover:text-fg-muted underline decoration-1 underline-offset-4;
   }
 
   .link-secondary {
