@@ -28,11 +28,12 @@
        Pinch-zoom on the page as a whole is untouched — this only scopes the
        browser's own double-tap gesture on individual elements. */
     touch-action: manipulation;
-    /* Faint terminal grid. Monochrome — no colour anywhere in this file. */
+    /* Enhanced terminal grid with subtle depth. Monochrome — no colour anywhere in this file. */
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-    background-size: 44px 44px;
+      linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+      radial-gradient(ellipse at top, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+    background-size: 44px 44px, 44px 44px, 100% 100%;
     background-attachment: fixed;
     font-family: var(--font-mono);
     font-size: 15px;
@@ -118,6 +119,15 @@
     background: #fafafa;
     vertical-align: text-bottom;
     @apply animate-blink;
+    animation: blink 1.05s step-end infinite;
+  }
+
+  /* Subtle glow effect for interactive elements */
+  .term-glow {
+    transition: box-shadow 180ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .term-glow:hover {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 0 3px rgba(255, 255, 255, 0.05);
   }
 
   /* ── Prompt line ────────────────────────────────────────────────────────── */
@@ -132,10 +142,15 @@
   .term-box {
     @apply border border-line bg-bg-card;
     transition: border-color 180ms cubic-bezier(0.2, 0.7, 0.3, 1),
-      background-color 180ms cubic-bezier(0.2, 0.7, 0.3, 1);
+      background-color 180ms cubic-bezier(0.2, 0.7, 0.3, 1),
+      transform 180ms cubic-bezier(0.2, 0.7, 0.3, 1),
+      box-shadow 180ms cubic-bezier(0.2, 0.7, 0.3, 1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
   .term-box:hover {
     @apply border-line-hi bg-bg-raised;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   }
 
   /* ── Inverted chip — the single loudest thing available ─────────────────── */
@@ -157,6 +172,11 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 2px 7px;
+    transition: border-color 180ms cubic-bezier(0.2, 0.7, 0.3, 1),
+      color 180ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .term-chip:hover {
+    @apply border-line-hi text-fg;
   }
 
   /* ── Links ──────────────────────────────────────────────────────────────
@@ -170,16 +190,18 @@
     text-decoration: underline;
     text-decoration-color: rgba(255, 255, 255, 0.28);
     text-underline-offset: 5px;
-    transition: text-decoration-color 180ms ease;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 180ms ease, text-decoration-thickness 180ms ease;
   }
   .term-link:hover {
     text-decoration-color: #fafafa;
+    text-decoration-thickness: 2px;
   }
   .term-link .arrow {
     transition: transform 220ms cubic-bezier(0.2, 0.7, 0.3, 1);
   }
   .term-link:hover .arrow {
-    transform: translateX(3px);
+    transform: translateX(4px);
   }
 }
 
@@ -207,5 +229,28 @@
       transparent 1px,
       transparent 3px
     );
+  }
+
+  /* Enhanced staggered entrance animations */
+  .animate-stagger {
+    animation: fade-in 260ms ease-out both;
+  }
+  .animate-stagger-delay-1 {
+    animation: fade-in 260ms ease-out 80ms both;
+  }
+  .animate-stagger-delay-2 {
+    animation: fade-in 260ms ease-out 160ms both;
+  }
+  .animate-stagger-delay-3 {
+    animation: fade-in 260ms ease-out 240ms both;
+  }
+
+  /* Smooth scale and fade transitions */
+  .term-hover-card {
+    transition: transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1),
+      opacity 260ms cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  .term-hover-card:hover {
+    transform: translateY(-2px);
   }
 }

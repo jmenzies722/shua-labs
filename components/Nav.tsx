@@ -68,7 +68,7 @@ export function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="font-mono text-[12px] text-fg-muted transition-colors duration-200 hover:text-fg"
+                className="font-mono text-[12px] text-fg-muted transition-all duration-200 hover:text-fg hover:underline decoration-1 underline-offset-2"
               >
                 {l.label}
               </Link>
@@ -82,7 +82,7 @@ export function Nav() {
             <button
               type="button"
               onClick={openConsole}
-              className="border border-line px-2.5 py-1 font-mono text-[11px] text-fg-muted transition-colors duration-200 hover:border-line-hi hover:text-fg"
+              className="border border-line px-2.5 py-1 font-mono text-[11px] text-fg-muted transition-all duration-200 hover:border-line-hi hover:text-fg hover:shadow-[0_0_0_1px_rgba(255,255,255,0.34)]"
               aria-label="Open console"
             >
               console <span className="text-fg-faint">~</span>
@@ -104,7 +104,7 @@ export function Nav() {
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="-mr-2.5 inline-flex h-11 w-11 items-center justify-center text-fg-muted hover:text-fg md:hidden"
+            className="-mr-2.5 inline-flex h-11 w-11 items-center justify-center text-fg-muted transition-all duration-200 hover:text-fg hover:bg-bg-raised md:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -116,10 +116,13 @@ export function Nav() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="fixed inset-0 z-50 flex animate-fade-in flex-col bg-black md:hidden"
+          className="fixed inset-0 z-50 flex animate-fade-in flex-col md:hidden"
           style={{
             paddingTop: "env(safe-area-inset-top)",
             paddingBottom: "env(safe-area-inset-bottom)",
+            backgroundColor: "rgba(0,0,0,0.92)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
           }}
         >
           <div className="container flex h-14 shrink-0 items-center justify-between">
@@ -130,7 +133,7 @@ export function Nav() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="-mr-2.5 inline-flex h-11 w-11 items-center justify-center text-fg-muted hover:text-fg"
+              className="-mr-2.5 inline-flex h-11 w-11 items-center justify-center text-fg-muted transition-all duration-200 hover:text-fg hover:bg-bg-raised"
             >
               <X className="h-5 w-5" />
             </button>
@@ -145,7 +148,7 @@ export function Nav() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-4 font-mono text-2xl font-semibold tracking-[-0.03em] text-fg"
+                className="border-b border-line py-4 font-mono text-2xl font-semibold tracking-[-0.03em] text-fg transition-all duration-200 hover:bg-bg-raised hover:pl-5"
               >
                 {l.label}
               </Link>
@@ -165,7 +168,7 @@ export function Nav() {
                   // fight for the same scroll lock in the same frame.
                   window.setTimeout(openConsole, 0);
                 }}
-                className="inline-flex h-12 w-full items-center justify-center gap-2 border border-line font-mono text-[13px] uppercase tracking-[0.1em] text-fg transition-colors hover:border-line-hi"
+                className="inline-flex h-12 w-full items-center justify-center gap-2 border border-line font-mono text-[13px] uppercase tracking-[0.1em] text-fg transition-all duration-200 hover:border-line-hi hover:bg-bg-raised active:scale-[0.98]"
               >
                 <TerminalSquare className="h-4 w-4" aria-hidden />
                 open console

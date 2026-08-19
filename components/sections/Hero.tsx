@@ -80,7 +80,7 @@ export function Hero() {
             >
               <Link
                 href="#work"
-                className="border border-fg bg-fg px-5 py-2.5 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-bg transition-colors duration-200 hover:bg-transparent hover:text-fg"
+                className="group relative border border-fg bg-fg px-5 py-2.5 font-mono text-[13px] font-semibold uppercase tracking-[0.1em] text-bg transition-all duration-200 hover:bg-transparent hover:text-fg hover:shadow-[0_0_0_1px_rgba(255,255,255,0.34)]"
               >
                 See the work
               </Link>
@@ -101,7 +101,7 @@ export function Hero() {
               <button
                 type="button"
                 onClick={openConsole}
-                className="font-mono text-[11.5px] text-fg-faint transition-colors hover:text-fg-muted"
+                className="font-mono text-[11.5px] text-fg-faint transition-all duration-200 hover:text-fg-muted hover:underline decoration-1 underline-offset-2"
               >
                 or press <span className="text-fg-subtle">~</span> for a live console
               </button>

@@ -13,14 +13,14 @@
 import type { RegistryEntry } from "@/lib/types";
 
 /** Hash of the portfolio.yaml sources this file was generated from. */
-export const PROJECTS_SOURCE_HASH = "f5e795f702ec";
+export const PROJECTS_SOURCE_HASH = "0768879be6fe";
 
 export const generatedProjects: RegistryEntry[] = [
   {
     "slug": "chaos-gym",
     "name": "Chaos Gym",
     "kind": "project",
-    "availability": "private",
+    "availability": "public",
     "summary": "A Kubernetes cluster that breaks itself on a schedule, so incident diagnosis can be practised against real dashboards rather than read about.",
     "description": "A Kubernetes cluster that breaks itself on a schedule, so incident diagnosis can be practised against real dashboards rather than read about.",
     "language": "Go · Python · Terraform · AWS · k3s · OpenTelemetry · Prometheus · Grafana",
@@ -41,6 +41,13 @@ export const generatedProjects: RegistryEntry[] = [
         "status": "in-progress",
         "stepsDone": 8,
         "stepsTotal": 9
+      },
+      {
+        "id": 2,
+        "name": "Failure-mode menu, each ending in an incident writeup",
+        "status": "in-progress",
+        "stepsDone": 1,
+        "stepsTotal": 5
       }
     ],
     "evidence": [
@@ -54,7 +61,15 @@ export const generatedProjects: RegistryEntry[] = [
       "A histogram bucket boundary placed on a service's typical latency makes a healthy service look slow. With a boundary at 100ms and requests taking 101ms, p95 read 242ms; moving the boundaries either side of the mode gave p50 100ms and p95 109ms for the same unchanged service.",
       "The chaos scheduler's blast radius is enforced by RBAC, not by convention. Its ServiceAccount lives in one namespace and its Role in another, and it cannot scale the deployment, edit the image, or touch the monitoring namespace that observes the incidents it causes.",
       "The telemetry pipeline monitors itself. Both Collectors expose their own metrics and are scraped via PodMonitor, so spans accepted, spans sent, refusals and queue depth are visible — a silently dropping Collector is otherwise indistinguishable from a service that stopped receiving traffic.",
+      "Injected latency into one replica at runtime and captured the signature of a degradation that every health check misses: p50 unchanged at 101ms while p95 and p99 went from 109ms to 2000ms, with zero errors, zero restarts and full replica count. Kubernetes considered the service healthy throughout, because the liveness probe hits an endpoint the fault does not touch.",
+      "Fault state is swapped through an atomic pointer to an immutable struct because HTTP handlers read it concurrently with the injection endpoint writing it — a genuine data race, not a theoretical one.",
       "Distributed tracing works across a process boundary: an inbound W3C traceparent header makes the service adopt the caller's trace ID and record the caller's span as a remote parent, rather than starting a new trace."
+    ],
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/jmenzies722/chaos-gym"
+      }
     ]
   }
 ];
