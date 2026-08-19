@@ -33,6 +33,6 @@ Updated: 2026-08-19
 - **Repo:** `jmenzies722/shua-labs`
 - **Branch:** `cursor/founder-photo-dca5`
 - **Status:** blocked
-- **Tests:** pending build after this commit. Founder photo cannot render until `public/static/josh-menzies.jpg` is the attached booth photo.
-- **PR:** pending
+- **Tests:** `tsc --noEmit` pass. `next build` pass, same routes (`/`, `/registry`, `/registry/[slug]`, `/icon`, `/opengraph-image`, `/robots.txt`, `/sitemap.xml`). Homepage section sentences unchanged vs master. Founder photo cannot render until `public/static/josh-menzies.jpg` is the attached booth photo. Lint not configured in repo.
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/6 — open, not merged
 - **Next:** Drop the attached booth headshot into `public/static/josh-menzies.jpg` (crop the bottom-right sliver if needed), then re-run build. No deploy. No merge. Ivy stays out.
