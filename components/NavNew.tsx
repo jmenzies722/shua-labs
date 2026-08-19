@@ -40,7 +40,7 @@ export function NavNew() {
       <header
         className="fixed inset-x-0 top-0 z-40 border-b border-line/50 backdrop-blur-xl"
         style={{
-          backgroundColor: "rgba(10, 10, 15, 0.8)",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
           paddingTop: "env(safe-area-inset-top)",
         }}
       >
@@ -50,7 +50,7 @@ export function NavNew() {
             className="font-sans text-xl font-semibold tracking-tight text-fg"
             aria-label="Shua Labs — home"
           >
-            Shua<span className="text-blue-400">Labs</span>
+            Shua<span className="text-fg-muted">Labs</span>
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
@@ -86,13 +86,13 @@ export function NavNew() {
           style={{
             paddingTop: "env(safe-area-inset-top)",
             paddingBottom: "env(safe-area-inset-bottom)",
-            backgroundColor: "rgba(10, 10, 15, 0.98)",
+            backgroundColor: "rgba(0, 0, 0, 0.98)",
             backdropFilter: "blur(16px)",
           }}
         >
           <div className="container flex h-16 shrink-0 items-center justify-between">
             <span className="font-sans text-xl font-semibold text-fg">
-              Shua<span className="text-blue-400">Labs</span>
+              Shua<span className="text-fg-muted">Labs</span>
             </span>
             <button
               type="button"

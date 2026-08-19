@@ -3,7 +3,7 @@ import type { Config } from "tailwindcss";
 /**
  * Shua Labs — A future-facing venture company.
  *
- * Rich near-black background with restrained electric-blue light.
+ * True black background. White and gray only. No tint, no glow.
  * Editorial typography with quiet motion, no terminal gimmicks.
  * Modern venture company aesthetic, not a portfolio or agency site.
  */
@@ -22,42 +22,27 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // Rich near-black background palette
+        // True black / near-black surfaces
         bg: {
-          DEFAULT: "#0a0a0f", // Deep near-black
-          base: "#08080c", // Very dark base
-          panel: "#0f0f14", // Slightly lighter panel
-          raised: "#14141a", // Raised surface
-          card: "#121218", // Card background
-          hi: "#1a1a22", // Highlight surface
+          DEFAULT: "#000000",
+          base: "#000000",
+          panel: "#0a0a0a",
+          raised: "#111111",
+          card: "#0a0a0a",
+          hi: "#171717",
         },
-        // Electric blue accent palette (restrained)
-        blue: {
-          DEFAULT: "#3b82f6", // Electric blue
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
-          950: "#172554",
-        },
-        // Foreground palette with subtle blue tint
+        // White and gray only
         fg: {
-          DEFAULT: "#f8fafc", // Cool white
-          muted: "#94a3b8", // Slate gray
-          subtle: "#64748b", // Muted slate
-          faint: "#475569", // Dark slate
+          DEFAULT: "#ffffff",
+          muted: "#a1a1a1",
+          subtle: "#737373",
+          faint: "#525252",
         },
-        // Border palette
+        // Hairline gray borders
         line: {
-          DEFAULT: "rgba(148, 163, 184, 0.15)",
-          strong: "rgba(148, 163, 184, 0.25)",
-          hi: "rgba(59, 130, 246, 0.4)", // Electric blue highlight
+          DEFAULT: "rgba(161, 161, 161, 0.22)",
+          strong: "rgba(161, 161, 161, 0.35)",
+          hi: "rgba(255, 255, 255, 0.28)",
         },
       },
       fontFamily: {
@@ -94,12 +79,9 @@ const config: Config = {
         pill: "9999px",
       },
       boxShadow: {
-        // Modern, subtle shadows with electric blue accents
         soft: "0 2px 8px rgba(0, 0, 0, 0.4)",
         medium: "0 4px 16px rgba(0, 0, 0, 0.5)",
         large: "0 8px 32px rgba(0, 0, 0, 0.6)",
-        "blue-glow": "0 0 20px rgba(59, 130, 246, 0.15)",
-        "blue-glow-strong": "0 0 30px rgba(59, 130, 246, 0.25)",
       },
       keyframes: {
         // Quiet motion animations
@@ -119,17 +101,12 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
-        "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(59, 130, 246, 0.15)" },
-          "50%": { boxShadow: "0 0 30px rgba(59, 130, 246, 0.25)" },
-        },
       },
       animation: {
         "fade-in": "fade-in 0.6s ease-out both",
         "slide-up": "slide-up 0.8s ease-out both",
         "pulse-slow": "pulse-slow 4s ease-in-out infinite",
         "float": "float 6s ease-in-out infinite",
-        "glow-pulse": "glow-pulse 3s ease-in-out infinite",
       },
       transitionTimingFunction: {
         "ease-smooth": "cubic-bezier(0.4, 0, 0.2, 1)",

@@ -7,7 +7,7 @@ import * as React from "react";
  */
 export function FooterNew() {
   return (
-    <footer className="border-t border-line py-12" style={{ backgroundColor: "rgba(18, 18, 24, 0.5)" }}>
+    <footer className="border-t border-line py-12" style={{ backgroundColor: "rgba(10, 10, 10, 0.5)" }}>
       <div className="container max-w-[1400px]">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
