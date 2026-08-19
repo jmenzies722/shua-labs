@@ -2,6 +2,13 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  Y_CARD,
+  Y_COPY,
+  sectionInView,
+  staggerContainer,
+  staggerItem,
+} from "@/lib/motion";
 
 const AREAS = [
   {
@@ -33,12 +40,13 @@ export function WhatWeBuild() {
       aria-label="What we build"
       className="section-padding relative scroll-mt-14"
     >
-      <div className="site-shell">
+      <motion.div
+        className="site-shell"
+        {...sectionInView}
+        variants={staggerContainer(reduced)}
+      >
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: reduced ? 0 : 0.45 }}
+          variants={staggerItem(reduced, Y_COPY)}
           className="mb-10 max-w-2xl md:mb-12"
         >
           <p className="label-text mb-3">What we build</p>
@@ -47,14 +55,14 @@ export function WhatWeBuild() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 md:border-t md:border-line md:pt-10">
+        <motion.div
+          className="grid md:grid-cols-3 md:border-t md:border-line md:pt-10"
+          variants={staggerContainer(reduced)}
+        >
           {AREAS.map((area, index) => (
             <motion.article
               key={area.title}
-              initial={reduced ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : index * 0.06 }}
+              variants={staggerItem(reduced, Y_CARD)}
               className="border-t border-line py-7 md:border-l md:border-t-0 md:px-7 md:py-0 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
             >
               <p className="index-text mb-4">0{index + 1}</p>
@@ -62,8 +70,8 @@ export function WhatWeBuild() {
               <p className="body-text">{area.description}</p>
             </motion.article>
           ))}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

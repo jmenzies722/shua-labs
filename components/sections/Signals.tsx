@@ -3,6 +3,13 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  Y_CARD,
+  Y_COPY,
+  sectionInView,
+  staggerContainer,
+  staggerItem,
+} from "@/lib/motion";
 
 const signals = [
   "Technology should increase human agency.",
@@ -22,12 +29,13 @@ export function Signals() {
       aria-label="Signals"
       className="section-padding-sm section-rule scroll-mt-14"
     >
-      <div className="site-shell">
+      <motion.div
+        className="site-shell"
+        {...sectionInView}
+        variants={staggerContainer(reduced)}
+      >
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: reduced ? 0 : 0.45 }}
+          variants={staggerItem(reduced, Y_COPY)}
           className="mb-10 max-w-2xl md:mb-12"
         >
           <p className="label-text mb-3">Signals</p>
@@ -36,37 +44,30 @@ export function Signals() {
           </h2>
         </motion.div>
 
-        <div className="grid gap-0 md:grid-cols-3 md:border-t md:border-line md:pt-10">
+        <motion.div
+          className="grid gap-0 md:grid-cols-3 md:border-t md:border-line md:pt-10"
+          variants={staggerContainer(reduced)}
+        >
           {signals.map((signal, index) => (
             <motion.article
               key={signal}
-              initial={reduced ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                duration: reduced ? 0 : 0.45,
-                delay: reduced ? 0 : index * 0.06,
-              }}
+              variants={staggerItem(reduced, Y_CARD)}
               className="border-t border-line py-7 md:border-l md:border-t-0 md:px-7 md:py-0 md:first:border-l-0 md:first:pl-0 md:last:pr-0"
             >
               <p className="index-text mb-4">0{index + 1} · 2026</p>
               <p className="body-text">{signal}</p>
             </motion.article>
           ))}
-        </div>
-
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : 0.12 }}
-          className="mt-10"
-        >
-          <Link href="/thesis" className="link-primary">
-            Read the thesis
-          </Link>
+          <motion.div
+            variants={staggerItem(reduced, Y_COPY)}
+            className="mt-10 md:col-span-3"
+          >
+            <Link href="/thesis" className="link-primary">
+              Read the thesis
+            </Link>
+          </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

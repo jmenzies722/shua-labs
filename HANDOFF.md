@@ -4,17 +4,16 @@ Updated: 2026-08-19
 
 ## Current state
 
-- PR #9 (`feat/parent-company-redesign`) was conflicted against current master (live B/W venture-company homepage + founder photo).
-- Master was merged in. Homepage/UI/copy conflicts prefer master. Live page identity stays "Building what comes next."
-- Unique branch work kept on top: `/thesis`, additive Signals section, `data/company.ts`, vitest suite.
-- macOS copy-collision files (`* 2.css` / `* 2.tsx`) deleted.
-- Tests assert the live homepage, not the old redesign copy.
+- Homepage motion pass on current master (live B/W venture-company page).
+- Existing whileInView fades extended with one shared ease, one viewport, and one parent reveal per section so child triggers do not fight.
+- Same words, same sections, same B/W palette, same founder photo.
+- Prefers-reduced-motion: duration 0 / no transform; loops off; first paint is the final frame.
 - Do not merge. Do not deploy. Do not touch PR #8.
 
 ## Repo
 
 - https://github.com/jmenzies722/shua-labs
-- Stack: Next.js App Router, TypeScript, Tailwind.
+- Stack: Next.js App Router, TypeScript, Tailwind, Framer Motion.
 - Live deploys from master. This PR is not shipped.
 
 ## Do not
@@ -27,10 +26,10 @@ Updated: 2026-08-19
 
 ## Packet (this job)
 
-- **Outcome:** PR #9 merge conflicts resolved by preferring master's live homepage (B/W layout, founder photo at `/static/josh-menzies.jpg`, NavNew). Added `/thesis`, an additive Signals section, vitest against live copy, and a sitemap entry for `/thesis`. Removed macOS `* 2` collision files. No deploy. No merge.
+- **Outcome:** Fluid homepage motion on the live venture-company page: shared motion tokens, staggered section reveals, calmer hero/scroll-tick/In formation loops, nav hairline + menu fade, CTA press easing. Copy, sections, palette, and founder photo unchanged.
 - **Repo:** `jmenzies722/shua-labs`
-- **Branch:** `feat/parent-company-redesign`
-- **Status:** done — PR #9 is mergeable (`clean` / not dirty)
-- **Tests:** `npm test` — 2 passed (live homepage copy + founder photo). `tsc --noEmit` pass. `next build` pass, including `/thesis`.
-- **PR:** https://github.com/jmenzies722/shua-labs/pull/9 — open, mergeable, not merged
+- **Branch:** `cursor/homepage-fluid-motion-41b7`
+- **Status:** done
+- **Tests:** `npm test` — 6 passed (live homepage copy + founder photo + reduced-motion complete page + motion helpers). `tsc --noEmit` pass. `next build` pass.
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/10 — open, not merged
 - **Next:** Stop. Do not merge. Do not deploy. Ivy stays out unless asked.

@@ -2,7 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { STAGGER_MENU, chromeTransition } from "@/lib/motion";
 
 const NAV_LINKS: { label: string; href: string }[] = [
   { label: "What we build", href: "#what-we-build" },
@@ -16,6 +18,7 @@ const NAV_LINKS: { label: string; href: string }[] = [
  */
 export function NavNew() {
   const [open, setOpen] = React.useState(false);
+  const reduced = useReducedMotion();
 
   React.useEffect(() => {
     if (!open) return;
@@ -57,11 +60,7 @@ export function NavNew() {
 
           <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
             {NAV_LINKS.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-[13px] font-medium text-fg-muted transition-colors duration-200 hover:text-fg"
-              >
+              <Link key={l.href} href={l.href} className="nav-link">
                 {l.label}
               </Link>
             ))}
@@ -75,7 +74,7 @@ export function NavNew() {
             onClick={() => setOpen(true)}
             aria-label="Open menu"
             aria-expanded={open}
-            className="-mr-2 inline-flex h-10 w-10 items-center justify-center text-fg-muted hover:text-fg md:hidden"
+            className="nav-icon-btn -mr-2 inline-flex h-10 w-10 items-center justify-center text-fg-muted hover:text-fg md:hidden"
           >
             <Menu className="h-5 w-5" />
           </button>
@@ -83,7 +82,7 @@ export function NavNew() {
       </header>
 
       {open && (
-        <div
+        <motion.div
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
@@ -93,6 +92,9 @@ export function NavNew() {
             paddingBottom: "env(safe-area-inset-bottom)",
             backgroundColor: "#000000",
           }}
+          initial={reduced ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={chromeTransition(reduced)}
         >
           <div className="site-shell flex h-14 shrink-0 items-center justify-between">
             <span className="text-[15px] font-semibold tracking-[-0.03em] text-fg">
@@ -102,7 +104,7 @@ export function NavNew() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
-              className="-mr-2 inline-flex h-10 w-10 items-center justify-center text-fg-muted hover:text-fg"
+              className="nav-icon-btn -mr-2 inline-flex h-10 w-10 items-center justify-center text-fg-muted hover:text-fg"
             >
               <X className="h-5 w-5" />
             </button>
@@ -112,25 +114,43 @@ export function NavNew() {
             aria-label="Mobile"
             className="site-shell flex min-h-0 flex-1 flex-col overflow-y-auto pt-4"
           >
-            {NAV_LINKS.map((l) => (
-              <Link
+            {NAV_LINKS.map((l, i) => (
+              <motion.div
                 key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="border-b border-line py-5 text-[1.75rem] font-semibold tracking-[-0.035em] text-fg"
+                initial={reduced ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={chromeTransition(
+                  reduced,
+                  reduced ? 0 : 0.06 + i * STAGGER_MENU
+                )}
               >
-                {l.label}
-              </Link>
+                <Link
+                  href={l.href}
+                  onClick={() => setOpen(false)}
+                  className="block border-b border-line py-5 text-[1.75rem] font-semibold tracking-[-0.035em] text-fg"
+                >
+                  {l.label}
+                </Link>
+              </motion.div>
             ))}
-            <Link
-              href="#contact"
-              onClick={() => setOpen(false)}
-              className="btn-primary mt-8 w-full"
+            <motion.div
+              initial={reduced ? false : { opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={chromeTransition(
+                reduced,
+                reduced ? 0 : 0.06 + NAV_LINKS.length * STAGGER_MENU
+              )}
             >
-              Get in touch
-            </Link>
+              <Link
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="btn-primary mt-8 w-full"
+              >
+                Get in touch
+              </Link>
+            </motion.div>
           </nav>
-        </div>
+        </motion.div>
       )}
     </>
   );

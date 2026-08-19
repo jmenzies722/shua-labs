@@ -2,6 +2,14 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  STAGGER_FOUNDER,
+  Y_CARD,
+  Y_COPY,
+  sectionInView,
+  staggerContainer,
+  staggerItem,
+} from "@/lib/motion";
 
 /**
  * Founder - The operator behind the company.
@@ -22,13 +30,12 @@ export function Founder() {
       className="section-padding-sm section-rule scroll-mt-14"
     >
       <div className="site-shell">
-        <div className="grid items-center gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
-          <motion.div
-            initial={reduced ? false : { opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: reduced ? 0 : 0.45 }}
-          >
+        <motion.div
+          className="grid items-center gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-16"
+          {...sectionInView}
+          variants={staggerContainer(reduced, STAGGER_FOUNDER)}
+        >
+          <motion.div variants={staggerItem(reduced, Y_COPY)}>
             <p className="label-text mb-3">Founder</p>
             <h2 className="display-section text-balance mb-5">
               Josh Menzies
@@ -63,13 +70,7 @@ export function Founder() {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={reduced ? false : { opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : 0.08 }}
-            className="relative"
-          >
+          <motion.div variants={staggerItem(reduced, Y_CARD)} className="relative">
             <div className="relative aspect-square overflow-hidden border border-line bg-bg-panel">
               {photoFailed ? (
                 <div className="flex h-full w-full items-center justify-center">
@@ -92,7 +93,7 @@ export function Founder() {
               )}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

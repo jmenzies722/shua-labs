@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { EASE, VIEWPORT, Y_COPY, revealTransition } from "@/lib/motion";
 
 /**
  * In formation - Visually engaging, deliberately non-specific signal.
@@ -11,6 +12,8 @@ import { motion, useReducedMotion } from "framer-motion";
  */
 export function InFormation() {
   const reduced = useReducedMotion();
+  const blockRef = React.useRef<HTMLDivElement>(null);
+  const looping = useInView(blockRef, { margin: "-80px" });
 
   return (
     <section
@@ -20,10 +23,11 @@ export function InFormation() {
     >
       <div className="site-shell">
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
+          ref={blockRef}
+          initial={reduced ? false : { opacity: 0, y: Y_COPY }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: reduced ? 0 : 0.45 }}
+          viewport={VIEWPORT}
+          transition={revealTransition(reduced)}
           className="mx-auto max-w-2xl text-center"
         >
           <p className="label-text mb-4">In formation</p>
@@ -39,28 +43,40 @@ export function InFormation() {
             className="mt-12 flex h-10 items-end justify-center gap-3"
             aria-hidden
           >
-            {[0, 1, 2].map((i) => (
-              <motion.span
-                key={i}
-                className="w-px bg-white"
-                initial={{ height: 12, opacity: 0.35 }}
-                animate={
-                  reduced
-                    ? { height: 12 + i * 8, opacity: 0.55 }
-                    : { height: [12, 32, 12], opacity: [0.28, 1, 0.28] }
-                }
-                transition={
-                  reduced
-                    ? { duration: 0 }
-                    : {
-                        duration: 1.7,
-                        repeat: Infinity,
-                        delay: i * 0.22,
-                        ease: "easeInOut",
-                      }
-                }
-              />
-            ))}
+            {[0, 1, 2].map((i) => {
+              const staticScale = [0.375, 0.625, 0.875][i];
+              return (
+                <span
+                  key={i}
+                  className="relative flex h-8 w-px items-end justify-center"
+                >
+                  <motion.span
+                    className="w-px origin-bottom bg-white"
+                    style={{ height: 32 }}
+                    initial={false}
+                    animate={
+                      reduced
+                        ? { scaleY: staticScale, opacity: 0.55 }
+                        : looping
+                          ? { scaleY: [0.375, 1, 0.375], opacity: [0.28, 1, 0.28] }
+                          : { scaleY: 0.375, opacity: 0.28 }
+                    }
+                    transition={
+                      reduced
+                        ? { duration: 0 }
+                        : looping
+                          ? {
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: i * 0.22,
+                              ease: "easeInOut",
+                            }
+                          : { duration: 0.2, ease: EASE }
+                    }
+                  />
+                </span>
+              );
+            })}
           </div>
         </motion.div>
       </div>

@@ -2,6 +2,12 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import {
+  Y_COPY,
+  sectionInView,
+  staggerContainer,
+  staggerItem,
+} from "@/lib/motion";
 
 const PRINCIPLES = [
   {
@@ -36,12 +42,13 @@ export function HowWeWork() {
       aria-label="How we work"
       className="section-padding-sm section-rule scroll-mt-14"
     >
-      <div className="site-shell">
+      <motion.div
+        className="site-shell"
+        {...sectionInView}
+        variants={staggerContainer(reduced)}
+      >
         <motion.div
-          initial={reduced ? false : { opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: reduced ? 0 : 0.45 }}
+          variants={staggerItem(reduced, Y_COPY)}
           className="mb-10 max-w-2xl md:mb-12"
         >
           <p className="label-text mb-3">How we work</p>
@@ -50,14 +57,14 @@ export function HowWeWork() {
           </h2>
         </motion.div>
 
-        <ol className="grid gap-0 md:grid-cols-2">
+        <motion.ol
+          className="grid gap-0 md:grid-cols-2"
+          variants={staggerContainer(reduced)}
+        >
           {PRINCIPLES.map((principle, index) => (
             <motion.li
               key={principle.title}
-              initial={reduced ? false : { opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : index * 0.05 }}
+              variants={staggerItem(reduced, Y_COPY)}
               className="border-t border-line py-7 md:px-7 md:odd:border-r md:odd:pl-0 md:even:pr-0"
             >
               <p className="index-text mb-3">0{index + 1}</p>
@@ -65,8 +72,8 @@ export function HowWeWork() {
               <p className="body-text">{principle.description}</p>
             </motion.li>
           ))}
-        </ol>
-      </div>
+        </motion.ol>
+      </motion.div>
     </section>
   );
 }
