@@ -1,0 +1,13 @@
+---
+description: Job 1 is kit files only
+alwaysApply: true
+---
+
+Unless a later spec says otherwise, only touch:
+
+- `.cursor/agents/`
+- `.cursor/rules/`
+- `AGENTS.md`
+- `HANDOFF.md`
+
+Leave `app/`, `components/`, `data/`, and all product UI alone.

@@ -1,0 +1,11 @@
+---
+description: Shua Labs hard constraints for every agent
+alwaysApply: true
+---
+
+- Do not change homepage copy, live-site copy, `app/`, `components/`, or any product UI.
+- Do not deploy. Do not create a Vercel project. Do not merge.
+- Live ≠ git. `master` is not the live studio site. Do not ship from `master` to prod.
+- No new seats. No new product.
+- Do not kill venture-company copy.
+- Honesty-pass copy is paused.
