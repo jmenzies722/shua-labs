@@ -44,9 +44,11 @@ test("reduced-motion helpers use duration 0 and no transform travel", () => {
 
   const motionItem = staggerItem(false, Y_COPY);
   expect(motionItem.hidden).toMatchObject({ opacity: 0, y: Y_COPY });
-  expect(motionItem.visible.transition).toMatchObject({
-    duration: DURATION_REVEAL,
-    ease: EASE,
+  const visible = motionItem.visible;
+  expect(visible).toMatchObject({
+    opacity: 1,
+    y: 0,
+    transition: { duration: DURATION_REVEAL, ease: EASE },
   });
 });
 

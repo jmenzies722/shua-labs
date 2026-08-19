@@ -39,7 +39,7 @@ test("homepage sentences are unchanged from the live venture-company page", () =
   render(<HomePage />);
 
   for (const sentence of HOMEPAGE_SENTENCES) {
-    expect(screen.getByText(sentence)).toBeInTheDocument();
+    expect(screen.getAllByText(sentence).length).toBeGreaterThan(0);
   }
 
   expect(

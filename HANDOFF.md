@@ -29,7 +29,7 @@ Updated: 2026-08-19
 - **Outcome:** Fluid homepage motion on the live venture-company page: shared motion tokens, staggered section reveals, calmer hero/scroll-tick/In formation loops, nav hairline + menu fade, CTA press easing. Copy, sections, palette, and founder photo unchanged.
 - **Repo:** `jmenzies722/shua-labs`
 - **Branch:** `cursor/homepage-fluid-motion-41b7`
-- **Status:** in progress — tests/PR next
-- **Tests:** pending
-- **PR:** pending
-- **Next:** Open PR to master. Do not merge. Do not deploy.
+- **Status:** done
+- **Tests:** `npm test` — 6 passed (live homepage copy + founder photo + reduced-motion complete page + motion helpers). `tsc --noEmit` pass. `next build` pass.
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/10 — open, not merged
+- **Next:** Stop. Do not merge. Do not deploy. Ivy stays out unless asked.
