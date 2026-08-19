@@ -14,38 +14,9 @@ export function InFormation() {
     <section
       id="in-formation"
       aria-label="In formation"
-      className="section-padding relative overflow-hidden"
+      className="section-padding"
     >
-      {/* Dynamic background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-white/[0.03] rounded-full blur-3xl"
-        />
-      </div>
-
-      <div className="container max-w-[1400px] relative z-10">
+      <div className="container max-w-[1400px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

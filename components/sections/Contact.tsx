@@ -11,14 +11,9 @@ export function Contact() {
     <section
       id="contact"
       aria-label="Contact"
-      className="section-padding relative"
+      className="section-padding"
     >
-      {/* Ambient background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-white/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container max-w-[1400px] relative z-10">
+      <div className="container max-w-[1400px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
