@@ -1,0 +1,11 @@
+---
+description: Live studio is not this git repo
+alwaysApply: true
+---
+
+The live studio tree is not in git. Prod is a dirty CLI deploy.
+
+- Do not treat `master` as the live site.
+- Do not sync, promote, or ship this repo to prod.
+- Do not start a new Vercel project to "fix" the split.
+- GitHub is the bus. Update `HANDOFF.md` and the PR, not the live tree.
