@@ -4,13 +4,13 @@ Updated: 2026-08-19
 
 ## Current state
 
-- Master is current prod (`822430a` palette pass). This job is a homepage UI/UX pass on top of that.
+- Master is current prod (`f49694b` B/W homepage pass). This job is founder photo only.
 - Same copy as current master. Same routes. Same URL. Same sections.
-- Tighter black / white / gray site: sharper type, narrower measure, hairline rules, numbered areas.
-- Formation glow orb / blur removed. Founder gradient removed.
+- Founder frame now points at `/static/josh-menzies.jpg` (grayscale, object-cover, crops the bottom-right edge). Copy, type, hairline frame, and reduced-motion stay as they are.
+- The attached booth headshot was not available as a committable file in this workspace (no image on disk, in git, in mail, or on public profiles). No substitute was generated. Until that file is committed, the panel falls back to the JM monogram.
 - Do not rewrite copy. Do not deploy. Do not merge.
 - Do not create a Vercel project.
-- Parallel “AI agent department” work is out of scope. This branch stays in homepage UI only.
+- Parallel “AI agent department” work is out of scope.
 
 ## Repo
 
@@ -24,14 +24,15 @@ Updated: 2026-08-19
 - Deploy.
 - Create a Vercel project.
 - Merge.
-- Touch registry, data, or kit files for this job.
+- Generate or invent a different founder picture.
+- Touch registry, data, kit files, or the parallel AI-agent-department work.
 
 ## Packet (this job)
 
-- **Outcome:** Homepage UI/UX tighten. Black / white / gray. Type, spacing, and layout refined. Copy unchanged vs master. Glow orb removed. No deploy.
+- **Outcome:** Founder panel wired to `/static/josh-menzies.jpg` inside the existing hairline frame. Homepage sentences unchanged. Exact attached headshot not committed — file was not in the workspace. No deploy.
 - **Repo:** `jmenzies722/shua-labs`
-- **Branch:** `cursor/bw-site-ux-18a6`
-- **Status:** done
-- **Tests:** `tsc --noEmit` pass. `next build` pass, same routes. Homepage section sentences unchanged vs master. No blue / glow / gradient classes in touched homepage files. `prefer-reduced-motion` kept. Lint not configured in repo (`next lint` prompts to create config — left untouched).
-- **PR:** https://github.com/jmenzies722/shua-labs/pull/5 — open, not merged
-- **Next:** Shua reviews. No deploy. No merge. Ivy stays out.
+- **Branch:** `cursor/founder-photo-dca5`
+- **Status:** blocked
+- **Tests:** pending build after this commit. Founder photo cannot render until `public/static/josh-menzies.jpg` is the attached booth photo.
+- **PR:** pending
+- **Next:** Drop the attached booth headshot into `public/static/josh-menzies.jpg` (crop the bottom-right sliver if needed), then re-run build. No deploy. No merge. Ivy stays out.
