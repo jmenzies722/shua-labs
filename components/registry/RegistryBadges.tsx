@@ -44,6 +44,7 @@ export function AvailabilityBadge({
 }
 
 const KIND_LABEL: Record<RegistryKind, string> = {
+  project: "Project",
   agent: "Agent",
   server: "MCP Server",
   tool: "Tool",

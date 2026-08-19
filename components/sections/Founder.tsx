@@ -1,4 +1,99 @@
 "use client";
-import { founder } from "@/data/company";
-import { FormEvent, useState } from "react";
-export function Founder() { const [name, setName] = useState(""); const [context, setContext] = useState(""); function submit(event: FormEvent<HTMLFormElement>) { event.preventDefault(); const subject = encodeURIComponent(`Shua Labs inquiry${name ? ` — ${name}` : ""}`); const body = encodeURIComponent(`Name: ${name}\n\nWhat I’m building / thinking about:\n${context}`); window.location.href = `${founder.email}?subject=${subject}&body=${body}`; } return <section id="founder" className="section shell founder"><div><p className="eyebrow">The company</p><h2>Shua Labs is an independent venture company led by <em>{founder.name}.</em></h2></div><div><p>Working across product, engineering, and infrastructure to turn ambitious ideas into useful systems.</p><p className="location">{founder.location}</p></div><div id="contact" className="contact"><p className="eyebrow">A good place to start</p><h2>Have an idea worth building?</h2><p className="mb-8 max-w-xl text-[15px] leading-6 text-black/65">Tell us a little about the problem, project, or conversation you have in mind. This opens a pre-filled email to Shua Labs.</p><form onSubmit={submit} className="grid gap-4"><label className="grid gap-2 text-[11px] font-bold uppercase tracking-[.08em] text-black/70">Your name <input className="rounded-xl border border-black/20 bg-white/65 px-4 py-3 text-[15px] font-normal normal-case tracking-normal text-black outline-none transition focus:border-black focus:bg-white" placeholder="Your name" value={name} onChange={(event) => setName(event.target.value)} required /></label><label className="grid gap-2 text-[11px] font-bold uppercase tracking-[.08em] text-black/70">What are you building? <textarea className="min-h-40 resize-y rounded-2xl border border-black/20 bg-white/65 px-4 py-4 text-[16px] font-normal normal-case tracking-normal text-black outline-none transition focus:border-black focus:bg-white" placeholder="A few sentences is plenty…" value={context} onChange={(event) => setContext(event.target.value)} required rows={6} /></label><div className="mt-2 flex flex-wrap items-center justify-between gap-4"><span className="text-xs text-black/50">Your mail app opens when you send.</span><button className="button button-light" type="submit">Start a conversation <span>↗</span></button></div></form></div></section>; }
+
+import * as React from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+/**
+ * Founder - The operator behind the company.
+ *
+ * Josh Menzies, grounded in New York, building at the intersection of
+ * AI, infrastructure, and developer experience.
+ */
+const FOUNDER_PHOTO_SRC = "/static/josh-menzies.jpg";
+
+export function Founder() {
+  const reduced = useReducedMotion();
+  const [photoFailed, setPhotoFailed] = React.useState(false);
+
+  return (
+    <section
+      id="founder"
+      aria-label="Founder"
+      className="section-padding-sm section-rule scroll-mt-14"
+    >
+      <div className="site-shell">
+        <div className="grid items-center gap-12 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: reduced ? 0 : 0.45 }}
+          >
+            <p className="label-text mb-3">Founder</p>
+            <h2 className="display-section text-balance mb-5">
+              Josh Menzies
+            </h2>
+            <p className="body-text-large mb-5">
+              A platform engineer in New York building the infrastructure and
+              developer experience layer for AI-assisted engineering teams.
+            </p>
+            <p className="body-text mb-7">
+              I focus on the systems that make AI reliable at scale—gateways,
+              governance, observability, and the tools that turn "the agent helped"
+              into something you can actually measure. Previously worked on
+              developer tooling and infrastructure across multiple organizations.
+            </p>
+            <div className="flex gap-6">
+              <a
+                href="https://github.com/jmenzies722"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com/in/josh-m01/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                LinkedIn
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={reduced ? false : { opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : 0.08 }}
+            className="relative"
+          >
+            <div className="relative aspect-square overflow-hidden border border-line bg-bg-panel">
+              {photoFailed ? (
+                <div className="flex h-full w-full items-center justify-center">
+                  <div className="text-center">
+                    <p className="text-[3.5rem] font-semibold leading-none tracking-[-0.06em] text-fg">
+                      JM
+                    </p>
+                    <p className="label-text mt-5">New York</p>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={FOUNDER_PHOTO_SRC}
+                  alt="Josh Menzies"
+                  width={900}
+                  height={900}
+                  className="h-full w-full object-cover object-[center_22%] grayscale"
+                  onError={() => setPhotoFailed(true)}
+                />
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}

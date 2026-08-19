@@ -1,26 +1,34 @@
 import { generatedAgents, REGISTRY_SOURCE_HASH } from "@/data/registry.generated";
+import { generatedProjects, PROJECTS_SOURCE_HASH } from "@/data/projects.generated";
 import { authoredEntries } from "@/data/registry";
 import type { RegistryEntry, RegistryKind } from "@/lib/types";
 
 /**
  * The registry, assembled.
  *
- * Two sources, one list:
+ * Three sources, one list:
  *   - agents        GENERATED from ~/.claude/agents/registry.yaml
+ *   - projects      GENERATED from each project's portfolio.yaml
  *   - servers/tools hand-authored in data/registry.ts
  *
  * Everything downstream reads from here, so there is exactly one place that
- * knows how the two halves combine.
+ * knows how the parts combine.
  */
 
-export { REGISTRY_SOURCE_HASH };
+export { REGISTRY_SOURCE_HASH, PROJECTS_SOURCE_HASH };
 
-export const KIND_ORDER: RegistryKind[] = ["agent", "server", "tool"];
+export const KIND_ORDER: RegistryKind[] = ["project", "agent", "server", "tool"];
 
 export const KIND_META: Record<
   RegistryKind,
   { label: string; plural: string; blurb: string }
 > = {
+  project: {
+    label: "Project",
+    plural: "Projects",
+    blurb:
+      "Built to learn the stack, not to demo it. Each claim below is backed by a command that actually ran — captured while building, not written up afterwards.",
+  },
   agent: {
     label: "Agent",
     plural: "Agents",
@@ -42,7 +50,7 @@ export const KIND_META: Record<
 };
 
 export function allEntries(): RegistryEntry[] {
-  return [...generatedAgents, ...authoredEntries];
+  return [...generatedProjects, ...generatedAgents, ...authoredEntries];
 }
 
 export function byKind(kind: RegistryKind): RegistryEntry[] {
