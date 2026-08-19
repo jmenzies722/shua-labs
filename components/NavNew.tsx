@@ -38,31 +38,36 @@ export function NavNew() {
   return (
     <>
       <header
-        className="fixed inset-x-0 top-0 z-40 border-b border-line/50 backdrop-blur-xl"
+        className="fixed inset-x-0 top-0 z-40 border-b border-line"
         style={{
-          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          backgroundColor: "rgba(0, 0, 0, 0.86)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
           paddingTop: "env(safe-area-inset-top)",
         }}
       >
-        <div className="container flex h-16 max-w-[1400px] items-center justify-between">
+        <div className="site-shell flex h-14 items-center justify-between">
           <Link
             href="/#top"
-            className="font-sans text-xl font-semibold tracking-tight text-fg"
+            className="text-[15px] font-semibold tracking-[-0.03em] text-fg"
             aria-label="Shua Labs — home"
           >
             Shua<span className="text-fg-muted">Labs</span>
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm font-medium text-fg-muted transition-colors duration-200 hover:text-fg"
+                className="text-[13px] font-medium text-fg-muted transition-colors duration-200 hover:text-fg"
               >
                 {l.label}
               </Link>
             ))}
+            <Link href="#contact" className="btn-primary h-8 px-3.5 text-[12px]">
+              Get in touch
+            </Link>
           </nav>
 
           <button
@@ -86,12 +91,11 @@ export function NavNew() {
           style={{
             paddingTop: "env(safe-area-inset-top)",
             paddingBottom: "env(safe-area-inset-bottom)",
-            backgroundColor: "rgba(0, 0, 0, 0.98)",
-            backdropFilter: "blur(16px)",
+            backgroundColor: "#000000",
           }}
         >
-          <div className="container flex h-16 shrink-0 items-center justify-between">
-            <span className="font-sans text-xl font-semibold text-fg">
+          <div className="site-shell flex h-14 shrink-0 items-center justify-between">
+            <span className="text-[15px] font-semibold tracking-[-0.03em] text-fg">
               Shua<span className="text-fg-muted">Labs</span>
             </span>
             <button
@@ -106,18 +110,25 @@ export function NavNew() {
 
           <nav
             aria-label="Mobile"
-            className="container flex min-h-0 flex-1 flex-col overflow-y-auto pt-8"
+            className="site-shell flex min-h-0 flex-1 flex-col overflow-y-auto pt-4"
           >
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line/30 py-6 font-sans text-2xl font-semibold tracking-tight text-fg"
+                className="border-b border-line py-5 text-[1.75rem] font-semibold tracking-[-0.035em] text-fg"
               >
                 {l.label}
               </Link>
             ))}
+            <Link
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="btn-primary mt-8 w-full"
+            >
+              Get in touch
+            </Link>
           </nav>
         </div>
       )}

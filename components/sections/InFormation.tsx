@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 /**
  * In formation - Visually engaging, deliberately non-specific signal.
@@ -10,22 +10,24 @@ import { motion } from "framer-motion";
  * announcements or specifics.
  */
 export function InFormation() {
+  const reduced = useReducedMotion();
+
   return (
     <section
       id="in-formation"
       aria-label="In formation"
-      className="section-padding"
+      className="section-padding section-rule scroll-mt-14"
     >
-      <div className="container max-w-[1400px]">
+      <div className="site-shell">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={reduced ? false : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: reduced ? 0 : 0.45 }}
+          className="mx-auto max-w-2xl text-center"
         >
-          <p className="label-text mb-6">In formation</p>
-          <h2 className="display-section text-balance mb-8">
+          <p className="label-text mb-4">In formation</p>
+          <h2 className="display-section text-balance mb-5">
             New ventures are underway.
           </h2>
           <p className="body-text-large text-balance">
@@ -33,32 +35,33 @@ export function InFormation() {
             When there's something to show, we'll show it.
           </p>
 
-          {/* Animated visual indicator */}
-          <motion.div
-            animate={{
-              rotate: 360,
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="mt-16 w-32 h-32 mx-auto relative"
+          <div
+            className="mt-12 flex h-10 items-end justify-center gap-3"
+            aria-hidden
           >
-            <div className="absolute inset-0 border-2 border-white/20 rounded-full" />
-            <div className="absolute inset-2 border border-white/30 rounded-full" />
-            <motion.div
-              animate={{
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-0 bg-white/10 rounded-full blur-sm"
-            />
-          </motion.div>
+            {[0, 1, 2].map((i) => (
+              <motion.span
+                key={i}
+                className="w-px bg-white"
+                initial={{ height: 12, opacity: 0.35 }}
+                animate={
+                  reduced
+                    ? { height: 12 + i * 8, opacity: 0.55 }
+                    : { height: [12, 32, 12], opacity: [0.28, 1, 0.28] }
+                }
+                transition={
+                  reduced
+                    ? { duration: 0 }
+                    : {
+                        duration: 1.7,
+                        repeat: Infinity,
+                        delay: i * 0.22,
+                        ease: "easeInOut",
+                      }
+                }
+              />
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

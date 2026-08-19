@@ -6,6 +6,7 @@ const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 const TITLE = "Shua Labs — Building what comes next";
