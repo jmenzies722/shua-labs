@@ -36,5 +36,5 @@ Do not touch `app/`, `components/`, homepage copy, or any product UI.
 - **Branch:** `feat/cursor-bridge-kit`
 - **Status:** done — PR open, not merged
 - **Tests:** kit paths exist; `git diff` vs `master` is kit files only
-- **PR:** _pending — filled after open_
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/1 (open, not merged)
 - **Next:** Ivy reviews the kit. Shua gates any later deploy. Honesty-pass copy stays paused. Do not merge this PR unless Shua says so.
