@@ -3,6 +3,7 @@ import { HeroNew } from "@/components/sections/HeroNew";
 import { WhatWeBuild } from "@/components/sections/WhatWeBuild";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { InFormation } from "@/components/sections/InFormation";
+import { Signals } from "@/components/sections/Signals";
 import { Founder } from "@/components/sections/Founder";
 import { Contact } from "@/components/sections/Contact";
 import { FooterNew } from "@/components/sections/FooterNew";
@@ -21,6 +22,7 @@ export default function HomePage() {
         <WhatWeBuild />
         <HowWeWork />
         <InFormation />
+        <Signals />
         <Founder />
         <Contact />
       </main>

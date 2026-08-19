@@ -4,18 +4,17 @@ Updated: 2026-08-19
 
 ## Current state
 
-- Master is current prod (`f49694b` B/W homepage pass). This job is founder photo only.
-- Same copy as current master. Same routes. Same URL. Same sections.
-- Founder frame now points at `/static/josh-menzies.jpg` (grayscale, object-cover, crops the bottom-right edge). Copy, type, hairline frame, and reduced-motion stay as they are.
-- The attached booth headshot was not available as a committable file in this workspace (no image on disk, in git, in mail, or on public profiles). No substitute was generated. Until that file is committed, the panel falls back to the JM monogram.
-- Do not rewrite copy. Do not deploy. Do not merge.
-- Do not create a Vercel project.
-- Parallel “AI agent department” work is out of scope.
+- PR #9 (`feat/parent-company-redesign`) was conflicted against current master (live B/W venture-company homepage + founder photo).
+- Master was merged in. Homepage/UI/copy conflicts prefer master. Live page identity stays "Building what comes next."
+- Unique branch work kept on top: `/thesis`, additive Signals section, `data/company.ts`, vitest suite.
+- macOS copy-collision files (`* 2.css` / `* 2.tsx`) deleted.
+- Tests assert the live homepage, not the old redesign copy.
+- Do not merge. Do not deploy. Do not touch PR #8.
 
 ## Repo
 
 - https://github.com/jmenzies722/shua-labs
-- Stack: Next.js App Router, TypeScript, Tailwind. Site content is data-driven (`data/`).
+- Stack: Next.js App Router, TypeScript, Tailwind.
 - Live deploys from master. This PR is not shipped.
 
 ## Do not
@@ -24,15 +23,14 @@ Updated: 2026-08-19
 - Deploy.
 - Create a Vercel project.
 - Merge.
-- Generate or invent a different founder picture.
-- Touch registry, data, kit files, or the parallel AI-agent-department work.
+- Touch PR #8 (slash agents).
 
 ## Packet (this job)
 
-- **Outcome:** Founder panel wired to `/static/josh-menzies.jpg` inside the existing hairline frame. Homepage sentences unchanged. Exact attached headshot not committed — file was not in the workspace. No deploy.
+- **Outcome:** PR #9 merge conflicts resolved by preferring master's live homepage (B/W layout, founder photo at `/static/josh-menzies.jpg`, NavNew). Added `/thesis`, an additive Signals section, vitest against live copy, and a sitemap entry for `/thesis`. Removed macOS `* 2` collision files. No deploy. No merge.
 - **Repo:** `jmenzies722/shua-labs`
-- **Branch:** `cursor/founder-photo-dca5`
-- **Status:** blocked
-- **Tests:** `tsc --noEmit` pass. `next build` pass, same routes (`/`, `/registry`, `/registry/[slug]`, `/icon`, `/opengraph-image`, `/robots.txt`, `/sitemap.xml`). Homepage section sentences unchanged vs master. Founder photo cannot render until `public/static/josh-menzies.jpg` is the attached booth photo. Lint not configured in repo.
-- **PR:** https://github.com/jmenzies722/shua-labs/pull/6 — open, not merged
-- **Next:** Drop the attached booth headshot into `public/static/josh-menzies.jpg` (crop the bottom-right sliver if needed), then re-run build. No deploy. No merge. Ivy stays out.
+- **Branch:** `feat/parent-company-redesign`
+- **Status:** done — PR #9 is mergeable (`clean` / not dirty)
+- **Tests:** `npm test` — 2 passed (live homepage copy + founder photo). `tsc --noEmit` pass. `next build` pass, including `/thesis`.
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/9 — open, mergeable, not merged
+- **Next:** Stop. Do not merge. Do not deploy. Ivy stays out unless asked.

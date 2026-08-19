@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: BASE, changeFrequency: "weekly", priority: 1 },
     { url: `${BASE}/registry`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/thesis`, changeFrequency: "monthly", priority: 0.6 },
     ...registryPages,
   ];
 }
