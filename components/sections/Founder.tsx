@@ -9,8 +9,11 @@ import { motion, useReducedMotion } from "framer-motion";
  * Josh Menzies, grounded in New York, building at the intersection of
  * AI, infrastructure, and developer experience.
  */
+const FOUNDER_PHOTO_SRC = "/static/josh-menzies.jpg";
+
 export function Founder() {
   const reduced = useReducedMotion();
+  const [photoFailed, setPhotoFailed] = React.useState(false);
 
   return (
     <section
@@ -67,13 +70,26 @@ export function Founder() {
             transition={{ duration: reduced ? 0 : 0.45, delay: reduced ? 0 : 0.08 }}
             className="relative"
           >
-            <div className="flex aspect-square items-center justify-center border border-line bg-bg-panel">
-              <div className="text-center">
-                <p className="text-[3.5rem] font-semibold leading-none tracking-[-0.06em] text-fg">
-                  JM
-                </p>
-                <p className="label-text mt-5">New York</p>
-              </div>
+            <div className="relative aspect-square overflow-hidden border border-line bg-bg-panel">
+              {photoFailed ? (
+                <div className="flex h-full w-full items-center justify-center">
+                  <div className="text-center">
+                    <p className="text-[3.5rem] font-semibold leading-none tracking-[-0.06em] text-fg">
+                      JM
+                    </p>
+                    <p className="label-text mt-5">New York</p>
+                  </div>
+                </div>
+              ) : (
+                <img
+                  src={FOUNDER_PHOTO_SRC}
+                  alt="Josh Menzies"
+                  width={900}
+                  height={900}
+                  className="h-full w-full object-cover object-[center_22%] grayscale"
+                  onError={() => setPhotoFailed(true)}
+                />
+              )}
             </div>
           </motion.div>
         </div>
