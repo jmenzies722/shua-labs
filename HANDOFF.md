@@ -34,5 +34,5 @@ Updated: 2026-08-19
 - **Branch:** `feat/bw-palette`
 - **Status:** done
 - **Tests:** grep for `#3b82f6`, `rgba(59, 130, 246`, `blue-glow`, `text-blue-`, `bg-blue-`, `ring-blue-` in theme/CSS/components — none. `git diff` does not change homepage sentences. Routes unchanged. `prefer-reduced-motion` kept.
-- **PR:** (opened after this commit)
+- **PR:** https://github.com/jmenzies722/shua-labs/pull/4 — open, not merged
 - **Next:** Shua reviews. No deploy. No merge. Ivy stays out.
