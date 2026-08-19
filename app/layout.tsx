@@ -1,17 +1,20 @@
 import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { ConsoleRoot } from "@/components/ConsoleRoot";
 
-const TITLE = "Shua Labs — AI platform engineering, built in the open";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const TITLE = "Shua Labs — Building what comes next";
 const DESCRIPTION =
-  "Josh Menzies builds developer tools and AI infrastructure — public source, working installs, MIT.";
+  "Shua Labs creates ventures, products, and systems for an AI-native world. A future-facing venture company.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  // Was pointed at shualabs.com — a domain that was never actually bought
-  // and doesn't resolve, which silently broke every relative OG/canonical
-  // URL Next.js generated from it. This is the domain that's actually live.
   metadataBase: new URL("https://shua-labs.vercel.app"),
   openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
@@ -19,12 +22,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#0a0a0f",
   colorScheme: "dark",
-  // viewportFit: "cover" lets the page paint under the notch/Dynamic Island
-  // instead of leaving a white-free but unstyled gap, so the fixed header and
-  // full-screen console can extend their background under it and pad their
-  // content back in with env(safe-area-inset-*) instead of just stopping short.
   viewportFit: "cover",
 };
 
@@ -34,13 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        {children}
-        {/* Mounted once, globally — every open trigger (nav, hero, `~`) shares
-            this one instance instead of each route growing its own. */}
-        <ConsoleRoot />
-      </body>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
+      <body>{children}</body>
     </html>
   );
 }

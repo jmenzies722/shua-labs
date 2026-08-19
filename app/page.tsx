@@ -1,25 +1,30 @@
-import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/sections/Hero";
-import { Shipped } from "@/components/sections/Shipped";
-import { About } from "@/components/sections/About";
-import { Footer } from "@/components/sections/Footer";
+import { NavNew } from "@/components/NavNew";
+import { HeroNew } from "@/components/sections/HeroNew";
+import { WhatWeBuild } from "@/components/sections/WhatWeBuild";
+import { HowWeWork } from "@/components/sections/HowWeWork";
+import { InFormation } from "@/components/sections/InFormation";
+import { Founder } from "@/components/sections/Founder";
+import { Contact } from "@/components/sections/Contact";
+import { FooterNew } from "@/components/sections/FooterNew";
 
 /**
- * Three sections: what's real (Shipped), who's building it (About), how to
- * reach it (Footer). No roadmap, no changelog — unshipped work doesn't get a
- * place on the homepage. Deeper technical detail lives in /registry and the
- * console, both one click away, neither forced on a first-time visitor.
+ * Shua Labs — A future-facing venture company.
+ *
+ * Building ventures, products, and systems for an AI-native world.
  */
 export default function HomePage() {
   return (
     <>
-      <Nav />
+      <NavNew />
       <main>
-        <Hero />
-        <Shipped />
-        <About />
+        <HeroNew />
+        <WhatWeBuild />
+        <HowWeWork />
+        <InFormation />
+        <Founder />
+        <Contact />
       </main>
-      <Footer />
+      <FooterNew />
     </>
   );
 }
