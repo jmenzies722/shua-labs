@@ -25,8 +25,8 @@ export function CurrentlyBuilding() {
           className="border border-line bg-bg-panel/40 p-6 sm:p-8"
         >
           <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-signal">
-              <span className="status-pulse h-1.5 w-1.5 rounded-full bg-signal" />
+            <span className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-fg">
+              <span className="status-pulse h-1.5 w-1.5 rounded-full bg-fg" />
               {b.status.toUpperCase()}
             </span>
             <time className="font-mono text-[11px] text-fg-subtle" dateTime={b.lastUpdate}>

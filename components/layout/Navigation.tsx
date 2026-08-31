@@ -25,7 +25,7 @@ export function Navigation() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
       <div className="site-shell flex h-14 items-center justify-between">
         <Link href="/" className="font-display text-[15px] font-bold tracking-tight">
-          Shua<span className="text-signal">Labs</span>
+          Shua<span className="text-fg-muted">Labs</span>
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
