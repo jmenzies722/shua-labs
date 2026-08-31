@@ -21,27 +21,22 @@ export default async function Image({ params }: { params: { slug: string } }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#050505",
-          color: "#f4f4f0",
+          background: "#ffffff",
+          color: "#37352f",
           padding: "64px",
           fontFamily: "sans-serif",
+          border: "24px solid #f7f6f3",
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ fontSize: 28, fontWeight: 700 }}>
-            Shua<span style={{ color: "#9a9a92" }}>Labs</span>
-          </div>
-          <div style={{ fontSize: 18, color: "#9a9a92", letterSpacing: "0.16em" }}>
-            RESEARCH · {status}
-          </div>
+          <div style={{ fontSize: 26, fontWeight: 600 }}>Shua Labs</div>
+          <div style={{ fontSize: 16, color: "#9b9a97" }}>Research · {status}</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
-          <div style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.05, maxWidth: 980 }}>
-            {title}
-          </div>
-          <div style={{ fontSize: 22, color: "#9a9a92", letterSpacing: "0.08em" }}>{date}</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          <div style={{ fontSize: 52, fontWeight: 700, lineHeight: 1.12, maxWidth: 980 }}>{title}</div>
+          <div style={{ fontSize: 20, color: "#6f6e69" }}>{date}</div>
         </div>
-        <div style={{ fontSize: 18, color: "#6a6a64" }}>Building what’s next with AI.</div>
+        <div style={{ fontSize: 18, color: "#9b9a97" }}>Building what’s next with AI.</div>
       </div>
     ),
     { ...size }

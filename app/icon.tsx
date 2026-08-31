@@ -15,17 +15,18 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#050505",
-          border: "3px solid #f4f4f0",
+          background: "#ffffff",
+          border: "2px solid #e9e9e7",
+          borderRadius: 12,
         }}
       >
         <div
           style={{
             display: "flex",
             fontFamily: "mono",
-            fontSize: 28,
+            fontSize: 26,
             fontWeight: 700,
-            color: "#f4f4f0",
+            color: "#37352f",
             letterSpacing: -1,
           }}
         >
