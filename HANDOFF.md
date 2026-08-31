@@ -1,35 +1,32 @@
 # Handoff
 
-Updated: 2026-08-19
+Updated: 2026-08-31
 
 ## Current state
 
-- Homepage motion pass on current master (live B/W venture-company page).
-- Existing whileInView fades extended with one shared ease, one viewport, and one parent reveal per section so child triggers do not fight.
-- Same words, same sections, same B/W palette, same founder photo.
-- Prefers-reduced-motion: duration 0 / no transform; loops off; first paint is the final frame.
-- Do not merge. Do not deploy. Do not touch PR #8.
+Public lab redesign from scratch. Founder-authorized.
+
+- Positioning: ten specialists, one founder, no product yet. Building in the open.
+- Visual: near-black, phosphor signal, Syne display, hairline grid.
+- Routes: `/` `/watch` `/lab` `/system` `/thesis` `/registry`
+- YouTube `@shualabs` and Instagram `@shualabs` are designed, not live. GitHub is the public channel until the founder creates the accounts and records episode 01.
+- No invented traction. Founder photo retained.
 
 ## Repo
 
 - https://github.com/jmenzies722/shua-labs
-- Stack: Next.js App Router, TypeScript, Tailwind, Framer Motion.
-- Live deploys from master. This PR is not shipped.
+- Branch: `cursor/public-lab-redesign-3b1f`
 
 ## Do not
 
-- Rewrite homepage or live-site copy.
-- Deploy.
-- Create a Vercel project.
-- Merge.
-- Touch PR #8 (slash agents).
+- Invent customers, revenue, follower counts, or live social URLs
+- Leak `company-os` internals onto this public site
+- Impersonate the founder in posts
+- Create Instagram/YouTube accounts from this repo (founder must)
 
-## Packet (this job)
+## Next (founder)
 
-- **Outcome:** Fluid homepage motion on the live venture-company page: shared motion tokens, staggered section reveals, calmer hero/scroll-tick/In formation loops, nav hairline + menu fade, CTA press easing. Copy, sections, palette, and founder photo unchanged.
-- **Repo:** `jmenzies722/shua-labs`
-- **Branch:** `cursor/homepage-fluid-motion-41b7`
-- **Status:** done
-- **Tests:** `npm test` — 6 passed (live homepage copy + founder photo + reduced-motion complete page + motion helpers). `tsc --noEmit` pass. `next build` pass.
-- **PR:** https://github.com/jmenzies722/shua-labs/pull/10 — open, not merged
-- **Next:** Stop. Do not merge. Do not deploy. Ivy stays out unless asked.
+1. Merge this PR when the copy feels right
+2. Create YouTube `@shualabs` and Instagram `@shualabs`
+3. Flip `social.*.live` and `href` in `data/site.ts`
+4. Record episode 01 from the draft list on `/watch`

@@ -1,5 +1,5 @@
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/sections/Footer";
+import { NavSite } from "@/components/NavSite";
+import { FooterSite } from "@/components/sections/FooterSite";
 
 export default function RegistryLayout({
   children,
@@ -8,10 +8,9 @@ export default function RegistryLayout({
 }) {
   return (
     <>
-      <Nav />
-      {/* pt-12 clears the fixed 48px nav. */}
-      <main className="pt-12">{children}</main>
-      <Footer />
+      <NavSite />
+      <main className="pt-14">{children}</main>
+      <FooterSite />
     </>
   );
 }

@@ -4,12 +4,6 @@ import { loadMonoFont } from "@/lib/og-font";
 export const size = { width: 64, height: 64 };
 export const contentType = "image/png";
 
-/**
- * Generated rather than a static file so the favicon can never drift from
- * the site's own palette — it's built from the same monospace font stack
- * and the same "$" prompt glyph the terminal components use, not a separate
- * asset someone has to remember to update.
- */
 export default async function Icon() {
   const monoFont = await loadMonoFont(700);
   return new ImageResponse(
@@ -21,21 +15,21 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#000000",
-          border: "3px solid #fafafa",
+          background: "#050505",
+          border: "3px solid #c6ff3a",
         }}
       >
         <div
           style={{
             display: "flex",
             fontFamily: "mono",
-            fontSize: 34,
+            fontSize: 28,
             fontWeight: 700,
-            color: "#fafafa",
-            letterSpacing: -2,
+            color: "#c6ff3a",
+            letterSpacing: -1,
           }}
         >
-          $_
+          SL
         </div>
       </div>
     ),

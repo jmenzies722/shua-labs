@@ -1,32 +1,25 @@
-import { NavNew } from "@/components/NavNew";
-import { HeroNew } from "@/components/sections/HeroNew";
-import { WhatWeBuild } from "@/components/sections/WhatWeBuild";
-import { HowWeWork } from "@/components/sections/HowWeWork";
-import { InFormation } from "@/components/sections/InFormation";
-import { Signals } from "@/components/sections/Signals";
-import { Founder } from "@/components/sections/Founder";
-import { Contact } from "@/components/sections/Contact";
-import { FooterNew } from "@/components/sections/FooterNew";
+import { NavSite } from "@/components/NavSite";
+import { HeroLab } from "@/components/sections/HeroLab";
+import { Edge } from "@/components/sections/Edge";
+import { SystemBoard } from "@/components/sections/SystemBoard";
+import { LabLog } from "@/components/sections/LabLog";
+import { Watch } from "@/components/sections/Watch";
+import { FounderLab } from "@/components/sections/FounderLab";
+import { FooterSite } from "@/components/sections/FooterSite";
 
-/**
- * Shua Labs — A future-facing venture company.
- *
- * Building ventures, products, and systems for an AI-native world.
- */
 export default function HomePage() {
   return (
     <>
-      <NavNew />
+      <NavSite />
       <main>
-        <HeroNew />
-        <WhatWeBuild />
-        <HowWeWork />
-        <InFormation />
-        <Signals />
-        <Founder />
-        <Contact />
+        <HeroLab />
+        <Edge />
+        <SystemBoard />
+        <LabLog />
+        <Watch />
+        <FounderLab />
       </main>
-      <FooterNew />
+      <FooterSite />
     </>
   );
 }
