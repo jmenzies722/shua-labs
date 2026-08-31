@@ -31,8 +31,8 @@ export default function AboutPage() {
               Social platforms distribute the work. GitHub proves the engineering. This website
               organizes the company, its ideas, projects, research, and evolution.
             </p>
-            <p className="font-mono text-[12px] tracking-[0.12em] text-fg-subtle">
-              {siteMeta.location.toUpperCase()} · EST. {siteMeta.established}
+            <p className="text-[13px] text-fg-subtle">
+              {siteMeta.location} · Est. {siteMeta.established}
             </p>
           </div>
         </div>
@@ -40,7 +40,7 @@ export default function AboutPage() {
 
       <section className="section-pad border-b border-line" aria-labelledby="founder-title">
         <div className="site-shell grid items-start gap-10 md:grid-cols-[200px_1fr]">
-          <div className="relative aspect-[4/5] w-full max-w-[200px] overflow-hidden border border-line bg-bg-panel">
+          <div className="relative aspect-[4/5] w-full max-w-[200px] overflow-hidden rounded-md border border-line bg-bg-panel">
             <Image
               src={siteMeta.founder.photo}
               alt={siteMeta.founder.name}

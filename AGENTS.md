@@ -12,8 +12,8 @@ Read [docs/BRAND.md](./docs/BRAND.md) before changing UI.
 
 Hard rules:
 
-- Dark-first black & white (`#050505` / `#f4f4f0`), Syne / DM Sans / IBM Plex Mono — no chroma accents
-- No purple AI template aesthetics, fake traction, fake testimonials, or invented live social links
+- Light Notion-like monochrome (`#ffffff` / `#37352f`), DM Sans / IBM Plex Mono — no chroma, no dark neon lab look
+- Soft panels and list rows; no background grids or glowing accents
 - Content lives in `content/` — do not scatter project data through JSX
 - Mark placeholders explicitly; empty is honest
 
