@@ -1,25 +1,30 @@
 import { render, screen } from "@testing-library/react";
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import HomePage from "@/app/page";
-import { copy, episodes } from "@/data/site";
+import { siteMeta, labLoop } from "@/content/social";
+import { featuredBuild } from "@/content/projects";
+import { buildLog } from "@/content/build-log";
 
-const HOMEPAGE_SENTENCES = [
-  copy.hero,
-  copy.heroSub,
-  copy.edgeTitle,
-  copy.edgeBody,
-  copy.systemTitle,
-  copy.logTitle,
-  copy.watchTitle,
-  copy.founderBlurb,
-  "Company OS v0 accepted",
-  episodes[0].title,
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
+
+const REQUIRED = [
+  siteMeta.tagline,
+  siteMeta.supporting,
+  "Currently building",
+  featuredBuild.name,
+  "The lab",
+  labLoop[0].title,
+  "Build log",
+  buildLog[0].title,
+  "From the lab",
+  "Follow the build.",
 ];
 
-test("homepage sentences match the lab positioning", () => {
+test("homepage sentences match the master lab positioning", () => {
   render(<HomePage />);
-  for (const sentence of HOMEPAGE_SENTENCES) {
+  for (const sentence of REQUIRED) {
     expect(screen.getAllByText(sentence).length).toBeGreaterThan(0);
   }
-  expect(screen.getByRole("heading", { name: /josh menzies/i })).toBeInTheDocument();
 });
