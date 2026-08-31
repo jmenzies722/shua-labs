@@ -46,7 +46,7 @@ export function Founder() {
             </p>
             <p className="body-text mb-7">
               I focus on the systems that make AI reliable at scale—gateways,
-              governance, observability, and the tools that turn "the agent helped"
+              governance, observability, and the tools that turn &quot;the agent helped&quot;
               into something you can actually measure. Previously worked on
               developer tooling and infrastructure across multiple organizations.
             </p>

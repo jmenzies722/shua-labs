@@ -26,11 +26,11 @@ export function Contact() {
         >
           <p className="label-text mb-3">Get in touch</p>
           <h2 className="display-section text-balance mb-5">
-            Let's build something together.
+            Let&apos;s build something together.
           </h2>
           <p className="body-text-large text-balance mb-8">
-            Whether you're looking to collaborate, partner, or just have a conversation
-            about the future of AI-native systems, we'd love to hear from you.
+            Whether you&apos;re looking to collaborate, partner, or just have a conversation
+            about the future of AI-native systems, we&apos;d love to hear from you.
           </p>
 
           <a
