@@ -20,16 +20,17 @@ Supporting: An independent AI lab building software, systems, and companies in p
 
 ## Colors (tokens)
 
+Black and white only. No chroma accents.
+
 | Token | Value | Use |
 | --- | --- | --- |
 | `--bg` / `bg` | `#050505` | Near-black canvas |
-| `--fg` / `fg` | `#f4f4f0` | Warm off-white |
-| `fg-muted` | `#9a9a92` | Secondary body |
+| `--fg` / `fg` / `--signal` | `#f4f4f0` | Warm off-white primary |
+| `fg-muted` | `#9a9a92` | Secondary body / labels |
 | `fg-subtle` | `#6a6a64` | Metadata |
-| `--signal` / `signal` | `#c6ff3a` | Phosphor accent — sparse |
-| `line` | `rgba(198, 255, 58, 0.12)` | Hairlines / grid |
+| `line` | `rgba(244, 244, 240, 0.12)` | Hairlines / grid |
 
-Accent appears on status, labels, CTAs, and key metadata. Never flood backgrounds with phosphor.
+Hierarchy comes from type weight, opacity, and space — not color. Primary CTAs are white fill on black. Secondary CTAs are white outline.
 
 ## Typography
 
@@ -39,46 +40,41 @@ Accent appears on status, labels, CTAs, and key metadata. Never flood background
 | Body | DM Sans | Primary UI copy |
 | Mono | IBM Plex Mono | Timestamps, status, tags, technical labels |
 
-Large headlines should feel editorial, not generic SaaS hero copy.
-
 ## Spacing & grid
 
 - Site measure: `1120px` (`.site-shell`)
 - Section padding: `.section-pad`
 - Thin borders + generous whitespace
-- Background grid (72px) is part of the visual language — keep it subtle
+- Background grid (72px) uses white at ~4% opacity
 
 ## Logo / wordmark
 
-`Shua` + `Labs` with Labs in signal green when compact. Company is the brand; founder is secondary.
+`Shua` in full white + `Labs` in muted gray. Company is the brand; founder is secondary.
 
 ## Motion
 
 - Fast, subtle, purposeful (Framer Motion)
-- Respect `prefers-reduced-motion` — duration 0, no transforms
+- Respect `prefers-reduced-motion`
 - Allowed: hero entrance, section reveal, status pulse, restrained hovers
-- Forbidden: WebGL spectacle, endless loops for decoration
+- Forbidden: WebGL spectacle, colored glow effects
 
 ## Voice
 
-Write like a competent founder explaining to another competent builder. Lead with the fact. No hype. Mark placeholders clearly (`PLACEHOLDER`, `not live`, `draft`).
+Write like a competent founder explaining to another competent builder. Lead with the fact. No hype. Mark placeholders clearly.
 
 ## Social adaptation
 
-Same type, grid, accent, and metadata system across web, YouTube, and Instagram.
+Same type, grid, and monochrome system across web, YouTube, and Instagram.
 
 ### YouTube thumbnails
 
 - Large 3–6 word headline
 - Shua Labs mark
-- Phosphor accent sparingly
+- Black field, white type
 - Episode/build number in mono
-- Dark near-black field
-- No glowing orbs, no stock faces by default
+- No colored accents, no glowing orbs
 
 ### Instagram formats
-
-Reuse these labels:
 
 - BUILD UPDATE
 - ARCHITECTURE
@@ -87,13 +83,10 @@ Reuse these labels:
 - RESEARCH NOTE
 - BEHIND THE BUILD
 
-9:16 and 1:1 crops should still read as Shua Labs after removing surrounding UI.
-
 ## Anti-patterns (do not ship)
 
-- Purple gradients / glassmorphism cards
-- Fake logos, testimonials, or stats
+- Colored accents (green, purple, neon, gradients)
+- Glassmorphism cards / fake logos / testimonials / stats
 - Generic SaaS pricing blocks
 - Overcrowded heroes
-- Cards for decoration (only for interaction when needed)
 - Invented social follower counts or live channel links

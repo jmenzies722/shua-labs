@@ -28,9 +28,9 @@ export default async function Image({ params }: { params: { slug: string } }) {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ fontSize: 28, fontWeight: 700 }}>
-            Shua<span style={{ color: "#c6ff3a" }}>Labs</span>
+            Shua<span style={{ color: "#9a9a92" }}>Labs</span>
           </div>
-          <div style={{ fontSize: 18, color: "#c6ff3a", letterSpacing: "0.16em" }}>BUILD LOG</div>
+          <div style={{ fontSize: 18, color: "#9a9a92", letterSpacing: "0.16em" }}>BUILD LOG</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ fontSize: 56, fontWeight: 700, lineHeight: 1.05, maxWidth: 980 }}>

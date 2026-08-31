@@ -6,7 +6,7 @@ export function FooterSite() {
       <div className="site-shell flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-display text-lg font-bold">
-            Shua<span className="text-signal">Labs</span>
+            Shua<span className="text-fg-muted">Labs</span>
           </p>
           <p className="mt-2 max-w-sm text-[13px] text-fg-subtle">
             Building in the open. No invented traction. {site.founder.location}.

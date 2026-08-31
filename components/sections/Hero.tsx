@@ -14,9 +14,9 @@ export function Hero() {
       aria-label="Hero"
       className="relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden border-b border-line pt-[calc(5rem+env(safe-area-inset-top))] pb-20"
     >
-      <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden>
-        <div className="absolute right-[12%] top-1/4 h-64 w-64 rounded-full bg-signal/10 blur-3xl" />
-        <svg className="absolute bottom-16 right-8 hidden h-40 w-40 text-signal/30 lg:block" viewBox="0 0 120 120" fill="none">
+      <div className="pointer-events-none absolute inset-0 opacity-50" aria-hidden>
+        <div className="absolute right-[10%] top-1/4 h-72 w-72 rounded-full bg-fg/5 blur-3xl" />
+        <svg className="absolute bottom-16 right-8 hidden h-40 w-40 text-fg/25 lg:block" viewBox="0 0 120 120" fill="none">
           <circle cx="20" cy="60" r="3" fill="currentColor" />
           <circle cx="60" cy="30" r="3" fill="currentColor" />
           <circle cx="100" cy="70" r="3" fill="currentColor" />
@@ -28,8 +28,8 @@ export function Hero() {
       <div className="site-shell relative">
         <motion.div {...loadFade(reduced, 0)} className="mb-6 flex flex-wrap items-center gap-4">
           <p className="label-text">{siteMeta.name}</p>
-          <span className="inline-flex items-center gap-2 border border-line px-2.5 py-1 font-mono text-[10px] tracking-[0.16em] text-signal">
-            <span className="status-pulse h-1.5 w-1.5 rounded-full bg-signal" />
+          <span className="inline-flex items-center gap-2 border border-line px-2.5 py-1 font-mono text-[10px] tracking-[0.16em] text-fg-muted">
+            <span className="status-pulse h-1.5 w-1.5 rounded-full bg-fg" />
             LAB STATUS · ACTIVE
           </span>
         </motion.div>

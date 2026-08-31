@@ -12,7 +12,7 @@ Read [docs/BRAND.md](./docs/BRAND.md) before changing UI.
 
 Hard rules:
 
-- Dark-first, phosphor accent (`#c6ff3a`), Syne / DM Sans / IBM Plex Mono
+- Dark-first black & white (`#050505` / `#f4f4f0`), Syne / DM Sans / IBM Plex Mono — no chroma accents
 - No purple AI template aesthetics, fake traction, fake testimonials, or invented live social links
 - Content lives in `content/` — do not scatter project data through JSX
 - Mark placeholders explicitly; empty is honest

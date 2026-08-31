@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="site-shell grid gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
           <p className="font-display text-lg font-bold">
-            Shua<span className="text-signal">Labs</span>
+            Shua<span className="text-fg-muted">Labs</span>
           </p>
           <p className="mt-2 max-w-sm font-display text-xl font-bold tracking-tight text-fg-muted">
             Building what’s next.
