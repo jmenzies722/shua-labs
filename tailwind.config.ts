@@ -12,53 +12,49 @@ const config: Config = {
     extend: {
       colors: {
         bg: {
-          DEFAULT: "#050505",
-          base: "#050505",
-          panel: "#0b0b0b",
-          raised: "#111111",
+          DEFAULT: "#ffffff",
+          base: "#ffffff",
+          panel: "#f7f6f3",
+          raised: "#efeee9",
         },
         fg: {
-          DEFAULT: "#f4f4f0",
-          muted: "#9a9a92",
-          subtle: "#6a6a64",
+          DEFAULT: "#37352f",
+          muted: "#6f6e69",
+          subtle: "#9b9a97",
         },
         signal: {
-          DEFAULT: "#f4f4f0",
-          dim: "rgba(244, 244, 240, 0.12)",
+          DEFAULT: "#37352f",
+          dim: "rgba(55, 53, 47, 0.08)",
         },
         line: {
-          DEFAULT: "rgba(244, 244, 240, 0.12)",
-          strong: "rgba(244, 244, 240, 0.22)",
+          DEFAULT: "#e9e9e7",
+          strong: "#d3d1cb",
         },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "DM Sans", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["var(--font-syne)", "Syne", "sans-serif"],
+        display: ["var(--font-sans)", "DM Sans", "Helvetica Neue", "Arial", "sans-serif"],
         mono: ["var(--font-plex)", "IBM Plex Mono", "ui-monospace", "monospace"],
       },
       borderRadius: {
         none: "0px",
-        sm: "2px",
-        DEFAULT: "4px",
+        sm: "4px",
+        DEFAULT: "6px",
+        md: "8px",
       },
       keyframes: {
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
         },
-        scan: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(100%)" },
-        },
         "status-pulse": {
           "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.55" },
+          "50%": { opacity: "0.4" },
         },
       },
       animation: {
-        "fade-in": "fade-in 0.7s ease-out both",
-        scan: "scan 8s linear infinite",
-        "status-pulse": "status-pulse 2.2s ease-in-out infinite",
+        "fade-in": "fade-in 0.5s ease-out both",
+        "status-pulse": "status-pulse 2.4s ease-in-out infinite",
       },
     },
   },
