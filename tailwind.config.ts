@@ -23,12 +23,12 @@ const config: Config = {
           subtle: "#6a6a64",
         },
         signal: {
-          DEFAULT: "#c6ff3a",
-          dim: "rgba(198, 255, 58, 0.14)",
+          DEFAULT: "#f4f4f0",
+          dim: "rgba(244, 244, 240, 0.12)",
         },
         line: {
-          DEFAULT: "rgba(198, 255, 58, 0.12)",
-          strong: "rgba(244, 244, 240, 0.16)",
+          DEFAULT: "rgba(244, 244, 240, 0.12)",
+          strong: "rgba(244, 244, 240, 0.22)",
         },
       },
       fontFamily: {
