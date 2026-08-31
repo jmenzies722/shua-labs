@@ -1,32 +1,25 @@
-# Handoff
+# Master lab website
 
-Updated: 2026-08-31
+## Outcome
 
-## Current state
-
-Public lab redesign from scratch. Founder-authorized.
-
-- Positioning: ten specialists, one founder, no product yet. Building in the open.
-- Visual: near-black, phosphor signal, Syne display, hairline grid.
-- Routes: `/` `/watch` `/lab` `/system` `/thesis` `/registry`
-- YouTube `@shualabs` and Instagram `@shualabs` are designed, not live. GitHub is the public channel until the founder creates the accounts and records episode 01.
-- No invented traction. Founder photo retained.
+Rebuilt the public site to the master website prompt: typed `content/` model, homepage sections (Currently Building, Lab Loop, Work, Build Log, From the Lab, Follow the Build), routes `/work` `/build` `/build/[slug]` `/research` `/research/[slug]` `/about` + custom 404, brand docs, OG images for entries, Vercel Analytics.
 
 ## Repo
 
-- https://github.com/jmenzies722/shua-labs
-- Branch: `cursor/public-lab-redesign-3b1f`
+`jmenzies722/shua-labs`
 
-## Do not
+## Branch
 
-- Invent customers, revenue, follower counts, or live social URLs
-- Leak `company-os` internals onto this public site
-- Impersonate the founder in posts
-- Create Instagram/YouTube accounts from this repo (founder must)
+`cursor/master-lab-website-3b1f`
 
-## Next (founder)
+## Status
 
-1. Merge this PR when the copy feels right
-2. Create YouTube `@shualabs` and Instagram `@shualabs`
-3. Flip `social.*.live` and `href` in `data/site.ts`
-4. Record episode 01 from the draft list on `/watch`
+Implementing → testing → PR → merge for prod
+
+## Honesty
+
+No invented traction. YouTube/Instagram `@shualabs` marked not live. Venture 001 is PLACEHOLDER.
+
+## Next
+
+Merge to `master` to deploy `https://shua-labs.vercel.app`
