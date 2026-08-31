@@ -1,43 +1,44 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Syne, IBM_Plex_Mono } from "next/font/google";
+import { Syne, IBM_Plex_Mono, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { siteMeta } from "@/content/social";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
-const syne = Syne({
+const display = Syne({
   subsets: ["latin"],
   variable: "--font-syne",
   display: "swap",
   weight: ["600", "700", "800"],
 });
 
-const plex = IBM_Plex_Mono({
+const sans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600"],
+});
+
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-plex",
   display: "swap",
   weight: ["400", "500"],
 });
 
-const TITLE = "Shua Labs — Ten specialists. One founder.";
-const DESCRIPTION =
-  "A New York lab running an AI specialist org from a GitHub constitution. Building in the open. No invented traction.";
+const TITLE = `${siteMeta.name} — ${siteMeta.tagline}`;
+const DESCRIPTION = siteMeta.supporting;
 
 export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  metadataBase: new URL("https://shua-labs.vercel.app"),
-  openGraph: { title: TITLE, description: DESCRIPTION, type: "website" },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
+  title: {
+    default: TITLE,
+    template: `%s — ${siteMeta.name}`,
   },
+  description: DESCRIPTION,
+  metadataBase: new URL(siteMeta.url),
+  openGraph: { title: TITLE, description: DESCRIPTION, type: "website", url: siteMeta.url },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
   robots: { index: true, follow: true },
+  alternates: { canonical: siteMeta.url },
 };
 
 export const viewport: Viewport = {
@@ -46,18 +47,31 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteMeta.name,
+    url: siteMeta.url,
+    description: DESCRIPTION,
+    foundingDate: siteMeta.established,
+    address: { "@type": "PostalAddress", addressLocality: siteMeta.location },
+  };
+
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${syne.variable} ${plex.variable}`}
+      className={`${display.variable} ${sans.variable} ${mono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }

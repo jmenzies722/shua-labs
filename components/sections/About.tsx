@@ -68,7 +68,7 @@ export function About() {
             I build the platform and developer-experience layer underneath
             AI-assisted engineering teams — the harness every engineer shares,
             the gateway their agents run through, and the evals and
-            observability that turn "the agent helped" into something you can
+            observability that turn &quot;the agent helped&quot; into something you can
             actually measure.
           </p>
 

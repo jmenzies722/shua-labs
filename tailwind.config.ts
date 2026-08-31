@@ -5,6 +5,7 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
+    "./content/**/*.{ts,tsx}",
     "./data/**/*.{ts,tsx}",
   ],
   theme: {
@@ -31,8 +32,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "Inter", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["var(--font-syne)", "Syne", "Inter", "sans-serif"],
+        sans: ["var(--font-sans)", "DM Sans", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["var(--font-syne)", "Syne", "sans-serif"],
         mono: ["var(--font-plex)", "IBM Plex Mono", "ui-monospace", "monospace"],
       },
       borderRadius: {
@@ -49,10 +50,15 @@ const config: Config = {
           "0%": { transform: "translateY(-100%)" },
           "100%": { transform: "translateY(100%)" },
         },
+        "status-pulse": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.55" },
+        },
       },
       animation: {
         "fade-in": "fade-in 0.7s ease-out both",
         scan: "scan 8s linear infinite",
+        "status-pulse": "status-pulse 2.2s ease-in-out infinite",
       },
     },
   },

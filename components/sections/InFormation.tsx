@@ -35,8 +35,8 @@ export function InFormation() {
             New ventures are underway.
           </h2>
           <p className="body-text-large text-balance">
-            We're building the next generation of AI-native systems and companies.
-            When there's something to show, we'll show it.
+            We&apos;re building the next generation of AI-native systems and companies.
+            When there&apos;s something to show, we&apos;ll show it.
           </p>
 
           <div

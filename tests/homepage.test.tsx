@@ -1,32 +1,34 @@
 import { render, screen } from "@testing-library/react";
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 import HomePage from "@/app/page";
-import { copy, site, specialists } from "@/data/site";
+import { siteMeta } from "@/content/social";
 
-test("states the public lab positioning without invented traction", () => {
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
+
+test("states the lab positioning without invented traction", () => {
   render(<HomePage />);
-  expect(screen.getByRole("heading", { name: copy.hero })).toBeInTheDocument();
-  expect(screen.getByText(copy.heroSub)).toBeInTheDocument();
-  expect(screen.getByRole("heading", { name: copy.systemTitle })).toBeInTheDocument();
-  expect(screen.getByRole("heading", { name: /josh menzies/i })).toBeInTheDocument();
-  expect(screen.getByText(/no invented traction/i)).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: siteMeta.tagline })
+  ).toBeInTheDocument();
+  expect(screen.getByText(siteMeta.supporting)).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /currently building/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /follow the build/i })).toBeInTheDocument();
+  expect(screen.getAllByText(/@shualabs/).length).toBeGreaterThan(0);
 });
 
-test("renders the specialist board and founder photo", () => {
+test("exposes primary nav destinations", () => {
   render(<HomePage />);
-  for (const s of specialists) {
-    expect(screen.getAllByText(s.name, { selector: "p" }).length).toBeGreaterThan(0);
-  }
-  const photos = screen.getAllByRole("img", { name: /josh menzies/i });
-  expect(photos[0]).toHaveAttribute("src", site.founder.photo);
-  expect(screen.getAllByRole("link", { name: /get in touch/i }).length).toBeGreaterThan(0);
-  expect(screen.queryByText(/browse the registry|mcp-sync|claude-max/i)).not.toBeInTheDocument();
+  expect(screen.getAllByRole("link", { name: /^work$/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /build log/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /^research$/i }).length).toBeGreaterThan(0);
+  expect(screen.getAllByRole("link", { name: /^about$/i }).length).toBeGreaterThan(0);
 });
 
-test("watch section does not claim live social channels", () => {
+test("does not claim live YouTube or Instagram URLs", () => {
   render(<HomePage />);
-  expect(screen.getAllByRole("heading", { name: copy.watchTitle }).length).toBeGreaterThan(0);
-  expect(screen.getAllByText("@shualabs").length).toBeGreaterThan(0);
-  expect(screen.getAllByText(/opening/i).length).toBeGreaterThan(0);
-  expect(screen.queryByText(/creates ventures, products, and systems for an ai-native world/i)).not.toBeInTheDocument();
+  expect(screen.getAllByText(/opening|not live|draft/i).length).toBeGreaterThan(0);
+  expect(screen.queryByRole("link", { name: /^youtube$/i })).not.toBeInTheDocument();
+  expect(screen.queryByRole("link", { name: /^instagram$/i })).not.toBeInTheDocument();
 });
