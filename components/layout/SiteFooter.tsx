@@ -3,41 +3,39 @@ import { siteMeta, social } from "@/content/social";
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-line py-12">
+    <footer className="border-t border-line py-10">
       <div className="site-shell grid gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
-          <p className="font-display text-lg font-bold">
-            Shua<span className="text-fg-muted">Labs</span>
-          </p>
-          <p className="mt-2 max-w-sm font-display text-xl font-bold tracking-tight text-fg-muted">
-            Building what’s next.
-          </p>
-          <p className="mt-4 font-mono text-[11px] tracking-[0.14em] text-fg-subtle">
-            {siteMeta.location.toUpperCase()} · EST. {siteMeta.established}
+          <p className="text-[15px] font-semibold tracking-tight">Shua Labs</p>
+          <p className="mt-1 text-[14px] text-fg-muted">Building what’s next.</p>
+          <p className="mt-3 text-[12px] text-fg-subtle">
+            {siteMeta.location} · Est. {siteMeta.established}
           </p>
         </div>
         <nav
-          className="flex flex-wrap content-start gap-x-6 gap-y-3 text-[13px] text-fg-muted"
+          className="flex flex-wrap content-start gap-x-5 gap-y-2 text-[13px] text-fg-muted"
           aria-label="Footer"
         >
-          <a href="/work">Work</a>
-          <a href="/build">Build Log</a>
-          <a href="/research">Research</a>
-          <a href="/about">About</a>
-          <a href={social.github.href} rel="noreferrer" target="_blank">
+          <a href="/work" className="hover:text-fg">
+            Work
+          </a>
+          <a href="/build" className="hover:text-fg">
+            Build Log
+          </a>
+          <a href="/research" className="hover:text-fg">
+            Research
+          </a>
+          <a href="/about" className="hover:text-fg">
+            About
+          </a>
+          <a href={social.github.href} rel="noreferrer" target="_blank" className="hover:text-fg">
             GitHub
           </a>
-          <span className="text-fg-subtle">
-            YouTube {social.youtube.live ? "" : "(opening)"}
-          </span>
-          <span className="text-fg-subtle">
-            Instagram {social.instagram.live ? "" : "(opening)"}
-          </span>
+          <span className="text-fg-subtle">YouTube (opening)</span>
+          <span className="text-fg-subtle">Instagram (opening)</span>
         </nav>
       </div>
-      <div className="site-shell mt-10 font-mono text-[11px] text-fg-subtle">
-        © {year} Shua Labs
-      </div>
+      <div className="site-shell mt-8 text-[12px] text-fg-subtle">© {year} Shua Labs</div>
     </footer>
   );
 }

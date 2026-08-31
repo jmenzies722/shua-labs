@@ -8,9 +8,9 @@ Shua Labs is an independent AI lab, not a single SaaS product. The brand communi
 
 **RESEARCH → BUILD → SHIP → LEARN → REPEAT**
 
-Feel: intelligent, ambitious, technical, concise, confident, curious, transparent, builder-oriented.
+Feel: calm, intelligent, document-like, concise, transparent, builder-oriented.
 
-Avoid: corporate jargon, fake enterprise language, exaggerated claims, purple AI clichés, invented traction.
+Avoid: neon accents, dark “AI lab” grids, purple gradients, fake traction.
 
 ## Positioning
 
@@ -18,75 +18,51 @@ Primary: **Shua Labs — Building what’s next with AI.**
 
 Supporting: An independent AI lab building software, systems, and companies in public.
 
-## Colors (tokens)
+## Visual direction
 
-Black and white only. No chroma accents.
+**Notion-like monochrome.** Light canvas. Soft hierarchy. Content reads like a living company document.
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--bg` / `bg` | `#050505` | Near-black canvas |
-| `--fg` / `fg` / `--signal` | `#f4f4f0` | Warm off-white primary |
-| `fg-muted` | `#9a9a92` | Secondary body / labels |
-| `fg-subtle` | `#6a6a64` | Metadata |
-| `line` | `rgba(244, 244, 240, 0.12)` | Hairlines / grid |
+| `--bg` | `#ffffff` | Page canvas |
+| `--bg-panel` | `#f7f6f3` | Callouts / panels |
+| `--fg` | `#37352f` | Primary ink |
+| `fg-muted` | `#6f6e69` | Body secondary |
+| `fg-subtle` | `#9b9a97` | Labels / metadata |
+| `line` | `#e9e9e7` | Hairlines |
+| `--hover` | `#efeee9` | Row / nav hover |
 
-Hierarchy comes from type weight, opacity, and space — not color. Primary CTAs are white fill on black. Secondary CTAs are white outline.
+No chroma accents. Hierarchy from type weight, opacity, and space.
 
 ## Typography
 
 | Role | Family | Notes |
 | --- | --- | --- |
-| Display | Syne | Editorial headlines |
-| Body | DM Sans | Primary UI copy |
-| Mono | IBM Plex Mono | Timestamps, status, tags, technical labels |
+| UI / display | DM Sans | Same family — Notion-like calm |
+| Mono | IBM Plex Mono | Sparse: dates, codes |
 
-## Spacing & grid
+Headlines are document titles, not billboard ads. Site measure ~960px.
 
-- Site measure: `1120px` (`.site-shell`)
-- Section padding: `.section-pad`
-- Thin borders + generous whitespace
-- Background grid (72px) uses white at ~4% opacity
+## Components
 
-## Logo / wordmark
-
-`Shua` in full white + `Labs` in muted gray. Company is the brand; founder is secondary.
+- Soft 6–8px radii
+- Black primary buttons, outlined secondary
+- List rows with hover wash (`.notion-row`)
+- Soft panels (`.notion-panel`) instead of dark grid cards
+- No background grid, no wireframe hero art
 
 ## Motion
 
-- Fast, subtle, purposeful (Framer Motion)
-- Respect `prefers-reduced-motion`
-- Allowed: hero entrance, section reveal, status pulse, restrained hovers
-- Forbidden: WebGL spectacle, colored glow effects
+Fast, subtle, restrained. Respect `prefers-reduced-motion`.
 
 ## Voice
 
-Write like a competent founder explaining to another competent builder. Lead with the fact. No hype. Mark placeholders clearly.
+Competent founder to competent builder. Empty is honest. Mark placeholders.
 
-## Social adaptation
+## Anti-patterns
 
-Same type, grid, and monochrome system across web, YouTube, and Instagram.
-
-### YouTube thumbnails
-
-- Large 3–6 word headline
-- Shua Labs mark
-- Black field, white type
-- Episode/build number in mono
-- No colored accents, no glowing orbs
-
-### Instagram formats
-
-- BUILD UPDATE
-- ARCHITECTURE
-- WHAT I LEARNED
-- SHIPPED
-- RESEARCH NOTE
-- BEHIND THE BUILD
-
-## Anti-patterns (do not ship)
-
-- Colored accents (green, purple, neon, gradients)
-- Glassmorphism cards / fake logos / testimonials / stats
-- Generic SaaS pricing blocks
+- Dark neon lab skins
+- Colored accents
+- Fake logos / testimonials / stats
 - Overcrowded heroes
-- Invented social follower counts or live channel links
+- Invented live social links

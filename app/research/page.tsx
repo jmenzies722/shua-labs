@@ -16,17 +16,17 @@ export default function ResearchIndexPage() {
     <PageShell>
       <section className="section-pad border-b border-line">
         <div className="site-shell">
-          <p className="label-text mb-4">Notes</p>
-          <h1 className="display-section mb-4">Research</h1>
-          <p className="body-lg mb-12">
+          <p className="label-text mb-2">Notes</p>
+          <h1 className="display-section mb-2">Research</h1>
+          <p className="body-lg mb-8">
             Technical explorations, process notes, and venture theses. Scaffold entries are marked.
           </p>
 
-          <ul className="grid gap-px bg-line sm:grid-cols-2">
+          <ul className="grid gap-3 sm:grid-cols-2">
             {research.map((r) => (
-              <li key={r.id} className="bg-bg p-6 sm:p-7">
-                <div className="flex flex-wrap gap-2 font-mono text-[10px] tracking-[0.14em] text-fg-subtle">
-                  <span className="text-signal">{r.status}</span>
+              <li key={r.id} className="notion-panel p-5 transition-colors hover:bg-bg-raised">
+                <div className="flex flex-wrap gap-x-2 gap-y-1 text-[12px] text-fg-subtle">
+                  <span>{r.status}</span>
                   <span>·</span>
                   <span>{r.category}</span>
                   <span>·</span>
@@ -36,17 +36,17 @@ export default function ResearchIndexPage() {
                   {r.placeholder ? (
                     <>
                       <span>·</span>
-                      <span>PLACEHOLDER</span>
+                      <span>Placeholder</span>
                     </>
                   ) : null}
                 </div>
                 <Link
                   href={`/research/${r.slug}`}
-                  className="mt-4 block font-display text-2xl font-bold tracking-tight hover:text-signal"
+                  className="mt-2 block text-[18px] font-semibold tracking-tight text-fg hover:underline"
                 >
                   {r.title}
                 </Link>
-                <p className="mt-2 text-[14px] text-fg-muted">{r.summary}</p>
+                <p className="mt-1 text-[14px] text-fg-muted">{r.summary}</p>
               </li>
             ))}
           </ul>

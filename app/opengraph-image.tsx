@@ -17,24 +17,25 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#050505",
+          background: "#ffffff",
           fontFamily: "mono",
-          padding: 56,
+          padding: 64,
+          border: "24px solid #f7f6f3",
         }}
       >
-        <div style={{ display: "flex", fontSize: 22, color: "#9a9a92", letterSpacing: 4 }}>
-          SHUA LABS · NEW YORK · EST. 2026
+        <div style={{ display: "flex", fontSize: 22, color: "#9b9a97" }}>
+          Shua Labs · New York · Est. 2026
         </div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              fontSize: 64,
+              fontSize: 60,
               fontWeight: 700,
-              color: "#f4f4f0",
-              lineHeight: 1.05,
-              letterSpacing: -2,
+              color: "#37352f",
+              lineHeight: 1.15,
+              letterSpacing: -1.5,
               maxWidth: 980,
             }}
           >
@@ -46,10 +47,10 @@ export default async function OpengraphImage() {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            borderTop: "1px solid rgba(244,244,240,0.16)",
+            borderTop: "1px solid #e9e9e7",
             paddingTop: 28,
-            fontSize: 22,
-            color: "#9a9a92",
+            fontSize: 20,
+            color: "#6f6e69",
           }}
         >
           <span>Independent AI lab · building in public</span>
