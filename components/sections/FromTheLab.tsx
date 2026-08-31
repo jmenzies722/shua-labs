@@ -12,38 +12,38 @@ export function FromTheLab() {
   return (
     <section id="from-the-lab" className="section-pad border-b border-line" aria-labelledby="media-title">
       <div className="site-shell">
-        <motion.p {...loadFade(reduced, 0)} className="label-text mb-4">
+        <motion.p {...loadFade(reduced, 0)} className="label-text mb-2">
           Media
         </motion.p>
-        <motion.h2 {...loadFade(reduced, 0.05)} id="media-title" className="display-section mb-10">
+        <motion.h2 {...loadFade(reduced, 0.04)} id="media-title" className="display-section mb-6">
           From the lab
         </motion.h2>
 
         <motion.ul
-          className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-3"
+          className="grid gap-3 sm:grid-cols-2"
           {...sectionInView}
           variants={staggerContainer(reduced, 0.04)}
         >
           {items.map((m) => (
-            <motion.li key={m.id} variants={staggerItem(reduced, 12)} className="bg-bg p-5 sm:p-6">
-              <p className="font-mono text-[10px] tracking-[0.14em] text-signal">{m.kind.toUpperCase()}</p>
-              <p className="mt-3 font-display text-lg font-bold tracking-tight">{m.title}</p>
-              <p className="mt-2 font-mono text-[11px] text-fg-subtle">
+            <motion.li key={m.id} variants={staggerItem(reduced, 8)} className="notion-panel p-4 transition-colors hover:bg-bg-raised">
+              <p className="text-[12px] text-fg-subtle">{m.kind}</p>
+              <p className="mt-2 text-[15px] font-semibold tracking-tight text-fg">{m.title}</p>
+              <p className="mt-1 text-[12px] text-fg-subtle">
                 {m.meta}
                 {!m.live ? " · not live" : ""}
               </p>
               {m.href && m.live ? (
                 m.href.startsWith("http") ? (
-                  <a href={m.href} className="mt-4 inline-block text-[13px] text-signal" rel="noreferrer" target="_blank">
+                  <a href={m.href} className="mt-3 inline-block text-[13px] text-fg hover:underline" rel="noreferrer" target="_blank">
                     Open →
                   </a>
                 ) : (
-                  <Link href={m.href} className="mt-4 inline-block text-[13px] text-signal">
+                  <Link href={m.href} className="mt-3 inline-block text-[13px] text-fg hover:underline">
                     Open →
                   </Link>
                 )
               ) : (
-                <p className="mt-4 text-[12px] text-fg-subtle">Draft</p>
+                <p className="mt-3 text-[12px] text-fg-subtle">Draft</p>
               )}
             </motion.li>
           ))}
