@@ -13,8 +13,9 @@
     --fg: #f4f4f0;
     --fg-muted: #9a9a92;
     --fg-subtle: #6a6a64;
-    --signal: #c6ff3a;
-    --line: rgba(198, 255, 58, 0.12);
+    /* Accent = white. Black & white system — no chroma. */
+    --signal: #f4f4f0;
+    --line: rgba(244, 244, 240, 0.12);
   }
 
   html {
@@ -31,8 +32,8 @@
     letter-spacing: -0.011em;
     background-color: #050505;
     background-image:
-      linear-gradient(rgba(198, 255, 58, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(198, 255, 58, 0.035) 1px, transparent 1px);
+      linear-gradient(rgba(244, 244, 240, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244, 244, 240, 0.04) 1px, transparent 1px);
     background-size: 72px 72px;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -93,7 +94,7 @@
     font-weight: 500;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--signal);
+    color: var(--fg-muted);
   }
 
   .body-lg {
@@ -118,7 +119,7 @@
   }
 
   .btn-primary:hover {
-    filter: brightness(1.06);
+    background: #ffffff;
   }
 
   .btn-secondary {
@@ -127,7 +128,7 @@
     justify-content: center;
     min-height: 44px;
     padding: 0.7rem 1.15rem;
-    border: 1px solid rgba(198, 255, 58, 0.35);
+    border: 1px solid rgba(244, 244, 240, 0.28);
     color: #f4f4f0;
     font-size: 14px;
     font-weight: 500;
@@ -136,11 +137,11 @@
 
   .btn-secondary:hover {
     border-color: var(--signal);
-    color: var(--signal);
+    color: #ffffff;
   }
 
   .hairline {
-    border-color: rgba(198, 255, 58, 0.12);
+    border-color: rgba(244, 244, 240, 0.12);
   }
 
   .section-pad {
@@ -155,11 +156,11 @@
     0%,
     100% {
       opacity: 1;
-      box-shadow: 0 0 0 0 rgba(198, 255, 58, 0.45);
+      box-shadow: 0 0 0 0 rgba(244, 244, 240, 0.35);
     }
     50% {
-      opacity: 0.55;
-      box-shadow: 0 0 0 6px rgba(198, 255, 58, 0);
+      opacity: 0.45;
+      box-shadow: 0 0 0 6px rgba(244, 244, 240, 0);
     }
   }
 

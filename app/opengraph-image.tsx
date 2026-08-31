@@ -22,7 +22,7 @@ export default async function OpengraphImage() {
           padding: 56,
         }}
       >
-        <div style={{ display: "flex", fontSize: 22, color: "#c6ff3a", letterSpacing: 4 }}>
+        <div style={{ display: "flex", fontSize: 22, color: "#9a9a92", letterSpacing: 4 }}>
           SHUA LABS · NEW YORK · EST. 2026
         </div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -39,14 +39,14 @@ export default async function OpengraphImage() {
             }}
           >
             <span>Building what’s next</span>
-            <span style={{ color: "#c6ff3a" }}>with AI.</span>
+            <span>with AI.</span>
           </div>
         </div>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            borderTop: "1px solid rgba(198,255,58,0.2)",
+            borderTop: "1px solid rgba(244,244,240,0.16)",
             paddingTop: 28,
             fontSize: 22,
             color: "#9a9a92",

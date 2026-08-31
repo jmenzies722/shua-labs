@@ -16,7 +16,7 @@ export default async function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#050505",
-          border: "3px solid #c6ff3a",
+          border: "3px solid #f4f4f0",
         }}
       >
         <div
@@ -25,7 +25,7 @@ export default async function Icon() {
             fontFamily: "mono",
             fontSize: 28,
             fontWeight: 700,
-            color: "#c6ff3a",
+            color: "#f4f4f0",
             letterSpacing: -1,
           }}
         >
