@@ -22,20 +22,20 @@ export function Navigation() {
   }, [pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-md">
-      <div className="site-shell flex h-14 items-center justify-between">
-        <Link href="/" className="font-display text-[15px] font-bold tracking-tight">
-          Shua<span className="text-fg-muted">Labs</span>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
+      <div className="site-shell flex h-12 items-center justify-between">
+        <Link href="/" className="text-[15px] font-semibold tracking-tight text-fg">
+          Shua Labs
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className={cn(
-                "text-[13px] text-fg-muted transition-colors hover:text-fg",
-                pathname.startsWith(l.href) && "text-fg"
+                "rounded-md px-2.5 py-1 text-[13px] text-fg-muted transition-colors hover:bg-bg-raised hover:text-fg",
+                pathname.startsWith(l.href) && "bg-bg-raised text-fg"
               )}
             >
               {l.label}
@@ -43,20 +43,20 @@ export function Navigation() {
           ))}
           <a
             href={social.github.href}
-            className="text-[13px] text-fg-muted hover:text-fg"
+            className="rounded-md px-2.5 py-1 text-[13px] text-fg-muted transition-colors hover:bg-bg-raised hover:text-fg"
             rel="noreferrer"
             target="_blank"
           >
             GitHub
           </a>
-          <Link href="/#follow" className="btn-primary !min-h-9 !px-3 !py-1.5 text-[12px]">
+          <Link href="/#follow" className="btn-primary ml-2 !min-h-8 !px-2.5 !py-1 text-[12px]">
             Follow the Build
           </Link>
         </nav>
 
         <button
           type="button"
-          className="min-h-11 min-w-11 text-[13px] text-fg-muted md:hidden"
+          className="min-h-10 min-w-10 text-[13px] text-fg-muted md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}
@@ -68,18 +68,27 @@ export function Navigation() {
       {open ? (
         <nav
           id="mobile-nav"
-          className="site-shell flex flex-col gap-4 border-t border-line py-5 md:hidden"
+          className="site-shell flex flex-col gap-1 border-t border-line py-3 md:hidden"
           aria-label="Mobile"
         >
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="py-1 text-lg">
+            <Link
+              key={l.href}
+              href={l.href}
+              className="rounded-md px-2 py-2 text-[15px] hover:bg-bg-raised"
+            >
               {l.label}
             </Link>
           ))}
-          <a href={social.github.href} rel="noreferrer" target="_blank" className="py-1 text-lg">
+          <a
+            href={social.github.href}
+            rel="noreferrer"
+            target="_blank"
+            className="rounded-md px-2 py-2 text-[15px] hover:bg-bg-raised"
+          >
             GitHub
           </a>
-          <Link href="/#follow" className="btn-primary w-fit">
+          <Link href="/#follow" className="btn-primary mt-2 w-fit">
             Follow the Build
           </Link>
         </nav>
