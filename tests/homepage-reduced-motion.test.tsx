@@ -23,7 +23,8 @@ vi.mock("framer-motion", async (importOriginal) => {
 test("reduced-motion users still get a complete homepage", async () => {
   const { default: HomePage } = await import("@/app/page");
   render(await HomePage());
-  expect(screen.getByRole("heading", { name: siteMeta.tagline })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: siteMeta.name })).toBeInTheDocument();
+  expect(screen.getByText(siteMeta.tagline)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /currently building/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /^the lab$/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /^build log$/i })).toBeInTheDocument();

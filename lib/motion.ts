@@ -1,26 +1,24 @@
 import type { Transition, Variants } from "framer-motion";
 
 /**
- * Homepage motion tokens — extend the live whileInView fades.
- * One ease and one viewport so section reveals do not fight.
- *
- * Form: keep HeroNew's shipped ease, not Reveal.tsx's 28px / 900ms kit.
+ * Public-site motion — smooth, deliberate, not snappy Notion fades.
+ * Soft ease-out + longer travel so depth reads in motion as well as color.
  */
-export const EASE = [0.25, 0.1, 0.25, 1] as const;
+export const EASE = [0.22, 1, 0.36, 1] as const;
 
-export const DURATION_HERO = 0.55;
-export const DURATION_REVEAL = 0.5;
-export const DURATION_CHROME = 0.28;
-export const DURATION_HOVER = 0.2;
+export const DURATION_HERO = 0.85;
+export const DURATION_REVEAL = 0.7;
+export const DURATION_CHROME = 0.4;
+export const DURATION_HOVER = 0.28;
 
-export const Y_COPY = 12;
-export const Y_CARD = 16;
+export const Y_COPY = 18;
+export const Y_CARD = 24;
 
-export const STAGGER = 0.06;
-export const STAGGER_FOUNDER = 0.08;
-export const STAGGER_MENU = 0.04;
+export const STAGGER = 0.08;
+export const STAGGER_FOUNDER = 0.1;
+export const STAGGER_MENU = 0.05;
 
-export const VIEWPORT = { once: true, margin: "-80px" } as const;
+export const VIEWPORT = { once: true, margin: "-10% 0px -8% 0px" } as const;
 
 export function heroTransition(
   reduced: boolean | null,
@@ -80,7 +78,7 @@ export function staggerContainer(
     visible: {
       transition: {
         staggerChildren: reduced ? 0 : stagger,
-        delayChildren: 0,
+        delayChildren: reduced ? 0 : 0.06,
       },
     },
   };

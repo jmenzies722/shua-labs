@@ -14,6 +14,7 @@ vi.mock("@/lib/build-feed", () => ({
 }));
 
 const REQUIRED = [
+  siteMeta.name,
   siteMeta.tagline,
   siteMeta.supporting,
   "Currently building",

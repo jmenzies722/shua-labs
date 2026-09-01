@@ -13,17 +13,18 @@ import {
 } from "@/lib/motion";
 
 const MOTION_FILES = [
-  "components/sections/HeroLab.tsx",
-  "components/sections/Edge.tsx",
-  "components/sections/SystemBoard.tsx",
-  "components/sections/LabLog.tsx",
-  "components/sections/Watch.tsx",
-  "components/sections/FounderLab.tsx",
+  "components/sections/Hero.tsx",
+  "components/sections/CurrentlyBuilding.tsx",
+  "components/sections/LabLoop.tsx",
+  "components/sections/WorkGrid.tsx",
+  "components/sections/BuildLogPreview.tsx",
+  "components/sections/FromTheLab.tsx",
+  "components/sections/FollowTheBuild.tsx",
   "app/globals.css",
 ];
 
 test("reduced-motion helpers use duration 0 and no transform travel", () => {
-  expect(EASE).toEqual([0.25, 0.1, 0.25, 1]);
+  expect(EASE).toEqual([0.22, 1, 0.36, 1]);
   expect(heroTransition(true).duration).toBe(0);
   expect(revealTransition(true).duration).toBe(0);
   expect(heroTransition(true).delay).toBe(0);

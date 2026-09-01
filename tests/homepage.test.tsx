@@ -15,7 +15,9 @@ vi.mock("@/lib/build-feed", () => ({
 test("states the lab positioning without invented traction", async () => {
   const HomePage = (await import("@/app/page")).default;
   render(await HomePage());
-  expect(screen.getByRole("heading", { name: siteMeta.tagline })).toBeInTheDocument();
+  // Brand is the hero-level signal; tagline supports it.
+  expect(screen.getByRole("heading", { name: siteMeta.name })).toBeInTheDocument();
+  expect(screen.getByText(siteMeta.tagline)).toBeInTheDocument();
   expect(screen.getByText(siteMeta.supporting)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /currently building/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /follow the build/i })).toBeInTheDocument();
@@ -34,7 +36,7 @@ test("exposes primary nav destinations", async () => {
 test("does not claim live YouTube or Instagram URLs", async () => {
   const HomePage = (await import("@/app/page")).default;
   render(await HomePage());
-  expect(screen.getAllByText(/opening|not live|draft|flip live/i).length).toBeGreaterThan(0);
+  expect(screen.getAllByText(/opening|not live|draft|flip live|stays off|opens later/i).length).toBeGreaterThan(0);
   expect(screen.queryByRole("link", { name: /^youtube$/i })).not.toBeInTheDocument();
   expect(screen.queryByRole("link", { name: /^instagram$/i })).not.toBeInTheDocument();
 });
