@@ -4,47 +4,53 @@
 
 @layer base {
   :root {
-    color-scheme: light;
+    color-scheme: dark;
     /* --font-sans / --font-syne / --font-plex come from next/font on <html> */
-    --font-display: var(--font-sans), "DM Sans", Helvetica Neue, Arial, sans-serif;
+    --font-display: var(--font-syne), Syne, "DM Sans", sans-serif;
     --font-mono: var(--font-plex), "IBM Plex Mono", ui-monospace, monospace;
-    --site-measure: 960px;
-    /* Notion-like monochrome — light canvas, ink text */
-    --bg: #ffffff;
-    --bg-panel: #f7f6f3;
-    --fg: #37352f;
-    --fg-muted: #6f6e69;
-    --fg-subtle: #9b9a97;
-    --signal: #37352f;
-    --line: #e9e9e7;
-    --hover: #efeee9;
+    --site-measure: 1080px;
+
+    /* Warm near-black public craft — depth via surface ladder, not chroma */
+    --bg: #0b0b0a;
+    --bg-panel: #121211;
+    --bg-raised: #1a1a18;
+    --bg-elevated: #222220;
+    --fg: #f2f0ea;
+    --fg-muted: #a8a59c;
+    --fg-subtle: #6e6b63;
+    --signal: #f2f0ea;
+    --line: rgba(242, 240, 234, 0.08);
+    --line-strong: rgba(242, 240, 234, 0.14);
+    --hover: rgba(242, 240, 234, 0.04);
+    --bloom: rgba(232, 220, 190, 0.07);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: calc(4.25rem + env(safe-area-inset-top));
-    color-scheme: light;
+    scroll-padding-top: calc(4.5rem + env(safe-area-inset-top));
+    color-scheme: dark;
   }
 
   body {
     @apply bg-bg text-fg antialiased;
     font-family: var(--font-sans);
     font-size: 16px;
-    line-height: 1.6;
-    letter-spacing: -0.003em;
+    line-height: 1.65;
+    letter-spacing: -0.011em;
     background-color: var(--bg);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: #d3e5ef;
+    background: rgba(242, 240, 234, 0.18);
     color: var(--fg);
   }
 
   *:focus-visible {
-    outline: 2px solid var(--fg);
-    outline-offset: 2px;
+    outline: 2px solid rgba(242, 240, 234, 0.45);
+    outline-offset: 3px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -63,97 +69,142 @@
 }
 
 @layer components {
+  /* Atmospheric depth — grain + soft warm bloom on every page */
+  .site-atmosphere {
+    position: relative;
+    isolation: isolate;
+    min-height: 100dvh;
+    background:
+      radial-gradient(ellipse 90% 55% at 50% -8%, var(--bloom), transparent 58%),
+      radial-gradient(ellipse 50% 40% at 100% 30%, rgba(180, 170, 150, 0.03), transparent 50%),
+      var(--bg);
+  }
+
+  .site-atmosphere::before {
+    content: "";
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   .site-shell {
     width: 100%;
     max-width: var(--site-measure);
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 4vw, 2rem);
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
   }
 
   .display-hero {
     font-family: var(--font-display);
-    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+    font-size: clamp(2.75rem, 7.5vw, 5rem);
     font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.03em;
+    line-height: 1.05;
+    letter-spacing: -0.045em;
+    color: var(--fg);
+  }
+
+  .display-brand {
+    font-family: var(--font-display);
+    font-size: clamp(3.25rem, 9vw, 6.25rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
     color: var(--fg);
   }
 
   .display-section {
     font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.022em;
+    font-size: clamp(1.65rem, 3.4vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
   }
 
   .label-text {
-    font-family: var(--font-sans);
-    font-size: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--fg-subtle);
   }
 
   .body-lg {
-    font-size: clamp(1.05rem, 1.4vw, 1.125rem);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
     line-height: 1.65;
     color: var(--fg-muted);
-    max-width: 36rem;
+    max-width: 34rem;
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 36px;
-    padding: 0.45rem 0.85rem;
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
     background: var(--fg);
-    color: #ffffff;
+    color: var(--bg);
     font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    border-radius: 6px;
-    transition: background 0.15s ease;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    border-radius: 999px;
+    transition: transform 0.35s var(--ease-out), background 0.25s ease, opacity 0.25s ease;
   }
 
   .btn-primary:hover {
-    background: #1a1917;
+    background: #fff;
+    transform: translateY(-1px);
   }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 36px;
-    padding: 0.45rem 0.85rem;
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
     background: transparent;
-    border: 1px solid var(--line);
+    border: 1px solid var(--line-strong);
     color: var(--fg);
     font-size: 14px;
     font-weight: 500;
-    border-radius: 6px;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    border-radius: 999px;
+    transition: transform 0.35s var(--ease-out), background 0.25s ease, border-color 0.25s ease;
   }
 
   .btn-secondary:hover {
     background: var(--hover);
-    border-color: #d3d1cb;
+    border-color: rgba(242, 240, 234, 0.28);
+    transform: translateY(-1px);
   }
 
-  .notion-panel {
-    background: var(--bg-panel);
+  .surface-panel {
+    background: linear-gradient(180deg, var(--bg-raised) 0%, var(--bg-panel) 100%);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 16px;
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.35) inset,
+      0 24px 48px -28px rgba(0, 0, 0, 0.65);
   }
 
-  .notion-row {
+  .surface-row {
     border-bottom: 1px solid var(--line);
-    transition: background 0.12s ease;
+    transition: background 0.3s var(--ease-out);
   }
 
-  .notion-row:hover {
+  .surface-row:hover {
     background: var(--hover);
+  }
+
+  .surface-list {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg-panel);
+    box-shadow: 0 20px 40px -32px rgba(0, 0, 0, 0.7);
   }
 
   .hairline {
@@ -161,25 +212,81 @@
   }
 
   .section-pad {
-    padding-block: clamp(3.5rem, 8vw, 5.5rem);
+    padding-block: clamp(4rem, 10vw, 6.5rem);
+  }
+
+  .hero-plane {
+    position: relative;
+    overflow: hidden;
+    min-height: min(92dvh, 820px);
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-plane::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 70% 20%, rgba(232, 220, 190, 0.09), transparent 55%),
+      radial-gradient(ellipse 55% 45% at 15% 80%, rgba(160, 150, 130, 0.05), transparent 50%),
+      linear-gradient(180deg, transparent 35%, rgba(11, 11, 10, 0.55) 72%, var(--bg) 100%);
+    pointer-events: none;
+  }
+
+  .hero-plane::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    background-image:
+      linear-gradient(rgba(242, 240, 234, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242, 240, 234, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black, transparent);
+    pointer-events: none;
   }
 
   .status-pulse {
-    animation: status-pulse 2.4s ease-in-out infinite;
+    animation: status-pulse 2.8s var(--ease-out) infinite;
   }
 
   @keyframes status-pulse {
     0%,
     100% {
       opacity: 1;
+      transform: scale(1);
     }
     50% {
-      opacity: 0.4;
+      opacity: 0.35;
+      transform: scale(0.85);
     }
   }
 
+  @keyframes ambient-drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translate3d(1.5%, -1%, 0) scale(1.04);
+      opacity: 1;
+    }
+  }
+
+  .ambient-orb {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(60px);
+    animation: ambient-drift 14s var(--ease-out) infinite;
+    pointer-events: none;
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .status-pulse {
+    .status-pulse,
+    .ambient-orb {
       animation: none;
     }
   }

@@ -12,10 +12,12 @@ Read [docs/BRAND.md](./docs/BRAND.md) before changing UI.
 
 Hard rules:
 
-- Light Notion-like monochrome (`#ffffff` / `#37352f`), DM Sans / IBM Plex Mono — no chroma, no dark neon lab look
-- Soft panels and list rows; no background grids or glowing accents
+- Warm near-black public craft (`#0b0b0a` / `#f2f0ea`), Syne + DM Sans + IBM Plex Mono — depth via grain/bloom/surface ladder, not chroma
+- No purple gradients, cream-terracotta kits, or flat white Notion skins
+- Soft elevated panels and list rows; atmospheric grain ok, neon glow not
 - Content lives in `content/` — do not scatter project data through JSX
 - Mark placeholders explicitly; empty is honest
+- YouTube stays deferred until founder authorizes; do not invent live social URLs
 
 ## Architecture
 
