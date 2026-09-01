@@ -22,31 +22,34 @@ export default function ResearchIndexPage() {
             Technical explorations, process notes, and venture theses. Scaffold entries are marked.
           </p>
 
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid gap-4 sm:grid-cols-2">
             {research.map((r) => (
-              <li key={r.id} className="notion-panel p-5 transition-colors hover:bg-bg-raised">
-                <div className="flex flex-wrap gap-x-2 gap-y-1 text-[12px] text-fg-subtle">
+              <li
+                key={r.id}
+                className="surface-panel p-5 transition-[transform,border-color] duration-500 ease-smooth hover:-translate-y-0.5 hover:border-line-strong"
+              >
+                <div className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-fg-subtle">
                   <span>{r.status}</span>
-                  <span>·</span>
+                  <span aria-hidden>·</span>
                   <span>{r.category}</span>
-                  <span>·</span>
+                  <span aria-hidden>·</span>
                   <time dateTime={r.date}>{formatDateStamp(r.date)}</time>
-                  <span>·</span>
+                  <span aria-hidden>·</span>
                   <span>{r.readingTime}</span>
                   {r.placeholder ? (
                     <>
-                      <span>·</span>
+                      <span aria-hidden>·</span>
                       <span>Placeholder</span>
                     </>
                   ) : null}
                 </div>
                 <Link
                   href={`/research/${r.slug}`}
-                  className="mt-2 block text-[18px] font-semibold tracking-tight text-fg hover:underline"
+                  className="mt-3 block font-display text-[18px] font-semibold tracking-tight text-fg hover:opacity-80"
                 >
                   {r.title}
                 </Link>
-                <p className="mt-1 text-[14px] text-fg-muted">{r.summary}</p>
+                <p className="mt-1.5 text-[14px] leading-relaxed text-fg-muted">{r.summary}</p>
               </li>
             ))}
           </ul>

@@ -16,25 +16,43 @@ const links = [
 export function Navigation() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
   React.useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-bg/90 backdrop-blur-md">
-      <div className="site-shell flex h-12 items-center justify-between">
-        <Link href="/" className="text-[15px] font-semibold tracking-tight text-fg">
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 transition-[background,border-color,backdrop-filter] duration-500 ease-smooth",
+        scrolled
+          ? "border-b border-line bg-bg/75 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      )}
+    >
+      <div className="site-shell flex h-14 items-center justify-between">
+        <Link
+          href="/"
+          className="font-display text-[17px] font-semibold tracking-tight text-fg"
+        >
           Shua Labs
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-0.5 md:flex" aria-label="Primary">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className={cn(
-                "rounded-md px-2.5 py-1 text-[13px] text-fg-muted transition-colors hover:bg-bg-raised hover:text-fg",
+                "rounded-full px-3 py-1.5 text-[13px] text-fg-muted transition-colors duration-300 hover:bg-bg-raised hover:text-fg",
                 pathname.startsWith(l.href) && "bg-bg-raised text-fg"
               )}
             >
@@ -43,13 +61,13 @@ export function Navigation() {
           ))}
           <a
             href={social.github.href}
-            className="rounded-md px-2.5 py-1 text-[13px] text-fg-muted transition-colors hover:bg-bg-raised hover:text-fg"
+            className="rounded-full px-3 py-1.5 text-[13px] text-fg-muted transition-colors duration-300 hover:bg-bg-raised hover:text-fg"
             rel="noreferrer"
             target="_blank"
           >
             GitHub
           </a>
-          <Link href="/#follow" className="btn-primary ml-2 !min-h-8 !px-2.5 !py-1 text-[12px]">
+          <Link href="/#follow" className="btn-primary ml-2 !min-h-9 !px-3.5 !py-1.5 text-[12px]">
             Follow the Build
           </Link>
         </nav>
@@ -68,14 +86,14 @@ export function Navigation() {
       {open ? (
         <nav
           id="mobile-nav"
-          className="site-shell flex flex-col gap-1 border-t border-line py-3 md:hidden"
+          className="site-shell flex flex-col gap-1 border-t border-line bg-bg/95 py-3 backdrop-blur-xl md:hidden"
           aria-label="Mobile"
         >
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rounded-md px-2 py-2 text-[15px] hover:bg-bg-raised"
+              className="rounded-lg px-2 py-2.5 text-[15px] hover:bg-bg-raised"
             >
               {l.label}
             </Link>
@@ -84,7 +102,7 @@ export function Navigation() {
             href={social.github.href}
             rel="noreferrer"
             target="_blank"
-            className="rounded-md px-2 py-2 text-[15px] hover:bg-bg-raised"
+            className="rounded-lg px-2 py-2.5 text-[15px] hover:bg-bg-raised"
           >
             GitHub
           </a>
