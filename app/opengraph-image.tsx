@@ -17,40 +17,51 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          background: "#ffffff",
+          background: "#0b0b0a",
           fontFamily: "mono",
           padding: 64,
-          border: "24px solid #f7f6f3",
+          border: "24px solid #121211",
         }}
       >
-        <div style={{ display: "flex", fontSize: 22, color: "#9b9a97" }}>
-          Shua Labs · New York · Est. 2026
+        <div style={{ display: "flex", fontSize: 22, color: "#6e6b63" }}>
+          {siteMeta.name} · {siteMeta.location} · Est. {siteMeta.established}
         </div>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              fontSize: 60,
+              fontSize: 72,
               fontWeight: 700,
-              color: "#37352f",
-              lineHeight: 1.15,
-              letterSpacing: -1.5,
+              color: "#f2f0ea",
+              lineHeight: 1.05,
+              letterSpacing: -2,
               maxWidth: 980,
             }}
           >
-            <span>Building what’s next</span>
-            <span>with AI.</span>
+            {siteMeta.name}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 20,
+              fontSize: 32,
+              fontWeight: 500,
+              color: "#a8a59c",
+              lineHeight: 1.3,
+              maxWidth: 860,
+            }}
+          >
+            {siteMeta.tagline}
           </div>
         </div>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            borderTop: "1px solid #e9e9e7",
+            borderTop: "1px solid rgba(242,240,234,0.1)",
             paddingTop: 28,
             fontSize: 20,
-            color: "#6f6e69",
+            color: "#6e6b63",
           }}
         >
           <span>Independent AI lab · building in public</span>

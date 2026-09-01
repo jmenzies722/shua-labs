@@ -20,22 +20,22 @@ export default async function Image({ params }: { params: { slug: string } }) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#ffffff",
-          color: "#37352f",
+          background: "#0b0b0a",
+          color: "#f2f0ea",
           padding: "64px",
           fontFamily: "sans-serif",
-          border: "24px solid #f7f6f3",
+          border: "24px solid #121211",
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ fontSize: 26, fontWeight: 600 }}>Shua Labs</div>
-          <div style={{ fontSize: 16, color: "#9b9a97" }}>Build log</div>
+          <div style={{ fontSize: 16, color: "#6e6b63" }}>Build log</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 52, fontWeight: 700, lineHeight: 1.12, maxWidth: 980 }}>{title}</div>
-          <div style={{ fontSize: 20, color: "#6f6e69" }}>{date}</div>
+          <div style={{ fontSize: 20, color: "#a8a59c" }}>{date}</div>
         </div>
-        <div style={{ fontSize: 18, color: "#9b9a97" }}>Building what’s next with AI.</div>
+        <div style={{ fontSize: 18, color: "#6e6b63" }}>Building what’s next with AI.</div>
       </div>
     ),
     { ...size }

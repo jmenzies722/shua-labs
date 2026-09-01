@@ -39,18 +39,18 @@ export default async function BuildLogPage() {
             Manual entries keep a founder notebook voice. GitHub rows are the raw shipping trail.
           </p>
 
-          <ol className="divide-y divide-line overflow-hidden rounded-md border border-line">
+          <ol className="surface-list divide-y divide-line">
             {feed.map((e) => (
               <li
                 key={e.id}
-                className="notion-row grid gap-1 px-4 py-5 sm:grid-cols-[7.5rem_1fr] sm:gap-6 sm:px-5"
+                className="surface-row grid gap-1 px-5 py-5 sm:grid-cols-[7.5rem_1fr] sm:gap-6 sm:px-6"
               >
-                <time dateTime={e.date} className="text-[12px] text-fg-subtle">
+                <time dateTime={e.date} className="font-mono text-[12px] text-fg-subtle">
                   {formatDateStamp(e.date)}
                 </time>
                 <div>
-                  <div className="mb-1 flex flex-wrap items-center gap-2 text-[11px] text-fg-subtle">
-                    <span className="rounded bg-bg-panel px-1.5 py-0.5">
+                  <div className="mb-1.5 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-fg-subtle">
+                    <span className="rounded-full border border-line bg-bg/40 px-2 py-0.5">
                       {e.source === "github" ? "GitHub" : "Lab note"}
                     </span>
                     {e.sha ? <span>{e.sha}</span> : null}
@@ -59,7 +59,7 @@ export default async function BuildLogPage() {
                   {e.source === "github" && e.commitUrl ? (
                     <a
                       href={e.commitUrl}
-                      className="text-[18px] font-semibold tracking-tight text-fg hover:underline"
+                      className="font-display text-[18px] font-semibold tracking-tight text-fg hover:opacity-80"
                       rel="noreferrer"
                       target="_blank"
                     >
@@ -68,12 +68,12 @@ export default async function BuildLogPage() {
                   ) : (
                     <Link
                       href={`/build/${e.slug}`}
-                      className="text-[18px] font-semibold tracking-tight text-fg hover:underline"
+                      className="font-display text-[18px] font-semibold tracking-tight text-fg hover:opacity-80"
                     >
                       {e.title}
                     </Link>
                   )}
-                  <p className="mt-1 max-w-2xl text-[14px] text-fg-muted">{e.summary}</p>
+                  <p className="mt-1.5 max-w-2xl text-[14px] leading-relaxed text-fg-muted">{e.summary}</p>
                 </div>
               </li>
             ))}
