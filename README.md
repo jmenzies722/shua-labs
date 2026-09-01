@@ -4,7 +4,7 @@ Independent AI lab building software, systems, and companies in public.
 
 Live: [shua-labs.vercel.app](https://shua-labs.vercel.app)
 
-**Building what’s next with AI.**
+**Building what's next with AI.**
 
 ## Stack
 
@@ -69,7 +69,27 @@ Typed content lives in `content/` — keep UI and content separate.
 
 ### Social links
 
-Edit `social` in `content/social.ts`. Keep `live: false` and `href: null` until the founder actually opens the channel. Do not link 404s.
+Edit `social` in `content/social.ts`.
+
+Go-live checklist (founder):
+
+1. Create the YouTube / Instagram account.
+2. Set `href` to the real URL.
+3. Set `live: true`.
+4. Deploy — Follow the Build + footer link automatically.
+
+Keep `live: false` and `href: null` until the channel actually exists. Do not link 404s.
+
+### Build Log + GitHub
+
+`/build` merges:
+
+1. Curated notes from `content/build-log.ts` (founder notebook voice)
+2. Recent public commits from `jmenzies722/shua-labs` (raw shipping trail)
+
+Implementation: `lib/github-commits.ts` + `lib/build-feed.ts`. Revalidates about every 5 minutes. No GitHub token required for the public repo.
+
+Manual entries win when titles collide on the same day.
 
 ## Brand
 

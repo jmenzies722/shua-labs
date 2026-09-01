@@ -1,3 +1,14 @@
+/**
+ * Social channel config for Shua Labs.
+ *
+ * To go live after you create the accounts:
+ * 1. Set `href` to the real URL
+ * 2. Set `live: true`
+ * 3. Ship — Follow the Build + footer will link automatically
+ *
+ * Do not invent live URLs. Empty / not-live is honest.
+ */
+
 import type { MediaItem } from "./types";
 
 export const siteMeta = {
@@ -18,26 +29,43 @@ export const siteMeta = {
   },
 } as const;
 
+export type SocialChannel = {
+  label: string;
+  handle: string;
+  href: string | null;
+  live: boolean;
+};
+
 export const social = {
   github: {
     label: "GitHub",
     handle: "jmenzies722",
     href: "https://github.com/jmenzies722",
-    live: true as const,
+    live: true,
   },
   youtube: {
     label: "YouTube",
     handle: "@shualabs",
-    href: null as string | null,
-    live: false as const,
+    href: null,
+    live: false,
   },
   instagram: {
     label: "Instagram",
     handle: "@shualabs",
-    href: null as string | null,
-    live: false as const,
+    href: null,
+    live: false,
   },
-} as const;
+} as const satisfies Record<string, SocialChannel>;
+
+/** Channels that should render as real outbound links. */
+export function liveSocialLinks(): SocialChannel[] {
+  return Object.values(social).filter((c) => c.live && c.href);
+}
+
+/** Pending channels (created in content, not live yet). */
+export function pendingSocialLinks(): SocialChannel[] {
+  return Object.values(social).filter((c) => !c.live);
+}
 
 export const labLoop = [
   {

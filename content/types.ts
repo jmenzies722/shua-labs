@@ -29,6 +29,8 @@ export type MediaKind =
   | "Research"
   | "GitHub";
 
+export type BuildFeedSource = "manual" | "github";
+
 export interface Project {
   id: string;
   slug: string;
@@ -69,6 +71,12 @@ export interface BuildLogEntry {
   github?: string;
   youtube?: string;
   instagram?: string;
+}
+
+export interface BuildFeedItem extends BuildLogEntry {
+  source: BuildFeedSource;
+  sha?: string;
+  commitUrl?: string;
 }
 
 export interface ResearchEntry {
