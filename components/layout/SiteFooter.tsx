@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="site-shell grid gap-8 md:grid-cols-[1.2fr_1fr]">
         <div>
           <p className="text-[15px] font-semibold tracking-tight">Shua Labs</p>
-          <p className="mt-1 text-[14px] text-fg-muted">Building what's next.</p>
+          <p className="mt-1 text-[14px] text-fg-muted">Building what’s next.</p>
           <p className="mt-3 text-[12px] text-fg-subtle">
             {siteMeta.location} · Est. {siteMeta.established}
           </p>
