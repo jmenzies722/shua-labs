@@ -1,111 +1,59 @@
 # Shua Labs
 
-Independent AI lab building software, systems, and companies in public.
+Independent AI lab in New York. Building software, systems, and companies in public.
 
-Live: [shua-labs.vercel.app](https://shua-labs.vercel.app)
+**Live:** [shua-labs.vercel.app](https://shua-labs.vercel.app)
 
-**Building what's next with AI.**
+> Building what’s next with AI.
 
-## Stack
+This repo is the **public site** — brand, work, build log, research.  
+How the lab actually picks and builds ideas lives in private [`company-os`](https://github.com/jmenzies722/company-os) (`idea → score → pick → build`).
 
-- Next.js 14 (App Router) + TypeScript
-- Tailwind CSS
-- Framer Motion
-- Vercel Analytics
-- Deployed on Vercel
+---
+
+## What’s here
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Lab homepage |
+| `/work` | Experiments and projects |
+| `/build` | Build log (notes + live GitHub commits) |
+| `/research` | Research notes |
+| `/about` | Lab + founder |
+
+Content is typed under `content/`. Don’t invent traction — empty is honest. YouTube stays off until it ships.
+
+---
 
 ## Develop
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
+npm run dev        # http://localhost:3000
 npm test
 npm run typecheck
 npm run lint
 npm run build
 ```
 
-## Routes
+Stack: Next.js 14 · TypeScript · Tailwind · Framer Motion · Vercel.
 
-| Path | Purpose |
-| --- | --- |
-| `/` | Brand homepage |
-| `/work` | Projects / experiments |
-| `/build` | Build log index |
-| `/build/[slug]` | Build log entry |
-| `/research` | Research index |
-| `/research/[slug]` | Research entry |
-| `/about` | Lab + founder |
-| `/registry` | Agent / MCP catalogue (legacy) |
+Push to `master` → production on Vercel.
 
-## Content management
+---
 
-Typed content lives in `content/` — keep UI and content separate.
+## Content
 
 | File | Owns |
 | --- | --- |
-| `content/projects.ts` | Projects + featured build |
-| `content/build-log.ts` | Build log entries |
+| `content/projects.ts` | Work + featured build |
+| `content/build-log.ts` | Curated log entries |
 | `content/research.ts` | Research notes |
-| `content/social.ts` | Site meta, social, lab loop, media pack |
-| `content/types.ts` | Shared TypeScript interfaces |
+| `content/social.ts` | Site meta + social go-live flags |
 
-### Add a project
+Social: set `href` + `live: true` only when the channel exists. Brand: [`docs/BRAND.md`](docs/BRAND.md).
 
-1. Append an object to `projects` in `content/projects.ts`.
-2. Set `placeholder: true` if it is scaffold data.
-3. Do not invent customers, traction, or live products.
-
-### Add a Build Log entry
-
-1. Append to `buildLog` in `content/build-log.ts`.
-2. Use a unique `slug` (becomes `/build/[slug]`).
-3. Keep `body` as short factual paragraphs.
-
-### Add research
-
-1. Append to `research` in `content/research.ts`.
-2. Status vocabulary: `NOTE` | `EXPLORATION` | `REPORT` | `THESIS`.
-
-### Social links
-
-Edit `social` in `content/social.ts`.
-
-Go-live checklist (founder):
-
-1. Create the YouTube / Instagram account.
-2. Set `href` to the real URL.
-3. Set `live: true`.
-4. Deploy — Follow the Build + footer link automatically.
-
-Keep `live: false` and `href: null` until the channel actually exists. Do not link 404s.
-
-### Build Log + GitHub
-
-`/build` merges:
-
-1. Curated notes from `content/build-log.ts` (founder notebook voice)
-2. Recent public commits from `jmenzies722/shua-labs` (raw shipping trail)
-
-Implementation: `lib/github-commits.ts` + `lib/build-feed.ts`. Revalidates about every 5 minutes. No GitHub token required for the public repo.
-
-Manual entries win when titles collide on the same day.
-
-## Brand
-
-See [docs/BRAND.md](./docs/BRAND.md) — colors, type, motion, YouTube/Instagram rules.
-
-## Honesty
-
-No invented traction. Empty is valid. Company OS internals stay private (`jmenzies722/company-os`).
-
-## Deployment
-
-Push to `master` deploys production on Vercel → `shua-labs.vercel.app`. Preview deployments require Vercel SSO.
-
-## Analytics
-
-Vercel Analytics is enabled. Prefer meaningful events (`project_opened`, `github_clicked`, etc.) over invasive tracking.
+---
 
 ## License
 
